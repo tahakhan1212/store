@@ -445,7 +445,7 @@ body.dark .switch::before {
 }
 
 .manual-btn {
-    border: 2px solid #40D3DC;
+    /* border: 2px solid #40D3DC; */
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
@@ -453,7 +453,7 @@ body.dark .switch::before {
 }
 
 .manual-btn:not(:last-child) {
-    margin-right: 40px;
+    /* margin-right: 40px; */
 }
 
 .manual-btn:hover {
