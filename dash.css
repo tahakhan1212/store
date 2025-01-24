@@ -400,13 +400,11 @@ body.dark .switch::before {
 
 
 .slider {
-    width: 100%;
-    /* margin-left: 2.5%; */
-    /* margin-right: 20px; */
+    margin-inline: auto;
+    width: 97%;
     height: 60%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    border-radius: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     overflow: hidden;
 }
 
@@ -768,7 +766,11 @@ body.dark .switch::before {
     }
 
     .slider {
-        height: 40vh;
+        height: 20%;
+    }
+
+    .slider {
+        width: 92%;
     }
 
     .cards {
