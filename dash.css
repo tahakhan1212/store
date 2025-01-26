@@ -187,11 +187,11 @@ body.dark {
     justify-content: center;
 }
 
-.cart-container{
+.cart-container {
     position: relative;
 }
 
-.cart-count{
+.cart-count {
     top: 5px;
     left: 5px;
     font-size: 1rem;
@@ -472,7 +472,7 @@ body.dark .switch::before {
 
 /* .manual-btn:not(:last-child) {
     margin-right: 40px;
-} */
+    } */
 
 .manual-btn:hover {
     background: #40D3DC;
@@ -528,6 +528,7 @@ body.dark .switch::before {
 
 .cards {
     display: grid;
+    margin-bottom: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
     padding-inline: .7rem;
     overflow: hidden;
@@ -617,8 +618,7 @@ body.dark .switch::before {
 }
 
 .product p {
-    line-height: 10px;
-    margin-top: 1rem;
+    line-height: 15px;
     text-transform: uppercase;
     font-size: 0.8em;
     color: var(--dark);
@@ -628,20 +628,18 @@ body.dark .switch::before {
 }
 
 .product h1 {
-    line-height: 10px;
+    line-height: 5px;
     font-size: 1.5rem;
     color: var(--dark);
     margin: 0.5em 0;
 }
 
 .product .pkr {
-    line-height: 10px;
     font-size: .9rem;
     color: var(--tan);
 }
 
 .product .price {
-    line-height: 10px;
     font-size: 1.3rem;
     color: var(--tan);
 }
@@ -654,7 +652,6 @@ body.dark .switch::before {
 }
 
 .description {
-    margin-bottom: .6rem;
     font-size: 0.9em;
     color: var(--dark);
     text-align: justify;
@@ -675,7 +672,8 @@ body.dark .switch::before {
     flex: 1;
 }
 
-.like i{
+.like i {
+    padding-top: .7rem;
     font-size: 2rem;
     color: var(--dark);
 }
@@ -822,6 +820,14 @@ body.dark .switch::before {
         font-size: .65rem;
     }
 
+    .product .price {
+        font-size: 1rem;
+    }
+
+    .product .old-price {
+        font-size: 1rem;
+    }
+
     .sizes span {
         width: 22px;
         height: 22px;
@@ -831,7 +837,7 @@ body.dark .switch::before {
         padding: 0.5em .9em;
     }
 
-    .like i{
+    .like i {
         font-size: 1.6rem;
     }
 
