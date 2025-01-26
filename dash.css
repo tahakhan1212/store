@@ -187,6 +187,22 @@ body.dark {
     justify-content: center;
 }
 
+.cart-container{
+    position: relative;
+}
+
+.cart-count{
+    top: 5px;
+    left: 5px;
+    font-size: 1rem;
+    position: absolute;
+    color: black;
+    background: red;
+    border-radius: 50%;
+    padding: 0rem .5rem;
+    visibility: hidden;
+}
+
 .sidebar li .icon,
 .sidebar li .text {
     color: var(--text-color);
@@ -400,6 +416,7 @@ body.dark .switch::before {
 
 
 .slider {
+    border-radius: 1rem;
     margin-inline: auto;
     width: 97%;
     height: 60%;
@@ -428,6 +445,7 @@ body.dark .switch::before {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    border-radius: 1rem;
     overflow: hidden;
     width: 100%;
     height: 100%;
@@ -452,9 +470,9 @@ body.dark .switch::before {
     transition: 1s;
 }
 
-.manual-btn:not(:last-child) {
-    /* margin-right: 40px; */
-}
+/* .manual-btn:not(:last-child) {
+    margin-right: 40px;
+} */
 
 .manual-btn:hover {
     background: #40D3DC;
@@ -511,14 +529,15 @@ body.dark .switch::before {
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
-    padding-inline: 1rem;
+    padding-inline: .7rem;
     overflow: hidden;
-    gap: 20px;
+    gap: 12px;
     width: 100%;
 }
 
 .container {
     background: var(--white);
+    border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(186, 126, 126, 0.2);
     padding: 8px;
     position: relative;
@@ -534,6 +553,7 @@ body.dark .switch::before {
 
 .images-and-sizes img {
     background-repeat: no-repeat;
+    border-radius: 1rem;
     object-fit: cover;
     width: 100%;
     transition: .2s ease-in-out;
@@ -597,6 +617,7 @@ body.dark .switch::before {
 }
 
 .product p {
+    line-height: 10px;
     margin-top: 1rem;
     text-transform: uppercase;
     font-size: 0.8em;
@@ -607,27 +628,41 @@ body.dark .switch::before {
 }
 
 .product h1 {
-    font-size: 1.5em;
+    line-height: 10px;
+    font-size: 1.5rem;
     color: var(--dark);
     margin: 0.5em 0;
 }
 
-.product h2 {
-    font-size: 1.2em;
+.product .pkr {
+    line-height: 10px;
+    font-size: .9rem;
+    color: var(--tan);
+}
+
+.product .price {
+    line-height: 10px;
+    font-size: 1.3rem;
+    color: var(--tan);
+}
+
+.product .old-price {
+    margin-left: 4px;
+    font-size: 1.3rem;
+    text-decoration: line-through black;
     color: var(--tan);
 }
 
 .description {
-    margin: 1em 0;
+    margin-bottom: .6rem;
     font-size: 0.9em;
-    line-height: 1.5em;
     color: var(--dark);
     text-align: justify;
 }
 
 .buttons {
     display: flex;
-    gap: 1em;
+    /* gap: 1em; */
 }
 
 .buttons button {
@@ -641,7 +676,7 @@ body.dark .switch::before {
 }
 
 .like i{
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--dark);
 }
 
@@ -718,7 +753,7 @@ body.dark .switch::before {
         position: absolute;
         border-radius: 50%;
         top: 50%;
-        left: 0px;
+        left: 3px;
         transform: translateY(-50%);
         height: 10px;
         width: 10px;
@@ -727,7 +762,7 @@ body.dark .switch::before {
     }
 
     body.dark .switch::before {
-        left: 14px;
+        left: 12px;
     }
 
     .sidebar.close~.home {
@@ -770,11 +805,11 @@ body.dark .switch::before {
     }
 
     .slider {
-        width: 92%;
+        width: 90%;
     }
 
     .cards {
-        grid-template-columns: repeat(auto-fit, minmax(10rem, 2fr));
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 2fr));
         gap: 10px;
     }
 
@@ -797,7 +832,7 @@ body.dark .switch::before {
     }
 
     .like i{
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
 
 }
