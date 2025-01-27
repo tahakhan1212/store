@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css? family=Poppins:100,200,300,400,500,600,700.800,900');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' , sans-serif;
+}
+:root
+{
+    --clr: #222327;
+}
+.foot{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #222327;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0
+}
+.navigation{
+    /* margin-top: 2rem; */
+    position: relative;
+    width: 96%;
+    margin-inline: auto;
+    height: 70px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:.6rem;
+}
+.navigation ul{
+    display: flex;
+    gap: 4rem;
+    width: 350px;
+}
+.navigation ul li{
+    position: relative;
+    list-style: none;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
+}
+.navigation ul li a{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+}
+.navigation ul li a .icon{
+    position: relative;
+    display: block;
+    font-weight: bold;
+    line-height: 75px;
+    font-size: 2rem;
+    text-align: center;
+    transition: 0.5s;
+    color: var(--clr);
+}
+.navigation ul li.active a .icon {
+    transform: translateY(-32px)
+
+}
+
+.indicator{
+    position: absolute;
+    top: -50%;
+    width: 70px;
+    height: 70px;
+    background: #29fd53;
+    border-radius: 50%;
+    border: 6px solid var(--clr);
+    transition: 0.5s;
+}
+.indicator::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -10px 0 0 var(--clr);
+}
+.indicator::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -22px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -1px -10px 0 0 var(--clr);
+}
+
+.cart-container2{
+    position: relative;
+}
+
+.cart-count2{
+    /* height: 14px; */
+    background: red;
+    border-radius: 50%;
+    padding: 2px 5px;
+    text-align: center;
+    /* padding-block: -20px; */
+    top: 8px;
+    right: -22px;
+    font-size: 10px;
+    position: absolute;
+    list-style: none;
+    text-decoration: none;
+}
+
+.navigation ul li.active ~ .indicator{
+    transform: translateX(calc(70px * 2));
+}
+
+@media (max-width: 560px) {
+    .foot{
+        display: block;
+    }
+}

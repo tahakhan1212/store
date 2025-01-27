@@ -4,12 +4,14 @@ function onload() {
     cartItem = cartItemsStr ? JSON.parse(cartItemsStr) :[]
     displayData();        
     cartcount();
+    cartcount2();
 }
 
 function addToCart(itemId) {
     cartItem.push(itemId);
     localStorage.setItem("cartItems",JSON.stringify(cartItem));
     cartcount();
+    cartcount2();
 }
 
 
@@ -20,6 +22,16 @@ function cartcount() {
         cartcount.innerHTML = cartItem.length;
     } else {
         cartcount.style.visibility = "hidden";
+    }
+}
+
+function cartcount2() {
+    let cartcount2 = document.querySelector(".cart-count2");
+    if (cartItem.length > 0) {
+        cartcount2.style.visibility = "visible";
+        cartcount2.innerHTML = cartItem.length;
+    } else {
+        cartcount2.style.visibility = "hidden";
     }
 }
 
