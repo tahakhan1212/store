@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="addtocart.css">
+    <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="foot.css">
+    <style>
+   
+    
+
+    </style>
+</head>
+<body>
+
+
+  <!-- add to cart starts -->
+
+ <!-- nav ends  -->
+
+ <nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <img src="https://marketplace.canva.com/EAGQ1aYlOWs/1/0/1600w/canva-blue-colorful-illustrative-e-commerce-online-shop-logo-bHiX_0QpJxE.jpg"
+                    alt="">
+            </span>
+
+            <div class="text header-text">
+                <span class="name">Coading Lab</span>
+                <span class="profession">web developer</span>
+            </div>
+        </div>
+
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+        <div class="menu">
+            <li class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search...">
+            </li>
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-home-alt icon'></i>
+                        <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-bar-chart-alt-2 icon'></i>
+                        <span class="text nav-text">Revenue</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-bell icon'></i>
+                        <span class="text nav-text">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-pie-chart-alt icon'></i>
+                        <span class="text nav-text">Analytics</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-heart icon'></i>
+                        <span class="text nav-text">Likes</span>
+                    </a>
+                </li>
+                <li class="nav-link cart-container">
+                    <a href="#">
+                        <span class="cart-count"></span>
+                        <i class='bx bxs-cart-alt icon'></i>
+                        <span class="text nav-text">Wallets</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bottom-content">
+            <li class="nav-link">
+                <a href="#">
+                    <i class='bx bx-wallet icon'></i>
+                    <span class="text nav-text">$ 0 . 00</span>
+                </a>
+            </li>
+
+            <li class="mode">
+                <div class="moon-sun">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark Mode</span>
+                
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </div>
+
+    </div>
+
+</nav>
+<!-- nav ends  -->
+
+<!-- home starts -->
+
+<section class="home">
+    
+    <!-- another nav starts -->
+    <div class="forhide">
+        <nav class="navbar">
+            <div class="logo">MyLogo</div>
+            <div class="search-container">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search..." class="search-input">
+            </div>
+        </nav>
+    </div>
+    <!-- another nav ends -->
+
+  <!-- add to cart ends -->
+    <div class="container">
+        <div class="products">
+            <div class="product-item">
+                <div class="product-details">
+                    <span class="close">x</span>
+                    <img src="shoes/shoes1-2.webp" alt="1pc Super Strong Double-Sided Tape" class="product-img">
+                    <div class="product-info">
+                        <strong>1pc Super Strong Double-Sided Tape</strong>
+                        <span>Rs. 236 <del>Rs. 999</del></span>
+                        <span>-76%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <div class="product-details">
+                    <span class="close">x</span>
+                    <img src="shoes/shoes10-3.webp" alt="3-in-1 MFI USB Charging Cable" class="product-img">
+                    <div class="product-info">
+                        <strong>3-in-1 MFI USB Charging Cable</strong>
+                        <span>Rs. 393 <del>Rs. 1,065</del></span>
+                        <span>-63%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <div class="product-details">
+                    <span class="close">x</span>
+                    <img src="shoes/shoes2-3.webp" alt="All-Season EVA Thick Sole Slides" class="product-img">
+                    <div class="product-info">
+                        <strong>All-Season EVA Thick Sole Slides</strong>
+                        <span>Rs. 1,658 <del>Rs. 2,889</del></span>
+                        <span>-42%</span>
+                        <p><strong>14 : Days Return Policy , Deliverd Within 7 Days.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h3>Price Details (Items 2)</h3>
+            <p>Total: Rs. 2,287</p>
+            <p>Discount: Rs. 300</p>
+            <p>Delivery: Fee. 100</p>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    
+    
+    <!-- mobile nav starts -->
+    <div class="foot">
+        
+        <div class="navigation">
+        <ul>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <li class="list ">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="camera-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <li class="list cart-container2">
+                <a href="#">
+                    <p class="cart-count2">3</P>
+                    <span class="icon">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+</div>
+
+</section>
+<!-- mobile nav ends -->
+
+<!-- home ends -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="data.js"></script>
+<script src="logic.js"></script>
+<script src="dash.js"></script>
+
+    <script>
+        function checkout() {
+            alert('Proceeding to checkout!');
+        }
+    </script>
+</body>
+</html>

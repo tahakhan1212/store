@@ -390,6 +390,7 @@ body.dark .switch::before {
 /* foot nav starts  */
 /* foot nav ends  */
 
+
 .home {
     width: calc(100% - 250px);
     left: 250px;
@@ -612,7 +613,7 @@ body.dark .switch::before {
     color: var(--dark);
 }
 
-@media (max-width: 560px) {
+@media (max-width: 660px) {
 
     nav{
         display: none;
