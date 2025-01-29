@@ -506,13 +506,6 @@ body.dark .switch::before {
     background: var(--primary-color);
 }
 
-
-.sizes {
-    display: flex;
-    gap: 0.5em;
-}
-
-
 .product p {
     line-height: 15px;
     text-transform: uppercase;
@@ -530,7 +523,7 @@ body.dark .switch::before {
 
 .product .pkr {
     font-size: .9rem;
-    color: var(--primary-colorx );
+    color: var(--primary-color );
 }
 
 .product .price {
@@ -607,22 +600,6 @@ body.dark .switch::before {
     grid-template-columns: repeat(auto-fit, minmax(13rem, 2fr));
         gap: 10px;
         margin-bottom: 6.5rem;
-    }
-    
-    .product h1 {
-        font-size: 1.2em;
-    }
-    
-    .product p {
-        font-size: .65rem;
-    }
-    
-    .product .price {
-        font-size: 1rem;
-    }
-    
-    .product .old-price {
-        font-size: 1rem;
     }
     
     .sizes span {

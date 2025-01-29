@@ -46,10 +46,7 @@ body.dark {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
 }
-
 .navigation ul {
     display: flex;
     gap: 4rem;
