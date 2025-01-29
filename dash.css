@@ -601,12 +601,23 @@ body.dark .switch::before {
         gap: 10px;
         margin-bottom: 6.5rem;
     }
-    
-    .sizes span {
-        width: 22px;
-        height: 22px;
+ 
+    .product h1 {
+        font-size: .9rem;
     }
     
+    .product p {
+        font-size: .65rem;
+    }
+    
+    .product .price {
+        font-size: .7rem;
+    }
+    
+    .product .old-price {
+        font-size: .7rem;
+    }
+ 
 }
 .buttons button {
         font-size: .8rem;
