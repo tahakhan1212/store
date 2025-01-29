@@ -5,17 +5,29 @@
     box-sizing: border-box;
     font-family: 'Poppins' , sans-serif;
 }
-:root
-{
-    --clr: #222327;
+:root {
+    --body-color: #E4E9F7;
+    --sidebar-color: #fff;
+    --toggle-color: #ddd;
+    --text-color: black;
+    --primary-color: #ffa500;
+    --count-color: #ff8c00;
+    --primary-color-light: #ffd8a8;
+    
 }
+body.dark {
+    --body-color: #1f1f1f;
+    --sidebar-color: #000000;
+    --toggle-color: #393939;
+    --text-color: #fff;
+}
+
 .foot{
     display: none;
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: #222327;
-    color: #fff;
+    background: var(--body-color);
     text-align: center;
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem;
@@ -23,10 +35,10 @@
 }
 .navigation{
     position: relative;
-    width: 99%;
+    width: 98%;
     margin-inline: auto;
     height: 60px;
-    background: #fff;
+    background: var(--sidebar-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,7 +75,7 @@
     font-size: 2rem;
     text-align: center;
     transition: 0.5s;
-    color: var(--clr);
+    color: var(--text-color);
 }
 .navigation ul li.active a .icon {
     transform: translateY(-24px)
@@ -76,9 +88,9 @@
     top: -50%;
     width: 70px;
     height: 70px;
-    background: orange;
+    background: var(--primary-color);
     border-radius: 50%;
-    border: 5px solid var(--clr);
+    border: 5px solid var(--body-color);
     transition: 0.5s;
 }
 
@@ -88,8 +100,9 @@
 }
 
 .cart-count2{
-    background: red;
-    border-radius: 50%;
+    background: var(--count-color);
+    color: var(--text-color);
+    border-radius: 60%;
     padding: 2px 5px;
     text-align: center;
     top: 8px;

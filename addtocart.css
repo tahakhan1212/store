@@ -4,6 +4,7 @@
     --toggle-color: #ddd;
     --text-color: black;
     --primary-color: #ffa500;
+    --count-color: #ff8c00;
     --primary-color-light: #ffd8a8;
 }
 
@@ -105,7 +106,7 @@ body.dark {
 }
 
 .discount {
-    color: red;
+    color: var(--count-color);
     font-size: 1.2rem;
     font-weight: bold;
 }
@@ -158,7 +159,7 @@ body.dark {
 }
 
 .checkout-btn:hover {
-    background-color: #ff8c00;
+    background-color: var(--count-color);
 }
 
 @media (max-width: 1100px) {

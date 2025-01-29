@@ -13,6 +13,7 @@
     --toggle-color: #ddd;
     --text-color: black;
     --primary-color: #ffa500;
+    --count-color: #ff8c00;
     --primary-color-light: #ffd8a8;
     
     
@@ -180,7 +181,7 @@ html {
     font-size: .9rem;
     position: absolute;
     color: black;
-    background: red;
+    background: var(--count-color);
     border-radius: 50%;
     padding: 3px 5px;
     visibility: hidden;
