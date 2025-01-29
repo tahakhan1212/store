@@ -26,7 +26,6 @@
 }
 
 .container-cart {
-    overflow-x: hidden;
     background: #fff !important;
     display: flex;
     overflow-y: hidden;
