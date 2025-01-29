@@ -477,11 +477,11 @@ body.dark .switch::before {
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     padding-inline: .7rem;
     overflow: hidden;
     gap: 12px;
-    width: 100%;
+    width: 98.5%;
 }
 
 .container {
@@ -649,7 +649,7 @@ body.dark .switch::before {
     }
     
     .cards {
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 2fr));
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 2fr));
         gap: 10px;
         margin-bottom: 6.5rem;
     }
