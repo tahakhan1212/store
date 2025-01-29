@@ -1,3 +1,19 @@
+:root {
+    --body-color: #E4E9F7;
+    --sidebar-color: #fff;
+    --toggle-color: #ddd;
+    --text-color: black;
+    --primary-color: #ffa500;
+    --primary-color-light: #ffd8a8;
+}
+
+body.dark {
+    --body-color: #1f1f1f;
+    --sidebar-color: #000000;
+    --toggle-color: #393939;
+    --text-color: #fff;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -15,8 +31,8 @@
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px 8px 0px 0px;
-    background: orange;
-    color: white;
+    background: var(--primary-color);
+    color: var(--text-color);
 }
 
 .address h4 {
@@ -26,7 +42,8 @@
 }
 
 .container-cart {
-    background: #fff !important;
+    background: var(--sidebar-color);
+    color: var(--text-color);
     display: flex;
     overflow-y: hidden;
     justify-content: center;
@@ -84,7 +101,7 @@
 
 .product-info p:nth-child(4) {
     position: absolute;
-    bottom: 0px;
+    bottom: 3px;
 }
 
 .discount {
@@ -105,7 +122,7 @@
 .summary {
     height: fit-content;
     flex: 1;
-    background: #fff;
+    background: var(--sidebar-color);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -131,8 +148,8 @@
     width: 100%;
     text-align: center;
     padding: 0.75rem;
-    background-color: orange;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--text-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -141,28 +158,28 @@
 }
 
 .checkout-btn:hover {
-    background-color: #e69500;
+    background-color: #ff8c00;
 }
 
-    @media (max-width: 1100px) {
-        .product-info p {
-            font-size: .9rem;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 180px;
-        }
+@media (max-width: 1100px) {
+    .product-info p {
+        font-size: .9rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 180px;
     }
-  
-    
-    @media (max-width: 940px) {
-        .container-cart {
-            flex-direction: column;
-            margin-inline: auto;
-            margin-bottom: .8rem;
-        }
+}
 
-        
+
+@media (max-width: 940px) {
+    .container-cart {
+        flex-direction: column;
+        margin-inline: auto;
+        margin-bottom: .8rem;
+    }
+
+
 
     .product-info p:nth-child(4) {
         margin-top: 4rem;

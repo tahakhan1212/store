@@ -10,33 +10,29 @@
 :root {
     --body-color: #E4E9F7;
     --sidebar-color: #fff;
-    --primary-color: #695cfe;
-    --primary-color-light: #f6f5ff;
     --toggle-color: #ddd;
-    --text-color: #707070;
-
-    /* === old colors starts === */
-
-    --white: #f5f5f5;
-    --light: #f0d9db;
-    --tan: #c3a1a0;
-    --rose: #ba7e7e;
-    --pink: #d9aab7;
-    --dark: #4e4e4e;
-
-    /* === old colors ends === */
-
+    --text-color: black;
+    --primary-color: #ffa500;
+    --primary-color-light: #ffd8a8;
+    
+    
     --tran-02: all 0.2s ease;
     --tran-03: all 0.3s ease;
     --trans-04: all 0.4s ease;
     --trans-05: all .5s ease;
 }
 
+body.dark {
+    --body-color: #1f1f1f;
+    --sidebar-color: #000000;
+    --toggle-color: #393939;
+    --text-color: #fff;
+}
 body {
     position: relative;
     /* height: 100vh; */
     background: var(--body-color);
-    transition: var(--tran-05);
+    transition: var(--tran-02);
     /* display: flex; */
     /* flex-direction: column; */
     align-items: center;
@@ -53,14 +49,6 @@ html {
     scroll-padding-top: 9rem;
 }
 
-body.dark {
-    --body-color: #18191a;
-    --sidebar-color: #242526;
-    --primary-color: #3a3b3c;
-    --primary-color-light: #3a3b3c;
-    --toggle-color: #fff;
-    --text-color: #ccc;
-}
 
 .forhide {
     display: none;
@@ -70,15 +58,14 @@ body.dark {
     display: flex;
     margin-top: .3rem;
     justify-content: space-between;
-    /* Logo left, search bar right */
     align-items: center;
     padding: 10px 20px;
     border-radius: .6rem;
     background-color: var(--sidebar-color);
-    color: #fff;
+    color: var(--text-color);
     margin-left: .3rem;
     margin-right: .3rem;
-    transition: var(--trans-05);
+    transition: var(--trans-02);
 }
 
 .navbar i {
@@ -88,14 +75,12 @@ body.dark {
     top: 11px;
     cursor: pointer;
     color: var(--text-color);
-    /* background-color: red; */
 }
 
-/* Logo Styling */
 .navbar .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #fff;
+    color: var(--primary-color);
 }
 
 .search-container {
@@ -111,13 +96,12 @@ body.dark {
     border: none;
     border-radius: 20px;
     outline: none;
-    transition: all 0.3s ease;
     color: var(--text-color);
+    background-color: var(--primary-color);
     font-weight: 500;
-    background-color: var(--primary-color-light);
     outline: none;
     border: none;
-    transition: var(--trans-05);
+    transition: var(--trans-02);
     border-radius: 6px;
 
 }
@@ -141,7 +125,7 @@ body.dark {
     padding: 10px 14px;
     width: 250px;
     background: var(--sidebar-color);
-    transition: var(--trans-05);
+    transition: var(--trans-02);
     z-index: 1000;
 }
 
@@ -240,7 +224,7 @@ header .image-text .header-text {
     position: absolute;
     font-size: 10px;
     top: 50%;
-    right: -25px;
+    right: -22px;
     transform: translateY(-50%) rotate(180deg);
     height: 25px;
     width: 25px;
@@ -249,7 +233,7 @@ header .image-text .header-text {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    color: var(--sidebar-color);
+    color: var(--text-color);
     font-size: 22px;
     transition: var(--tran-03);
 }
@@ -258,31 +242,35 @@ header .image-text .header-text {
     transform: translateY(-50%);
 }
 
-body.dark .sidebar header .toggle {
-    color: var(--text-color);
-}
-
 .sidebar .menu {
     margin-top: 35px;
 }
 
 .sidebar .search-box {
-    background-color: var(--primary-color-light);
+    background-color: var(--primary-color);
     border-radius: 6px;
     transition: var(--trans-05);
 }
 
+.sidebar .search-box i{
+    cursor: pointer;
+}
+
 .search-box input {
-    color: var(--text-color);
+    color: var(--sidebar-color);
     font-size: 16px;
     font-weight: 500;
     height: 100%;
     width: 100%;
-    background-color: var(--primary-color-light);
+    background-color: var(--primary-color);
     outline: none;
     border: none;
     transition: var(--trans-05);
     border-radius: 6px;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.59);
 }
 
 .sidebar li a {
@@ -306,7 +294,7 @@ body.dark .sidebar header .toggle {
 
 body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text {
-    color: var(--text-color);
+    color: var(--sidebar-color);
 }
 
 .sidebar .menu-bar {
@@ -317,7 +305,7 @@ body.dark .sidebar li a:hover .text {
 }
 
 .menu-bar .mode {
-    background: var(--primary-color-light);
+    background: var(--primary-color);
     position: relative;
     border-radius: 6px;
     transition: var(--trans-05);
@@ -358,7 +346,7 @@ body.dark .menu-bar .mode i.moon {
     cursor: pointer;
     border-radius: 6px;
     transition: var(--trans-05);
-    background: var(--primary-color-light);
+    background: var(--primary-color);
 }
 
 .toggle-switch .switch {
@@ -480,9 +468,8 @@ body.dark .switch::before {
 }
 
 .container {
-    background: var(--white);
+    background: var(--sidebar-color);
     border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(186, 126, 126, 0.2);
     padding: 8px;
     position: relative;
 }
@@ -510,12 +497,12 @@ body.dark .switch::before {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--light);
+    background:var(--primary-color-light);
     cursor: pointer;
 }
 
 .slideshow-buttons .focus {
-    background: var(--rose);
+    background: var(--primary-color);
 }
 
 
@@ -524,33 +511,11 @@ body.dark .switch::before {
     gap: 0.5em;
 }
 
-.sizes span {
-    border: 1px solid var(--light);
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9em;
-    cursor: pointer;
-}
-
-.sizes span:hover {
-    background: var(--rose);
-    color: var(--white);
-    transition: all 0.3s ease-in-out;
-}
-
-.sizes .focus {
-    background: var(--rose);
-    color: var(--white);
-}
 
 .product p {
     line-height: 15px;
     text-transform: uppercase;
     font-size: 0.8em;
-    color: var(--dark);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -559,25 +524,22 @@ body.dark .switch::before {
 .product h1 {
     line-height: 5px;
     font-size: 1.5rem;
-    color: var(--dark);
     margin: 0.5em 0;
 }
 
 .product .pkr {
     font-size: .9rem;
-    color: var(--tan);
+    color: var(--primary-colorx );
 }
 
 .product .price {
     font-size: 1.3rem;
-    color: var(--tan);
 }
 
 .product .old-price {
     margin-left: 4px;
     font-size: 1.3rem;
-    text-decoration: line-through black;
-    color: var(--tan);
+    text-decoration: line-through var(--text-color);
 }
 
 .description {
@@ -595,15 +557,14 @@ body.dark .switch::before {
     border: none;
     text-transform: uppercase;
     cursor: pointer;
-    color: var(--dark);
-    background: var(--white);
+    color: var(--text-color);
+    background: var(--sidebar-color);
     flex: 1;
 }
 
 .like i {
     padding-top: .2rem;
     font-size: 2rem;
-    color: var(--dark);
 }
 
 @media (max-width: 660px) {
@@ -633,7 +594,7 @@ body.dark .switch::before {
     }
     
     .forhide i:hover {
-        color: var(--rose);
+        color: var(--sidebar-color);
     }
     
     .slider {
