@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css? family=Poppins:100,200,300,400,500,600,700.800,900');
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins' , sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
+
 :root {
     --body-color: #E4E9F7;
     --sidebar-color: #fff;
@@ -13,8 +15,9 @@
     --primary-color: #ffa500;
     --count-color: #ff8c00;
     --primary-color-light: #ffd8a8;
-    
+
 }
+
 body.dark {
     --body-color: #1f1f1f;
     --sidebar-color: #000000;
@@ -22,7 +25,7 @@ body.dark {
     --text-color: #fff;
 }
 
-.foot{
+.foot {
     display: none;
     position: fixed;
     bottom: 0;
@@ -31,33 +34,37 @@ body.dark {
     text-align: center;
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem;
-    padding: .5rem .5rem 0 .5rem; 
+    padding: .5rem 0 0 0;
 }
-.navigation{
+
+.navigation {
     position: relative;
-    width: 98%;
+    width: 100%;
     margin-inline: auto;
     height: 60px;
     background: var(--sidebar-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top-left-radius:.5rem;
-    border-top-right-radius:.5rem;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
 }
-.navigation ul{
+
+.navigation ul {
     display: flex;
     gap: 4rem;
     width: 350px;
 }
-.navigation ul li{
+
+.navigation ul li {
     position: relative;
     list-style: none;
     width: 70px;
     height: 70px;
     z-index: 1;
 }
-.navigation ul li a{
+
+.navigation ul li a {
     position: relative;
     display: flex;
     justify-content: center;
@@ -67,7 +74,8 @@ body.dark {
     text-align: center;
     font-weight: bolder;
 }
-.navigation ul li a .icon{
+
+.navigation ul li a .icon {
     position: relative;
     display: block;
     font-weight: bold;
@@ -77,29 +85,33 @@ body.dark {
     transition: 0.5s;
     color: var(--text-color);
 }
+
 .navigation ul li.active a .icon {
     transform: translateY(-24px)
-
 }
 
-.indicator{
+.indicator {
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
     position: absolute;
     top: -50%;
     width: 70px;
     height: 70px;
     background: var(--primary-color);
+    border: solid 10px transparent;
     border-radius: 50%;
-    border: 5px solid var(--body-color);
-    transition: 0.5s;
+    background-image: linear-gradient(orange, orange), 
+                      linear-gradient( to bottom, var(--body-color),var(--count-color));
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+transition: 0.5s;
 }
 
 
-.cart-container2{
+.cart-container2 {
     position: relative;
 }
 
-.cart-count2{
+.cart-count2 {
     background: var(--count-color);
     color: var(--text-color);
     border-radius: 60%;
@@ -113,12 +125,12 @@ body.dark {
     text-decoration: none;
 }
 
-.navigation ul li.active ~ .indicator{
+.navigation ul li.active~.indicator {
     transform: translateX(calc(70px * 2));
 }
 
 @media (max-width: 660px) {
-    .foot{
+    .foot {
         display: block;
     }
 }
