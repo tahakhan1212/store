@@ -31,9 +31,9 @@ body.dark {
     bottom: 0;
     width: 100%;
     background: var(--body-color);
-    text-align: center;
+    /* text-align: center;
     border-top-left-radius: .5rem;
-    border-top-right-radius: .5rem;
+    border-top-right-radius: .5rem; */
     padding: .5rem 0 0 0;
 }
 
@@ -97,7 +97,7 @@ body.dark {
     width: 70px;
     height: 70px;
     background: var(--primary-color);
-    border: solid 10px transparent;
+    border: solid 7px transparent;
     border-radius: 50%;
     background-image: linear-gradient(orange, orange), 
                       linear-gradient( to bottom, var(--body-color),var(--count-color));
