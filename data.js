@@ -25,7 +25,7 @@ let data = [
         pics: "shoes/shoes3-1.webp,shoes/shoes3-2.webp,shoes/shoes3-3.webp,shoes/shoes3-4.webp",
         category: "Women's Fashion Sneakers",
         title: "Sneakers",
-        price: ".1,930`",
+        price: ".1,930",
         oldPrice: "3,900",
         description: "  Women's Solid Color Knitted Sneakers, Lace Up Soft Sole Lightweight Walking Shoes, Low-top Breathable Running Shoes"
     },

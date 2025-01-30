@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Categories</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .categories-container {
+            max-width: 100%;
+            /* padding: 10px; */
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .categories::-webkit-scrollbar{
+            display: none;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .categories {
+            overflow-x: scroll;
+            scrollbar-width: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .category {
+            padding: 5px 5px;
+            border-radius: 5px;
+            border-radius: 60%;
+            cursor: pointer;
+            margin-block: 10px;
+            text-align: center;
+        }
+
+        .categories-container .category img {
+            height: 8rem;
+            width: 8rem;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="categories-container">
+        <h2>Browse Categories</h2>
+        <div class="categories">
+            <div class="category">
+                <img src="shoes/shoes1-1.webp" alt="">
+            </div>
+            <div class="category">
+                <img src="shoes/shoes1-1.webp" alt="">
+            </div>
+            <div class="category">
+                <img src="shoes/shoes1-4.webp" alt="">
+            </div>
+            <div class="category">
+                <img src="shoes/shoes3-3.webp" alt="">
+            </div>
+            <div class="category">
+                <img src="shoes/shoes1-3.webp" alt="">
+            </div>
+            <div class="category">
+                <img src="shoes/shoes1-2.webp" alt="">
+            </div>
+        </div>
+
+</body>
+
+</html>

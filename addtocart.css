@@ -47,6 +47,8 @@ body.dark {
     color: var(--text-color);
     display: flex;
     overflow-y: hidden;
+    overflow-x: scroll;
+    scrollbar-width: none;
     justify-content: center;
     margin: 0 auto;
     margin-top: -1rem;
@@ -55,6 +57,7 @@ body.dark {
     width: 95.5%;
     gap: 1.5rem;
     border-radius: 1rem;
+    -webkit-scroolbar-width: none;
 }
 
 .products {

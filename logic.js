@@ -1,15 +1,16 @@
 onload();
 function onload() {
     let cartItemsStr = localStorage.getItem("cartItems");
-    cartItem = cartItemsStr ? JSON.parse(cartItemsStr) :[]
-    displayData();        
+    cartItem = cartItemsStr ? JSON.parse(cartItemsStr) : []   
+    displayData();
+    displaycategory();
     cartcount();
     cartcount2();
 }
 
 function addToCart(itemId) {
     cartItem.push(itemId);
-    localStorage.setItem("cartItems",JSON.stringify(cartItem));
+    localStorage.setItem("cartItems", JSON.stringify(cartItem));
     cartcount();
     cartcount2();
 }
@@ -34,6 +35,7 @@ function cartcount2() {
         cartcount2.style.visibility = "hidden";
     }
 }
+
 
 function displayData() {
     let cardContainer = document.querySelector(".cards");
