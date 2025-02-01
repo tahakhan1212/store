@@ -174,14 +174,14 @@ html {
 }
 
 .cart-count {
-    top: -5px;
+    top: 1px;
     left: 4px;
-    font-size: .9rem;
+    font-size: .6rem;
     position: absolute;
     color: black;
     background: var(--count-color);
-    border-radius: 50%;
-    padding: 3px 5px;
+    border-radius: 60%;
+    padding: 3px 6px;
     visibility: hidden;
 }
 
@@ -598,9 +598,14 @@ body.dark .switch::before {
 }
 
 .product .old-price {
-    margin-left:    4px;
+    margin-left:4px;
     font-size: 15px;
     text-decoration: line-through var(--text-color);
+}
+
+.discount{
+    font-size: 15px;
+    margin-left:7px;
 }
 
 .buttons {

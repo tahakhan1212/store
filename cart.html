@@ -123,65 +123,46 @@
         <!-- add to cart ends -->
         <div class="container-cart">
             <div class="products">
-                <div class="product-item">
+                <!-- <div class="product-item">
                     <div class="product-details">
                         <span class="close"><i class='bx bx-trash' ></i></span>
-                        <img src="shoes/shoes1-1.webp" alt="1pc Super Strong Double-Sided Tape" class="product-img">
+                        <img src="shoes/shoes1-1.webp" alt="" class="product-img">
                         <div class="product-info">
-                            <h2>Sneakers</h2>
-                            <div class="return-policy">
+                            <div class="product-description">
                                 <p>Shoes Women's 2024 New Foreign Trade Women's Shoes Breathable Shoes Women's
                                     Cross-border Lace-up Fashion Trendy Sports Women's Shoes</p>
                             </div>
-                            <span>Rs. 1,730 &nbsp; <del> &nbsp; Rs. 2,500 </del> <strong class="discount"> &nbsp;
-                                    -20%</strong></span>
-                            <p>14 : Days Return Policy. <br> Deliverd Within 7 Days.</p>
-                        </div>
+                            <h2>Sneakers</h2>
+                            <strong class="product-price">1730</strong> 
+                            <del>Rs. 2,500</del> &nbsp;
+                            <strong class="discount">-20%</strong>
+                            <span class="rs">Rs.</span>
+                            
+                            
+                            <span class="product-total">1,730</span>
+                        
+                        
+                        <p class="return">14 : Days Return Policy. <br> Delivered Within 7 Days.</p>
+                    </div>
+                    <div class="quantity-container">
+                        <button class="quantity-btn decrease">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn increase">+</button>
                     </div>
                 </div>
-
-                <div class="product-item">
-                    <div class="product-details">
-                        <span class="close"><i class='bx bx-trash' ></i></span>
-                        <img src="shoes/shoes6-1.webp" alt="1pc Super Strong Double-Sided Tape" class="product-img">
-                        <div class="product-info">
-                            <h2>slippers</h2>
-                            <div class="return-policy">
-                                <p>Women's Comfy EVA Slides - Thick Sole, Non-Slip, Casual Slip-On Slippers in Pink,
-                                    Green, Brown with Ribbed Texture - Perfect for Indoor/Outdoor Use, Beach & Home
-                                    Relaxation, Ladies Slippers</p>
-                            </div>
-                            <span>Rs. 945 &nbsp; <del> &nbsp; Rs. 1,200 </del> <strong class="discount"> &nbsp;
-                                    -30%</strong></span>
-                            <p>14 : Days Return Policy. <br> Deliverd Within 7 Days.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-item">
-                    <div class="product-details">
-                        <span class="close"><i class='bx bx-trash' ></i></span>
-                        <img src="shoes/shoes10-1.webp" alt="1pc Super Strong Double-Sided Tape" class="product-img">
-                        <div class="product-info">
-                            <h2>Flats</h2>
-                            <div class="return-policy">
-                                <p>Chic Women's Ballet Flats with Bowknot - Comfortable Slip-On Shoes, Soft Sole, Versatile for All Seasons</p>
-                            </div>
-                            <span>Rs. 3,172 &nbsp; <del> &nbsp; Rs. 10,891 </del> <strong class="discount"> &nbsp;
-                                    -60%</strong></span>
-                            <p>14 : Days Return Policy. <br> Deliverd Within 7 Days.</p>
-                        </div>
-                    </div>
-                </div>
+            </div> -->
             </div>
 
-            <div class="summary">
-                <h3>Price Details (Items 2)</h3>
-                <p>Total: Rs. 2,287</p>
-                <p>Discount: Rs. 300</p>
-                <p>Delivery: Fee. 100</p>
-                <h3>Total: Rs. 2,287</h3>
-                <button class="checkout-btn" onclick="checkout()">Checkout</button>
+
+            <div class="cart-total">
+                <!-- <div class="summary">
+                    <h3>Price Details (Items 2)</h3>
+                    <p>Total: Rs. 2,287</p>
+                    <p>Discount: Rs. 300</p>
+                    <p>Delivery: Fee. 100</p>
+                    <h3>Total: Rs. 2,287</h3>
+                    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+                </div> -->
             </div>
         </div>
 
@@ -242,11 +223,55 @@
     <!-- mobile nav ends -->
 
     <!-- home ends -->
+
+    <script>
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const products = document.querySelectorAll(".product-item");
+
+        //     products.forEach(product => {
+        //         const decreaseBtn = product.querySelector(".decrease");
+        //         const increaseBtn = product.querySelector(".increase");
+        //         const quantityInput = product.querySelector(".quantity-input");
+        //         const priceElement = product.querySelector(".product-price");
+        //         const totalElement = product.querySelector(".product-total");
+        //         const price = parseInt(priceElement.textContent);
+
+        //         function updateTotal() {
+        //             let quantity = parseInt(quantityInput.value);
+        //             if (quantity < 1) quantity = 1;
+        //             quantityInput.value = quantity;
+        //             totalElement.textContent = (price * quantity).toLocaleString();
+        //         }
+
+        //         decreaseBtn.addEventListener("click", function () {
+        //             quantityInput.stepDown();
+        //             if (parseInt(quantityInput.value) < 1) quantityInput.value = 1;
+        //             quantityInput.value = Math.max(1, parseInt(quantityInput.value) - 1);
+        //             updateTotal();
+        //         });
+
+        //         increaseBtn.addEventListener("click", function () {
+        //             quantityInput.stepUp();
+        //             quantityInput.value = parseInt(quantityInput.value) + 1;
+        //             updateTotal();
+        //         });
+
+        //         console.log(quantityInput.value);
+
+
+        //         quantityInput.addEventListener("input", updateTotal);
+        //     });
+        // });
+
+    </script>
+    
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="data.js"></script>
     <script src="logic.js"></script>
     <script src="dash.js"></script>
+    <script src="cart.js"></script>
+
 
     <script>
         function checkout() {

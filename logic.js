@@ -1,18 +1,20 @@
+let cartItem;
 onload();
 function onload() {
     let cartItemsStr = localStorage.getItem("cartItems");
     cartItem = cartItemsStr ? JSON.parse(cartItemsStr) : []   
     displayData();
-    displaycategory();
     cartcount();
     cartcount2();
 }
 
-function addToCart(itemId) {
-    cartItem.push(itemId);
+function addToCart(itemid) {
+    cartItem.push(itemid);
     localStorage.setItem("cartItems", JSON.stringify(cartItem));
     cartcount();
     cartcount2();
+    showCartItems();
+    location.reload()
 }
 
 
@@ -40,7 +42,11 @@ function cartcount2() {
 function displayData() {
     let cardContainer = document.querySelector(".cards");
 
-    data.forEach((item) => {
+    if (!cardContainer) {
+        return;
+      }
+
+    product.forEach((item) => {
         let card = `<div class="container"
                     data-images="${item.pics}">
                   
@@ -64,6 +70,7 @@ function displayData() {
                         <span class="pkr">PKR </span>
                         <span class="price">${item.price}</span>
                         <span class="old-price">${item.oldPrice}</span>
+                        <span class="discount">${item.discount}</span>
                         <p class="description">${item.description}</p>
                         <div class="buttons">
                             <button class="add">⭐⭐⭐⭐⭐</button>
