@@ -132,10 +132,10 @@ function generateItemHTML(cartItem) {
                     <p>${cartItem.description}</p>
                 </div>
                 <h2>${cartItem.title}</h2>
-                <strong class="product-price">${cartItem.price}</strong> 
+                <strong class="product-price">Rs .${cartItem.price}</strong> 
                 <del>Rs. ${cartItem.oldPrice}</del> &nbsp;
                 <strong class="discount">${cartItem.discount}</strong>
-                <span class="rs">Rs.</span>
+                <span class="rs"></span>
                 <span class="product-total"></span>
                 <p class="return">14 : Days Return Policy. <br> Delivered Within 7 Days.</p>
             </div>
