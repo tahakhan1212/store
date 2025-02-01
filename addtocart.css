@@ -177,7 +177,7 @@ body.dark {
     color: white;
     font-size: 1rem;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 1px;
 }
 
 .quantity-input {
@@ -185,8 +185,8 @@ body.dark {
     width: 30px;
     font-size: 1rem;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 3px;
+    border-radius: 1px;
+    padding: 2.5px;
 }
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -277,9 +277,38 @@ input[type=number]::-webkit-outer-spin-button {
         margin-bottom: .8rem;
     }
 
-
-
-    .product-info p:nth-child(4) {
-        margin-top: 4rem;
-    }
 }
+
+@media (max-width: 760px) {
+    
+    .product-img {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    
+    .product-info p {
+         width: 150px;
+        }
+
+        .quantity-btn {
+            width: 15px;
+            height: 15px;
+            font-size: .7rem;
+            border-radius: 1px;
+        }
+        
+        .quantity-input {
+           width: 20px;
+           height: 15px;
+            font-size: .7rem;
+            padding: 3px;
+            border-radius: 1px;
+        }
+
+        .return{
+            margin-top:     20px;
+        }
+
+    }
