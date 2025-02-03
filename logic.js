@@ -54,7 +54,7 @@ function displayData() {
                         <div class="img-card">
                             <div class="front pic1"></div>
                             <div class="images-and-sizes">
-                                <img src="${item.image}" alt="Shoe Image">
+                               <a href="details.html"><img src="${item.image}" alt="Shoe Image"></a>
                             </div>
                         </div>
                     </div>

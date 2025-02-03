@@ -280,6 +280,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media (max-width: 760px) {
     
+    .address,.container-cart{
+        width: 100%;
+    }
+
+    .address{
+        border-top-left-radius:0px ;
+        border-top-right-radius:0px ;
+    }
     
     .product-img {
         width: 100px;

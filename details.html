@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="dash.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="foot.css">
+</head>
+
+<body>
+
+  <!-- nav ends  -->
+
+  <nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <img src="https://marketplace.canva.com/EAGQ1aYlOWs/1/0/1600w/canva-blue-colorful-illustrative-e-commerce-online-shop-logo-bHiX_0QpJxE.jpg"
+                    alt="">
+            </span>
+
+            <div class="text header-text">
+                <span class="name">Coading Lab</span>
+                <span class="profession">web developer</span>
+            </div>
+        </div>
+
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+        <div class="menu">
+            <li class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search Here">
+            </li>
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="index.html">
+                        <i class='bx bx-home-alt icon'></i>
+                        <span class="text nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-bar-chart-alt-2 icon'></i>
+                        <span class="text nav-text">Revenue</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-bell icon'></i>
+                        <span class="text nav-text">Notifications</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-pie-chart-alt icon'></i>
+                        <span class="text nav-text">Analytics</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class='bx bx-heart icon'></i>
+                        <span class="text nav-text">Likes</span>
+                    </a>
+                </li>
+                <li class="nav-link cart-container">
+                    <a href="cart.html">
+                        <span class="cart-count"></span>
+                        <i class='bx bxs-cart-alt icon'></i>
+                        <span class="text nav-text">Cart</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bottom-content">
+            <li class="nav-link">
+                <a href="#">
+                    <i class='bx bx-wallet icon'></i>
+                    <span class="text nav-text">Wallets $ 0 . 00</span>
+                </a>
+            </li>
+
+            <li class="mode">
+                <div class="moon-sun">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark Mode</span>
+                
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </div>
+
+    </div>
+
+</nav>
+<!-- nav ends  -->
+
+<section class="home">
+
+   <!-- another nav starts -->
+   <div class="forhide">
+    <nav class="navbar">
+        <div class="logo">MyLogo</div>
+        <div class="search-container">
+            <i class='bx bx-search icon'></i>
+            <input type="text" placeholder="Search Here " class="search-input">
+        </div>
+    </nav>
+</div>
+<!-- another nav ends -->
+
+  <section>
+    <div class="details-container flex">
+      <div class="left">
+        <div class="main_image">
+          <img src="shoes/shoes1-1.webp" class="slide">
+        </div>
+        <div class="option flex">
+          <img src="shoes/shoes1-1.webp" onclick="img('shoes/shoes1-1.webp')">
+          <img src="shoes/shoes1-2.webp" onclick="img('shoes/shoes1-2.webp')">
+          <img src="shoes/shoes1-3.webp" onclick="img('shoes/shoes1-3.webp')">
+          <img src="shoes/shoes1-4.webp" onclick="img('shoes/shoes1-4.webp')">
+        </div>
+      </div>
+      <div class="right">
+        <h3>Sneakers</h3>
+        <p id="category">Women's Fashion Sneakers</p>
+        <div class="prices">
+        <h4> <small>PKR </small> 1730.00 </h4>
+        <h4><del>2500 </del></h4>
+        <h4> 20% off </h4>
+      </div>
+        <p>Shoes Women's 2024 New Foreign Trade Women's Shoes Breathable Shoes Women's Cross-border Lace-up Fashion Trendy Sports Women's Shoes. </p>
+        <div class="quantity-and-rating">
+        <h5>Quantity</h5>
+        <h5>Rating ⭐⭐⭐⭐⭐</h5>
+      </div>
+        <div class="quantity-container">
+          <button class="quantity-btn decrease">-</button>
+          <input type="number" class="quantity-input" value="1" min="1" id="abc">
+          <button class="quantity-btn increase">+</button>
+      </div>
+      
+        <!-- <div class="add flex1">
+          <span>-</span>
+          <label>1</label>
+          <span>+</span>
+        </div> -->
+
+        <div class="addtobag" >
+        <button>Add to Cart</button>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="text">
+    <div class="cards">
+    </div>
+</div>
+
+      <!-- mobile nav starts -->
+      <div class="foot">
+            
+        <div class="navigation">
+        <ul>
+            <li class="list">
+                <a href="index.html">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <li class="list ">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="camera-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <li class="list cart-container2">
+                <a href="cart.html">
+                    <p class="cart-count2">3</P>
+                    <span class="icon">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+</div>
+<!-- mobile nav ends -->
+
+
+</section>
+<script>
+  function img(anything) {
+    document.querySelector('.slide').src = anything;
+  }
+  
+  function change(change) {
+    const line = document.querySelector('.home');
+    line.style.background = change;
+  }
+  </script>
+   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+   <script src="data.js"></script> 
+   <script src="logic.js"></script>
+   <script src="dash.js"></script>
+</body>
+
+</html>

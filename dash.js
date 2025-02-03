@@ -80,5 +80,3 @@ cards.forEach(card => {
         });
     });
 });
-
-

@@ -529,7 +529,7 @@ body.dark .switch::before {
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    padding-inline: .7rem;
+    /* padding-inline: .7rem; */
     overflow: hidden;
     gap: 12px;
     width: 98.5%;
@@ -658,6 +658,7 @@ body.dark .switch::before {
     }
     
     .slider {
+        margin-top: 5rem;
         width: 98%;
         height: 200px;
     }
@@ -685,8 +686,10 @@ body.dark .switch::before {
     
     .cards {
     grid-template-columns: repeat(auto-fit, minmax(13rem, 2fr));
-        gap: 10px;
+        gap: 5px;
         margin-bottom: 4.5rem;
+        width: 100%;
+        margin-top: 1rem;
     }
 
     .product h1 {

@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+:root {
+  --body-color: #E4E9F7;
+  --sidebar-color: #fff;
+  --toggle-color: #ddd;
+  --text-color: black;
+  --primary-color: #ffa500;
+  --count-color: #ff8c00;
+  --primary-color-light: #ffd8a8;
+}
+
+body.dark {
+  --body-color: #1f1f1f;
+  --sidebar-color: #000000;
+  --toggle-color: #393939;
+  --text-color: #fff;
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+}
+
+body {
+  background: var(--body-color);
+}
+
+html {
+  font-size: 77.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.details-container {
+  max-width: 96%;
+  margin: auto;
+  height: auto;
+  background: var(--sidebar-color);
+  box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 1rem;
+}
+
+.left, .right {
+  flex: 1;
+  padding: 30px 0px 30px 30px;
+  min-width: 300px;
+}
+
+.right {
+  padding: 50px 100px 50px 50px;
+}
+
+
+.flex {
+  display: flex;
+  justify-content:left; 
+}
+
+.flex1 {
+  display: flex;
+}
+
+.main_image {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.main_image img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.option {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.option img {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 1.5rem;
+}
+
+.right h3 {
+  color: var(--count-color);
+  margin: 0px 0;
+  font-size: 25px;
+}
+
+#category {
+  color: var(--text-color);
+  opacity: 1;
+  line-height: 5px;
+  font-size: 15px;
+}
+
+.prices{
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.prices h4 small{
+  color: var(--primary-color);
+}
+
+.prices h4 del, .prices h4{
+  color: var(--text-color);
+}
+
+.prices h4 {
+  margin-top: -2rem;
+  line-height: 25px;
+}
+
+.right p {
+  color: var(--text-color);
+  opacity: 0.8;
+  margin: 20px 0 50px;
+  line-height: 20px;
+  font-size: 1.3rem;
+}
+
+.quantity-and-rating{
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+.quantity-and-rating h5 {
+margin-left: 3px;
+}
+
+.addtobag button {
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  background: var(--count-color);
+  color: var(--text-color);
+  margin-top: 20px;
+  border-radius: 30px;
+}
+
+.quantity-container {
+  /* border: 2px solid red; */
+  display: flex;
+  /* justify-content: end; */
+  /* position: absolute; */
+  align-items: center;
+  right: 0px;
+  bottom: 10px;
+  gap: 1px;
+  /* margin-top: -30px; */
+}
+
+.quantity-and-like{
+  display: flex;
+  justify-content: space-between;
+}
+
+.quantity-btn {
+  width: 25px;
+  height: 25px;
+  border: none;
+  background: var(--primary-color);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 1px;
+}
+
+.quantity-input {
+  text-align: center;
+  width: 30px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 1px;
+  padding: 2.5px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .details-container {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 770px) {
+  .details-container {
+    flex-direction: column;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    margin-top: 10%;
+  }
+  .right, .left {
+    padding: 10px;
+  }
+  .right h3{
+    margin-top: -20px;
+  }
+
+  .right h3 {
+    font-size: 18px;
+  }
+  #category {
+    font-size: 12px;
+  }
+
+  .prices{
+    margin-top: -2%;
+  }
+  .right p {
+   font-size: 1.1rem;
+  }
+  .quantity-and-rating{
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .details-container {
+    max-width: 100%;
+    padding: 10px;
+  }
+  .left, .right {
+    padding: 10px;
+  }
+  img {
+    width: 100%;
+    height: auto;
+  }
+  .option img {
+    width: 75px;
+    height: 75px;
+  }
+
+  .option {
+    gap: 5px;
+  }
+  
+  .right h3{
+    margin-top: -10px;
+  }
+
+}
