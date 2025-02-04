@@ -548,6 +548,7 @@ body.dark .switch::before {
     object-fit: cover;
     width: 100%;
     transition: .2s ease-in-out;
+    cursor: pointer;
 }
 
 .images-and-sizes img:hover {

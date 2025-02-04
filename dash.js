@@ -43,40 +43,16 @@ modeSwitch.addEventListener("click", () => {
 
 document.querySelectorAll('.bx-search').forEach((searchIcon) => {
     searchIcon.addEventListener('click', function () {
-        const input = this.nextElementSibling.value.toLowerCase(); // Get the input value
-        const cards = document.querySelectorAll('.container'); // Select all cards
+        const input = this.nextElementSibling.value.toLowerCase();  
+        const cards = document.querySelectorAll('.container'); 
 
         cards.forEach((card) => {
-            const cardText = card.textContent.toLowerCase(); // Card's text content
+            const cardText = card.textContent.toLowerCase();
             if (cardText.includes(input)) {
-                card.style.display = 'block'; // Show the card
+                card.style.display = 'block'; 
             } else {
-                card.style.display = 'none'; // Hide the card
+                card.style.display = 'none'; 
             }
-        });
-    });
-});
-
-// Select all cards
-const cards = document.querySelectorAll('.container');
-
-cards.forEach(card => {
-    // Get images array from data-images attribute
-    const images = card.dataset.images.split(',');
-
-    // Select buttons and image for the current card
-    const buttons = card.querySelectorAll('.slideshow-buttons span');
-    const image = card.querySelector('.images-and-sizes img');
-
-    // Add click event listeners to each button
-    buttons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            // Update the image source for this card
-            image.src = images[index];
-
-            // Update the focus class for active button
-            buttons.forEach(btn => btn.classList.remove('focus'));
-            button.classList.add('focus');
         });
     });
 });

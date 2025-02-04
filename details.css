@@ -158,15 +158,11 @@ margin-left: 3px;
 }
 
 .quantity-container {
-  /* border: 2px solid red; */
   display: flex;
-  /* justify-content: end; */
-  /* position: absolute; */
   align-items: center;
   right: 0px;
   bottom: 10px;
   gap: 1px;
-  /* margin-top: -30px; */
 }
 
 .quantity-and-like{
@@ -210,9 +206,12 @@ input[type=number]::-webkit-outer-spin-button {
   .details-container {
     flex-direction: column;
     max-width: 100%;
-    margin-bottom: 1rem;
     border-radius: 8px;
     margin-top: 10%;
+  }
+
+  .option{
+    gap: 0px;
   }
   .right, .left {
     padding: 10px;

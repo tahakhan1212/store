@@ -2,7 +2,6 @@ let cartItemsObjects = [];
 onload();
 
 function onload() {
-    // loadCartItems();
     loadItemObject();
     totalAmount();
     showCartItems();
@@ -47,11 +46,10 @@ function removeCart(itemId) {
     cartcount();
     cartcount2();
     loadItemObject();
-    // loadCartItems(); 
     showCartItems();
     totalAmount();
 }
-
+    
 document.addEventListener("DOMContentLoaded", function () {
     const products = document.querySelectorAll(".product-item");
 
@@ -96,16 +94,16 @@ function totalAmount() {
     let totalPrice = 0;
     let mrp = 0;
     let discount = 0 ;
-    const convenienceFee = 120;
+    const convenienceFee = "Free";
     let totalAmount = 0;
 
     cartItemsObjects.forEach((cartItems) => {
         mrp += parseFloat(cartItems.price+cartItems.oldPrice);
         discount += parseFloat(cartItems.oldPrice);
-        totalPrice += cartItems.price + convenienceFee;
+        totalPrice += cartItems.price;
     });
 
-    totalAmount = mrp + convenienceFee - discount;
+    totalAmount = mrp - discount;
 
 
     let summary = ` 
@@ -113,7 +111,7 @@ function totalAmount() {
         <h3>Price Details (Items ${cartItemsObjects.length})</h3>
         <p>Total: Rs. ${mrp}</p>
         <p>Discount: Rs.<del> ${discount}</del></p>
-        <p>Delivery: Rs. ${convenienceFee}</p>
+        <p>Delivery: ${convenienceFee}</p>
         <h3 class="sbkatotal">Total: Rs. ${totalPrice}</h3>
         <button class="checkout-btn" onclick="checkout()">Checkout</button>
     </div> `;
@@ -146,4 +144,6 @@ function generateItemHTML(cartItem) {
             </div>
         </div>
         </div>`;
+        
 }
+
