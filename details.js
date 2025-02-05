@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     let productData = localStorage.getItem("selectedProduct");
 
@@ -17,11 +16,28 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".description").innerText = product.description;
             
             let button =document.querySelector(".addtobag");
+            
             button.addEventListener("click", function () {
-                alert("Product added to cart!");
-                addToCart(product.id);
-                
+                location.reload()
+                addToCart(product.id); 
             });
+
+            function addToCart(itemId) {
+                let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Cart Items ko localStorage se lein
+                
+                if (!cartItems.includes(itemId)) {  // Agar item already cart mein nahi hai
+                    alert("Product added to cart!");
+                    cartItems.push(itemId);  // Add karein
+                    localStorage.setItem("cartItems", JSON.stringify(cartItems));  // Update localStorage
+                    loadItemObject();  // UI Update ke liye
+                    showCartItems();
+                    totalAmount();
+            
+                    location.reload()
+                } else {
+                    alert("Item already in cart!");
+                }
+            }
         
         let images = product.pics.split(",");
         let optionContainer = document.querySelector(".option");

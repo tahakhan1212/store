@@ -5,9 +5,9 @@ function onload() {
     loadItemObject();
     totalAmount();
     showCartItems();
+    
+    
 }
-
-
 
 function loadItemObject() {
     cartItemsObjects = cartItem.map(itemId => {
@@ -17,7 +17,26 @@ function loadItemObject() {
             }
         }
     })
+
 }
+
+function addToCart(itemId) {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Cart Items ko localStorage se lein
+    
+    if (!cartItems.includes(itemId)) {  // Agar item already cart mein nahi hai
+        cartItems.push(itemId);  // Add karein
+        alert("Product added to cart!");
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));  // Update localStorage
+        loadItemObject();  // UI Update ke liye
+        showCartItems();
+        totalAmount();
+
+        location.reload()
+    } else {
+        alert("Item already in cart!");
+    }
+}
+
 
 function showCartItems() {
     let cartContainer = document.querySelector(".products");
@@ -32,6 +51,8 @@ function showCartItems() {
         cartContainer.innerHTML = "<p class='cart-empty'>Your cart is empty.</p>";
         return;
     }
+    
+    
 
     cartItemsObjects.forEach((cartItem) => {
         innerHTML += generateItemHTML(cartItem);
@@ -41,15 +62,21 @@ function showCartItems() {
 }
 
 function removeCart(itemId) {
-    cartItem = cartItem.filter((cartId) => cartId !== itemId);
+    let cartItem = JSON.parse(localStorage.getItem("cartItems")) || []; // Ensure it's an array
+    itemId = itemId.toString();
+    cartItem = cartItem.filter(cartId => cartId.toString() !== itemId);
     localStorage.setItem("cartItems", JSON.stringify(cartItem));
-    cartcount();
-    cartcount2();
+
     loadItemObject();
     showCartItems();
     totalAmount();
+    cartcount();
+    cartcount2();
+
+    location.reload()
 }
-    
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const products = document.querySelectorAll(".product-item");
 
@@ -71,13 +98,13 @@ document.addEventListener("DOMContentLoaded", function () {
         decreaseBtn.addEventListener("click", function () {
             quantityInput.stepDown();
             if (parseInt(quantityInput.value) < 1) quantityInput.value = 1;
-            quantityInput.value = Math.max(1, parseInt(quantityInput.value) - 1 +1);
+            quantityInput.value = Math.max(1, parseInt(quantityInput.value) - 1 + 1);
             updateTotal();
         });
 
         increaseBtn.addEventListener("click", function () {
             quantityInput.stepUp();
-            quantityInput.value = parseInt(quantityInput.value) + 1 -1;
+            quantityInput.value = parseInt(quantityInput.value) + 1 - 1;
             updateTotal();
         });
 
@@ -93,12 +120,12 @@ function totalAmount() {
 
     let totalPrice = 0;
     let mrp = 0;
-    let discount = 0 ;
+    let discount = 0;
     const convenienceFee = "Free";
     let totalAmount = 0;
 
     cartItemsObjects.forEach((cartItems) => {
-        mrp += parseFloat(cartItems.price+cartItems.oldPrice);
+        mrp += parseFloat(cartItems.price + cartItems.oldPrice);
         discount += parseFloat(cartItems.oldPrice);
         totalPrice += cartItems.price;
     });
@@ -144,6 +171,6 @@ function generateItemHTML(cartItem) {
             </div>
         </div>
         </div>`;
-        
+
 }
 
