@@ -128,9 +128,43 @@ html {
 .right p {
   color: var(--text-color);
   opacity: 0.8;
-  margin: 20px 0 50px;
+  margin: 20px 0 50px ;
   line-height: 20px;
   font-size: 1.3rem;
+}
+
+.sizes{
+  position: relative;
+  margin-top: -2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 15px;
+  font-size: 15px;
+}
+
+.sizes span{
+  cursor: pointer;
+  color: var(--text-color);
+  border: 2px solid var(--primary-color);
+  padding: 5px 15px 5px;
+  border-top-left-radius: 40%;
+  border-top-right-radius: 40%;
+}
+
+.sizes h2{
+  color: var(--text-color);
+}
+
+.sizeguide{
+  position: absolute;
+  right: 0;
+  top: -22px;
+  cursor: pointer;
+  font-size: 13px!important;
+}
+
+.sizes span:hover{
+  color: var(--primary-color);
 }
 
 .quantity-and-rating{
@@ -233,6 +267,33 @@ input[type=number]::-webkit-outer-spin-button {
   .right p {
    font-size: 1.1rem;
   }
+
+  .sizes{
+    margin-top: -3rem;
+    display: block;
+    font-size: 10px;
+    gap: 35px;
+  }
+
+  .sizes h2{
+    margin-bottom: 1rem;
+  }
+  
+  .sizeguide{
+    font-size: 11px!important;
+  }
+
+  .sizes span{
+    margin-left: 5px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    color: var(--text-color);
+    border: 2px solid var(--primary-color);
+    padding: 3px 7px 3px;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 40%;
+  }
+  
   .quantity-and-rating{
     font-size: 14px;
   }

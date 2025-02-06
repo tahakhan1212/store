@@ -33,28 +33,25 @@ function loadProductData() {
     }
 }
 
-// **Add to Cart Function (Same as cart.js)**
 function addToCart(itemId) {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Local storage se cart lo
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
     
-    if (!cartItems.includes(itemId)) { // Agar item cart me nahi hai to add karo
-        cartItems.push(itemId);
+    let isAlreadyInCart = cartItems.some(id => id.toString() === itemId.toString());
+
+    if (!isAlreadyInCart) { 
+        cartItems.push(itemId.toString());
         alert("Product added to cart!");
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-        location.reload()
-        // **cart.js ke tarah update functions**
+        location.reload();
     } else {
         alert("Item already in cart!");
     }
 }
 
-// **Main Image Change Function**
 function changeMainImage(src) {
     document.querySelector(".main_image img").src = src;
 }
 
-// **Product Details Display Function**
 function displayDetails(product) {
     let detailsContainer = document.querySelector(".right");
     let details = `
@@ -65,7 +62,22 @@ function displayDetails(product) {
             <h4><del>${product.oldPrice}</del></h4>
             <h4>${product.discount}</h4>
         </div>
+        <div class="discription">
         <p class="description">${product.description}</p>
+        </div>
+        
+        <div class="sizes">
+        <a href="size-guide.png"><p class="sizeguide"><i class="fa fa-arrows-h" aria-hidden="true"></i>
+size guide</p></a>
+        <h2>Sizes &nbsp;<small>(UK)</small></h2>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>9</span>
+    <span>10</span>
+    <span>11</span>
+</div>
         <div class="quantity-and-rating">
             <h5>Quantity</h5>
             <h5>Rating ⭐⭐⭐⭐⭐</h5>

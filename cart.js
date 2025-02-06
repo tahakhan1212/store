@@ -21,13 +21,13 @@ function loadItemObject() {
 }
 
 function addToCart(itemId) {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; // Cart Items ko localStorage se lein
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
     
-    if (!cartItems.includes(itemId)) {  // Agar item already cart mein nahi hai
-        cartItems.push(itemId);  // Add karein
+    if (!cartItems.includes(itemId)) {  
+        cartItems.push(itemId);  
         alert("Product added to cart!");
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));  // Update localStorage
-        loadItemObject();  // UI Update ke liye
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));  
+        loadItemObject();  
         showCartItems();
         totalAmount();
 
