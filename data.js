@@ -10,7 +10,7 @@ let product = [
         oldPrice: 2500,
         discount: "20%",
         description: " Shoes Women's 2024 New Foreign Trade Women's Shoes Breathable Shoes Women's Cross-border Lace-up Fashion Trendy Sports Women's Shoes",
-        rating: "⭐⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐"
     },
     {
         id: "2",
@@ -22,7 +22,7 @@ let product = [
         oldPrice: 5500,
         discount: "15%",
         description: "  Breathable Women's Slip-On Sneakers - Lightweight, Air Cushion Shock Absorption, Knit Upper,Casual Dance Shoes with Height Boost, All-Season Wear",
-        rating: "⭐⭐⭐"
+        rating: "⭐⭐⭐⭐⭐"
     },
     {
         id: "3",
@@ -82,7 +82,7 @@ let product = [
         oldPrice: 3564,
         discount: "75%",
         description: " Elegant Floral Linen Slippers for Women - Soft, Non-Slip Sole, Breathable Indoor Shoes with Cross Design, Perfect for All Seasons, Elegant Style",
-        rating: "⭐⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐"
     },
     {
         id: "8",
@@ -106,7 +106,7 @@ let product = [
         oldPrice: 11554,
         discount: "90%",
         description: " Women's Fashion Lightweight Sneakers, Breathable Mesh Lace Up Outdoor Shoes, Casual Comfortable Walking Shoes For Daily Wear",
-        rating: "⭐⭐"
+        rating: "⭐⭐⭐⭐⭐"
     },
     {
         id: "10",
@@ -118,6 +118,6 @@ let product = [
         oldPrice: 10891,
         discount: "35%",
         description: "Chic Women's Ballet Flats with Bowknot - Comfortable Slip-On Shoes, Soft Sole, Versatile for All Seasons",
-        rating: "⭐⭐⭐"
+        rating: "⭐⭐⭐⭐"
     },
 ]

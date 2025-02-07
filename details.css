@@ -140,6 +140,7 @@ html {
   display: flex;
   gap: 15px;
   font-size: 15px;
+  transition: .3s ease-in;
 }
 
 .sizes span{
@@ -166,6 +167,7 @@ html {
 .sizes span:hover{
   color: var(--primary-color);
 }
+
 
 .quantity-and-rating{
   display: flex;
@@ -285,10 +287,7 @@ input[type=number]::-webkit-outer-spin-button {
 
   .sizes span{
     margin-left: 5px;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    color: var(--text-color);
-    border: 2px solid var(--primary-color);
+    margin-bottom: 1rem;  
     padding: 3px 7px 3px;
     border-top-left-radius: 40%;
     border-top-right-radius: 40%;

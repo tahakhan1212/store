@@ -82,7 +82,7 @@ function displayData() {
                 <span class="discount">${item.discount}</span>
                 <p class="description">${item.description}</p>
                 <div class="buttons">
-                    <button class="add">⭐⭐⭐⭐⭐</button>
+                    <button class="add">${item.rating}</button>
                     <button class="like" onclick="addToCart(${item.id})"><i class='bx bxs-cart-alt'></i></button>
                 </div>
             </div>
