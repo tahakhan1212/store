@@ -70,17 +70,18 @@ function displayDetails(product) {
         <a href="size-guide.png"><p class="sizeguide"><i class="fa fa-arrows-h" aria-hidden="true"></i>
 size guide</p></a>
         <h2>Sizes &nbsp;<small>(UK)</small></h2>
+    <span>3.5</span>
     <span>4</span>
+    <span>4.5</span>
     <span>5</span>
+    <span>5.5</span>
     <span>6</span>
+    <span>6.5</span>
     <span>7</span>
-    <span>9</span>
-    <span>10</span>
-    <span>11</span>
 </div>
         <div class="quantity-and-rating">
             <h5>Quantity</h5>
-            <h5>Rating ⭐⭐⭐⭐⭐</h5>
+            <h5>Rating ${product.rating}</h5>
         </div>
         <div class="quantity-container">
             <button class="quantity-btn decrease">-</button>

@@ -21,6 +21,11 @@ body.dark {
     padding: 0;
 }
 
+html{
+    scroll-behavior: smooth ;
+    
+}
+
 .address {
     padding: 1rem;
     padding-bottom: 1.5rem;
@@ -92,6 +97,7 @@ body.dark {
 }
 
 .product-img {
+    cursor: pointer;
     width: 180px;
     height: 180px;
     object-fit: cover;
@@ -274,7 +280,7 @@ input[type=number]::-webkit-outer-spin-button {
     .container-cart {
         flex-direction: column;
         margin-inline: auto;
-        margin-bottom: .8rem;
+        margin-bottom: -1px;
     }
 
 }

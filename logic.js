@@ -19,14 +19,15 @@ function onload() {
 
 
 function addToCart(itemId) {
-    let cartItem = JSON.parse(localStorage.getItem("cartItems")) || []; 
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
     
-    if (!cartItem.includes(itemId)) { 
-        cartItem.push(itemId);
+    let isAlreadyInCart = cartItems.some(id => id.toString() === itemId.toString());
+
+    if (!isAlreadyInCart) { 
+        cartItems.push(itemId.toString());
         alert("Product added to cart!");
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-        location.reload()
+        location.reload();
     } else {
         alert("Item already in cart!");
     }

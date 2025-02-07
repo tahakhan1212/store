@@ -1,10 +1,11 @@
 let cartItemsObjects = [];
+let selectedProduct = {};
 onload();
 
 function onload() {
     loadItemObject();
     totalAmount();
-    showCartItems();
+    showCartItems(); 
     
     
 }
@@ -23,15 +24,13 @@ function loadItemObject() {
 function addToCart(itemId) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
     
-    if (!cartItems.includes(itemId)) {  
-        cartItems.push(itemId);  
-        alert("Product added to cart!");
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));  
-        loadItemObject();  
-        showCartItems();
-        totalAmount();
+    let isAlreadyInCart = cartItems.some(id => id.toString() === itemId.toString());
 
-        location.reload()
+    if (!isAlreadyInCart) { 
+        cartItems.push(itemId.toString());
+        alert("Product added to cart!");
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        location.reload();
     } else {
         alert("Item already in cart!");
     }
@@ -53,11 +52,14 @@ function showCartItems() {
     }
     
     
+    
 
     cartItemsObjects.forEach((cartItem) => {
         innerHTML += generateItemHTML(cartItem);
 
+        
     });
+    
     cartContainer.innerHTML = innerHTML;
 }
 
@@ -115,6 +117,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+let clearbtn = document.querySelector(".checkout-btn");
+
+clearbtn.addEventListener("click", function () {
+    if(!cartItemsObjects.length) {
+        clearbtn.style.background = "red";
+        clearbtn.innerHTML = "Cart is empty";
+        return;
+    }
+    localStorage.clear();
+    alert("Your order will be delivered under 10 to 15 days.");
+    location.reload();
+})
+
+
 function totalAmount() {
     let container = document.querySelector(".cart-total");
 
@@ -140,7 +156,7 @@ function totalAmount() {
         <p>Discount: Rs.<del> ${discount}</del></p>
         <p>Delivery: ${convenienceFee}</p>
         <h3 class="sbkatotal">Total: Rs. ${totalPrice}</h3>
-        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        <button class="checkout-btn">Place Order</button>
     </div> `;
 
     container.innerHTML = summary;
@@ -151,7 +167,7 @@ function generateItemHTML(cartItem) {
     <div class="product-item">
         <div class="product-details">
             <span class="close" onclick="removeCart(${cartItem.id})"><i class='bx bx-trash'></i></span>
-            <img src="${cartItem.image}" alt="" class="product-img">
+            <img src="${cartItem.image}" alt="" class="product-img" onclick="goToDetails(${cartItem.id})">
             <div class="product-info">
                 <div class="product-description">
                     <p>${cartItem.description}</p>
@@ -160,17 +176,24 @@ function generateItemHTML(cartItem) {
                 <strong class="product-price">Rs .${cartItem.price}</strong> 
                 <del>Rs. ${cartItem.oldPrice}</del> &nbsp;
                 <strong class="discount">${cartItem.discount}</strong>
-                <span class="rs"></span>
-                <span class="product-total"></span>
                 <p class="return">14 : Days Return Policy. <br> Delivered Within 7 Days.</p>
             </div>
             <div class="quantity-container">
                 <button class="quantity-btn decrease">-</button>
-                <input type="number" class="quantity-input" value="1" min="1" id="abc">
+                <input type="number" class="quantity-input" value="1" min="1">
                 <button class="quantity-btn increase">+</button>
             </div>
         </div>
-        </div>`;
-
+    </div>`;
 }
+
+// ✅ Function to redirect to details page
+function goToDetails(productId) {
+    let selectedProduct = cartItemsObjects.find(item => item.id == productId);
+    if (selectedProduct) {
+        localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
+        window.location.href = "details.html"; // Redirect to details page
+    }
+}
+
 
