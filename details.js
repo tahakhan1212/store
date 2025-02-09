@@ -37,13 +37,17 @@ function addToCart(itemId) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
     
     let isAlreadyInCart = cartItems.some(id => id.toString() === itemId.toString());
+    let detailsAddToCart = document.querySelector(".details-addtocart");
 
     if (!isAlreadyInCart) { 
         cartItems.push(itemId.toString());
-        alert("Product added to cart!");
+        alert("Product added to cart!"); 
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         location.reload();
     } else {
+        detailsAddToCart.style.background = "#e30ad5";  
+        detailsAddToCart.innerHTML = "thanks for shopping &nbsp; <i class='bx bxs-donate-heart heart-icon'></i>";  
+        localStorage.setItem("itemAlreadyInCart", "true");
         alert("Item already in cart!");
     }
 }
@@ -89,7 +93,7 @@ size guide</p></a>
             <button class="quantity-btn increase">+</button>
         </div>
         <div class="addtobag">
-            <button>Add To Cart &nbsp;<i class='bx bxs-cart-alt'></i></button>
+            <button class="details-addtocart">Add To Cart &nbsp;<i class='bx bxs-cart-alt'></i></button>
         </div>
     `;
     detailsContainer.innerHTML = details;

@@ -58,7 +58,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border-radius: .6rem;
     background-color: var(--sidebar-color);
     color: var(--text-color);
@@ -89,6 +89,7 @@ html {
 }
 
 .search-container .search-input {
+    /* display: grid; */
     width: 250px;
     padding: 8px 12px;
     font-size: 14px;

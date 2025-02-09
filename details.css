@@ -188,6 +188,7 @@ margin-left: 3px;
   border: none;
   outline: none;
   background: var(--count-color);
+  /* background: #e30ad5; */
   color: var(--text-color);
   margin-top: 20px;
   border-radius: 30px;
@@ -230,6 +231,10 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.heart-icon{
+  font-size: 18px;
 }
 
 @media (max-width: 1024px) {

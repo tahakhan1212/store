@@ -8,16 +8,6 @@ function onload() {
     cartcount2();
 }
 
-// function addToCart(itemid) {
-//     cartItem.push(itemid);
-//     localStorage.setItem("cartItems", JSON.stringify(cartItem));
-//     cartcount();
-//     cartcount2();
-//     showCartItems();
-//     location.reload()
-// }
-
-
 function addToCart(itemId) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
     
