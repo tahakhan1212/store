@@ -66,7 +66,7 @@ function displayData() {
             <div class="product">
                 <p>${item.category}</p>
                 <h1>${item.title}</h1>
-                <span class="pkr">PKR </span>
+                <span class="pkr">Rs </span>.
                 <span class="price">${item.price}</span>
                 <span class="old-price">${item.oldPrice}</span>
                 <span class="discount">${item.discount}</span>

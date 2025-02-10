@@ -5,19 +5,26 @@ onload();
 
 function onload() {
     loadItemObject();
-    totalAmount();
     showCartItems();
+    totalAmount();
     
-    // Initialize the prices from localStorage for each item
+
+    let savedTotalPrice = JSON.parse(localStorage.getItem("totalPrice"));
+    if (savedTotalPrice) {
+        document.querySelector(".cart-total .sbkatotal").textContent = `final: Rs. ${savedTotalPrice}`;
+    }
+
     document.querySelectorAll(".product-item").forEach(product => {
         let productId = product.getAttribute("data-id");
         let savedTotal = localStorage.getItem(productId + "_totalPrice");
-        
+
         if (savedTotal) {
             product.querySelector(".product-total").textContent = `Rs. ${savedTotal}`;
         }
     });
-}
+};
+
+
 
 function loadItemObject() {
     cartItemsObjects = cartItem.map(itemId => {
@@ -26,6 +33,13 @@ function loadItemObject() {
                 return product[i];
             }
         }
+    });
+
+    cartItemsObjects.forEach(cartItem => {
+        let quantity = JSON.parse(localStorage.getItem(cartItem.id + "_quantity")) || 1;
+        let totalPrice = JSON.parse(localStorage.getItem(cartItem.id + "_totalPrice")) || cartItem.price;
+        cartItem.quantity = quantity;
+        cartItem.totalPrice = totalPrice;
     });
 }
 
@@ -36,15 +50,13 @@ function totalAmount() {
     let mrp = 0;
     let discount = 0;
     const convenienceFee = "Free";
-    let totalAmount = 0;
 
     cartItemsObjects.forEach((cartItems) => {
-        mrp += parseFloat(cartItems.price + cartItems.oldPrice);
-        discount += parseFloat(cartItems.oldPrice);
-        totalPrice += cartItems.price;
+        let itemTotalPrice = cartItems.price * cartItems.quantity;
+        mrp += cartItems.oldPrice * cartItems.quantity; 
+        discount += (cartItems.oldPrice - cartItems.price) * cartItems.quantity; 
+        totalPrice += itemTotalPrice; 
     });
-
-    totalAmount = mrp - discount;
 
     let summary = ` 
     <div class="summary">
@@ -52,33 +64,73 @@ function totalAmount() {
         <p>Total: Rs. ${mrp}</p>
         <p>Discount: Rs.<del> ${discount}</del></p>
         <p>Delivery: ${convenienceFee}</p>
-        <h3 class="sbkatotal">Total: Rs. ${totalPrice}</h3>
+        <h3 class="sbkatotal">final: Rs. ${totalPrice.toLocaleString()}</h3>
         <button class="checkout-btn">Place Order</button>
-    </div> `;
+    </div>`;
 
     container.innerHTML = summary;
+    localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
 }
 
-function addToCart(itemId) {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
-    let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
+function updateCartTotal() {
+    let totalPrice = 0;
+    let mrp = 0;
+    let discount = 0;
+    const convenienceFee = "Free";
 
-    if (!cartItems.includes(itemId.toString())) { 
+    document.querySelectorAll(".product-item").forEach(product => {
+        const price = parseFloat(product.querySelector(".product-price").textContent.replace("Rs .", ""));
+        const quantity = parseInt(product.querySelector(".quantity-input").value);
+        const oldPrice = parseFloat(product.querySelector("del").textContent.replace("Rs. ", ""));
+
+        mrp += oldPrice * quantity;  
+        discount += (oldPrice - price) * quantity; 
+        totalPrice += price * quantity; 
+    });
+    
+    localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+    
+    const container = document.querySelector(".cart-total");
+
+    container.innerHTML = ` 
+    <div class="summary">
+    <h3>Price Details (Items ${document.querySelectorAll(".product-item").length})</h3>
+    <p>Total: Rs. ${mrp.toLocaleString()}</p>
+    <p>Discount: Rs.<del> ${discount.toLocaleString()}</del></p>
+    <p>Delivery: ${convenienceFee}</p>
+    <h3 class="sbkatotal">final: Rs. ${totalPrice.toLocaleString()}</h3>
+    <button onclick="checkout()" class="checkout-btn">Place Order</button>
+    </div>`;
+}
+
+
+function addToCart(itemId) {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
+    
+    if (!cartItems.includes(itemId.toString())) {
         cartItems.push(itemId.toString());
-        quantities[itemId.toString()] = 1;  
+        quantities[itemId.toString()] = 1; 
+        localStorage.setItem(itemId + "_quantity", JSON.stringify(1));
+        localStorage.setItem(itemId + "_totalPrice", JSON.stringify(product.find(p => p.id == itemId).price));
         alert("Product added to cart!");
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        localStorage.setItem("cartQuantities", JSON.stringify(quantities));
-        location.reload();
     } else {
         alert("Item already in cart!");
     }
+    
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+    
+    updateCartTotal(); 
+    showCartItems();  
+    
+    location.reload();
 }
 
 function showCartItems() {
     let cartContainer = document.querySelector(".products");
     let innerHTML = "";
-
+    
     if (cartItemsObjects.length === 0) {
         cartContainer.innerHTML = "<p class='cart-empty'>Your cart is empty.</p>";
         return;
@@ -92,25 +144,32 @@ function showCartItems() {
 }
 
 function removeCart(itemId) {
-    let cartItem = JSON.parse(localStorage.getItem("cartItems")) || []; 
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
-    
+
     itemId = itemId.toString();
-    cartItem = cartItem.filter(cartId => cartId.toString() !== itemId);
-    delete quantities[itemId];  
+    cartItems = cartItems.filter(cartId => cartId.toString() !== itemId);
+    
+    delete quantities[itemId];
+    localStorage.removeItem(itemId + "_quantity");
+    localStorage.removeItem(itemId + "_totalPrice");
 
-    localStorage.setItem("cartItems", JSON.stringify(cartItem));
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
     localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+    
+    updateCartTotal();
 
-    loadItemObject();
-    showCartItems();
-    totalAmount();
+    if (cartItems.length === 0) {
+        localStorage.removeItem("totalPrice");
+        document.querySelector(".cart-total").innerHTML = "";
+    }
+    
     location.reload();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     const products = document.querySelectorAll(".product-item");
-
+    
     products.forEach(product => {
         const decreaseBtn = product.querySelector(".decrease");
         const increaseBtn = product.querySelector(".increase");
@@ -120,16 +179,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const price = parseFloat(priceElement.textContent.replace("Rs .", ""));
         let productId = product.getAttribute("data-id");
 
-        let savedQuantity = localStorage.getItem(productId + "_quantity");
-        let savedTotal = localStorage.getItem(productId + "_totalPrice");
-
+        let savedQuantity = JSON.parse(localStorage.getItem(productId + "_quantity"));
+        let savedTotal = JSON.parse(localStorage.getItem(productId + "_totalPrice"));
+        
         if (savedQuantity) {
             quantityInput.value = savedQuantity;
-            totalElement.textContent = `Rs. ${savedTotal}`;
+            totalElement.textContent = `Rs. ${savedTotal.toLocaleString()}`;
         } else {
             totalElement.textContent = `Rs. ${(price).toLocaleString()}`;
         }
-
+        
         function updateTotal() {
             let quantity = parseInt(quantityInput.value);
             if (quantity < 1) quantity = 1;
@@ -137,13 +196,12 @@ document.addEventListener("DOMContentLoaded", function () {
             let totalPrice = price * quantity;
             totalElement.textContent = `Rs. ${totalPrice.toLocaleString()}`;
 
-            // Update localStorage for quantity and totalPrice
-            localStorage.setItem(productId + "_quantity", quantity);
-            localStorage.setItem(productId + "_totalPrice", totalPrice);
-
-            updateCartTotal(); 
+            localStorage.setItem(productId + "_quantity", JSON.stringify(quantity));
+            localStorage.setItem(productId + "_totalPrice", JSON.stringify(totalPrice));
+            
+            updateCartTotal();  
         }
-
+        
         decreaseBtn.addEventListener("click", function () {
             quantityInput.stepDown();
             if (parseInt(quantityInput.value) < 1) quantityInput.value = 1;
@@ -159,25 +217,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-let clearbtn = document.querySelector(".checkout-btn");
-
-clearbtn.addEventListener("click", function () {
-    if(!cartItemsObjects.length) {
-        clearbtn.style.background = "red";
-        clearbtn.innerHTML = "Cart is empty";
-        return;
-    }
-    localStorage.clear();
-    alert("Your order will be delivered under 10 to 15 days.");
-    location.reload();
-})
-
 function updateCartTotal() {
     let totalPrice = 0;
     let mrp = 0;
     let discount = 0;
     const convenienceFee = "Free";
-
+    
     document.querySelectorAll(".product-item").forEach(product => {
         const price = parseFloat(product.querySelector(".product-price").textContent.replace("Rs .", ""));
         const quantity = parseInt(product.querySelector(".quantity-input").value);
@@ -188,21 +233,28 @@ function updateCartTotal() {
         totalPrice += price * quantity;
     });
 
+    localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
     const container = document.querySelector(".cart-total");
+
+    if (document.querySelectorAll(".product-item").length === 0) {
+        container.innerHTML = "";
+        return;
+    }
+
     container.innerHTML = ` 
     <div class="summary">
         <h3>Price Details (Items ${document.querySelectorAll(".product-item").length})</h3>
         <p>Total: Rs. ${mrp}</p>
         <p>Discount: Rs.<del> ${discount}</del></p>
         <p>Delivery: ${convenienceFee}</p>
-        <h3 class="sbkatotal">Total: Rs. ${totalPrice}</h3>
-        <button class="checkout-btn">Place Order</button>
+        <h3 class="sbkatotal">final: Rs. ${totalPrice}</h3>
+        <button onclick="checkout()" class="checkout-btn">Place Order</button>
     </div>`;
 }
 
 function generateItemHTML(cartItem) {
     let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
-    let quantity = quantities[cartItem.id.toString()] || 1; 
+    let quantity = quantities[cartItem.id.toString()] || 1;
 
     return ` 
     <div class="product-item" data-id="${cartItem.id}">
@@ -210,35 +262,58 @@ function generateItemHTML(cartItem) {
             <span class="close" onclick="removeCart(${cartItem.id})"><i class='bx bx-trash'></i></span>
             <img src="${cartItem.image}" alt="" class="product-img" onclick="goToDetails(${cartItem.id})">
             <div class="product-info">
-                <div class="product-description">
-                    <p>${cartItem.description}</p>
-                </div>
-                <h2>${cartItem.title}</h2>
-                <strong class="product-price">Rs .${cartItem.price}</strong> 
-                <del>Rs. ${cartItem.oldPrice}</del> &nbsp;
-                <strong class="discount">${cartItem.discount}</strong>
-                <p class="return">14 : Days Return Policy. <br> Delivered Within 7 Days.</p>
+            <div class="product-description">
+            <p>${cartItem.description}</p>
+            </div>
+            <h2>${cartItem.title}</h2>
+            <div class="rates">
+            <strong class="product-price"><small class="pkr">Rs</small> .${cartItem.price}</strong> 
+            <del>Rs. ${cartItem.oldPrice}</del> &nbsp;
+            <strong class="discount">${cartItem.discount}</strong>
+            </div>
+            <p class="return">14 : Days Return Policy. <br> Delivered Within 7 Days.</p>
             </div>
             <div class="quantity-container">
                 <button class="quantity-btn decrease">-</button>
                 <input type="number" class="quantity-input" value="${quantity}" min="1">
                 <button class="quantity-btn increase">+</button>
-            </div>
-            <div class="product-total">Rs. ${(cartItem.price * quantity).toLocaleString()}</div>
-        </div>
-    </div>`;
-}
+                </div>
+                <div class="product-total">Rs. ${(cartItem.price * quantity).toLocaleString()}</div>
+                </div>
+                </div>`; 
+            }
 
-function updateQuantityInLocalStorage(productId, quantity) {
-    let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
-    quantities[productId] = quantity;
-    localStorage.setItem("cartQuantities", JSON.stringify(quantities));
-}
-
-function goToDetails(productId) {
-    let selectedProduct = cartItemsObjects.find(item => item.id == productId);
-    if (selectedProduct) {
+            function goToDetails(productId) {
+                let selectedProduct = cartItemsObjects.find(item => item.id == productId);
+                if (selectedProduct) {
         localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
         window.location.href = "details.html"; 
     }
 }
+
+
+
+
+function checkout() {
+    let checkout = document.querySelector(".checkout-btn");
+    checkout.style.background = "red";  
+    
+    setTimeout(() => {
+        alert('Your Order Will Be Delivered Under 7 To 10 Days!');
+        
+         localStorage.removeItem("cartItems");
+        localStorage.removeItem("cartQuantities");
+        
+        cartItemsObjects.forEach(cartItem => {
+            localStorage.removeItem(cartItem.id + "_quantity");
+            localStorage.removeItem(cartItem.id + "_totalPrice");
+        });
+
+        localStorage.removeItem("totalPrice");
+
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 600);
+    }, 500);
+}
+

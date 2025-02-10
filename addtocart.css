@@ -27,6 +27,7 @@ html{
 }
 
 .address {
+    margin-top: .5rem;
     padding: 1rem;
     padding-bottom: 1.5rem;
     width: 95.5%;
@@ -145,6 +146,15 @@ html{
 .product-info p:nth-child(4) {
     position: absolute;
     bottom: 3px;
+}
+
+.rates{
+    font-size: 16px;
+}
+
+.pkr{
+    color: var(--primary-color);
+    font-size: 15px;
 }
 
 .discount {
@@ -286,6 +296,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 760px) {
+
+    .address {
+        margin-top: 5.2rem;
+    }
     
     .address,.container-cart{
         width: 100%;
@@ -336,6 +350,18 @@ input[type=number]::-webkit-outer-spin-button {
 
     .return {
         margin-top: 20px;
+    }
+
+    .pkr{
+        font-size: 11px;
+    }
+
+    .rates{
+        font-size: 11px;
+    }
+
+    .close{
+        z-index: 0;
     }
 
     .summary h3 {

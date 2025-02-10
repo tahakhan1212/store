@@ -112,8 +112,8 @@ html {
   font-size: 15px;
 }
 
-.prices h4 small{
-  color: var(--primary-color);
+.pkr {
+  color: var(--primary-color)!important;
 }
 
 .prices h4 del, .prices h4{
@@ -123,6 +123,10 @@ html {
 .prices h4 {
   margin-top: -2rem;
   line-height: 25px;
+}
+
+.discount {
+  color: var(--primary-color)!important;
 }
 
 .right p {
@@ -138,6 +142,7 @@ html {
   margin-top: -2rem;
   margin-bottom: 2rem;
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   font-size: 15px;
   transition: .3s ease-in;
@@ -233,9 +238,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-.heart-icon{
-  font-size: 18px;
-}
+
 
 @media (max-width: 1024px) {
   .details-container {

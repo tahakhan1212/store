@@ -42,16 +42,19 @@ function addToCart(itemId) {
     if (!isAlreadyInCart) { 
         cartItems.push(itemId.toString());
         alert("Product added to cart!"); 
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
         location.reload();
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
     } else {
-        detailsAddToCart.style.background = "#e30ad5";  
-        detailsAddToCart.innerHTML = "thanks for shopping &nbsp; <i class='bx bxs-donate-heart heart-icon'></i>";  
         localStorage.setItem("itemAlreadyInCart", "true");
+        detailsAddToCart.innerHTML = "Going In Cart &nbsp; <i class='bx bxs-cart-alt'></i>";  
+        detailsAddToCart.style.background = "red";
         alert("Item already in cart!");
+        setTimeout(() => {
+            window.location.href = "cart.html";
+        },1500);
     }
 }
-
+    
 function changeMainImage(src) {
     document.querySelector(".main_image img").src = src;
 }
@@ -62,9 +65,9 @@ function displayDetails(product) {
         <h3>${product.title}</h3>
         <p id="category">${product.category}</p>
         <div class="prices">
-            <h4><small>PKR </small> ${product.price}</h4>
+            <h4> <span class="pkr"> Rs </span>.${product.price}</h4>
             <h4><del>${product.oldPrice}</del></h4>
-            <h4>${product.discount}</h4>
+            <h4 class="discount">${product.discount}</h4>
         </div>
         <div class="discription">
         <p class="description">${product.description}</p>
