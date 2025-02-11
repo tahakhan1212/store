@@ -105,7 +105,7 @@ size guide</p></a>
 
         <div class="reviews-container">
         <div class="reviews-box">
-        <img src="reviews/pic-1.png" alt="">
+        <img src="shoes/shoes1-1.webp" alt="">
         <div class="review-description">
         <h3>Taha Sultan</h3>
         <p>Unmatched quality, absolutely worth the investment!</p>
