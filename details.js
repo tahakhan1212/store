@@ -99,7 +99,7 @@ size guide</p></a>
         </div>
         <div class="quantity-and-rating">
             <h5 class="bestseller">Best seller</h5>
-            <h1><strong>Customer</strong> Reviews &nbsp;<i class='bx bxs-star' ></i></h1>
+            <h3><strong>Customer</strong> Reviews &nbsp;<i class='bx bxs-star' ></i></h3>
             <h5>${product.sold} Sold</h5>
         </div>
 
@@ -119,7 +119,7 @@ size guide</p></a>
         <h3>Gojo Satoru</h3>
         <p>Exceeded expectations, would buy again anytime!</p>
         </div>
-        <p class="rating">4.5⭐</p>
+        <p class="rating">4.2⭐</p>
     </div>
 
         <div class="reviews-box">
@@ -128,7 +128,7 @@ size guide</p></a>
         <h3>Sakura</h3>
         <p>Best product, truly exceeded my expectations!</p>
         </div>
-        <p class="rating">4.5⭐</p>
+        <p class="rating">4.8⭐</p>
     </div>
 
         <div class="reviews-box">
@@ -137,7 +137,7 @@ size guide</p></a>
         <h3>Megumi Fushigru</h3>
         <p>Exceptional craftsmanship, perfect for everyday use!</p>
         </div>
-        <p class="rating">4.5⭐</p>
+        <p class="rating">4.6⭐</p>
     </div>
 
         <div class="reviews-box">
@@ -146,7 +146,7 @@ size guide</p></a>
         <h3>Tony Stark</h3>
         <p>Top-quality design, totally worth the price!</p>
         </div>
-        <p class="rating">4.5⭐</p>
+        <p class="rating">5⭐</p>
     </div>
 
         <div class="reviews-box">
@@ -155,7 +155,7 @@ size guide</p></a>
         <h3>Jin Woo</h3>
         <p>Amazing performance, couldn’t ask for more!</p>
         </div>
-        <p class="rating">4.5⭐</p>
+        <p class="rating">4.4⭐</p>
     </div>
 
 </div>

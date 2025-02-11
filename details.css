@@ -325,8 +325,21 @@ flex-wrap: wrap;
   }
   
   .quantity-and-rating{
-    font-size: 14px;
+    font-size: 12px;
   }
+  
+.quantity-and-rating strong{
+font-size: 12px;
+}
+
+.review-description h3{
+  font-size: 12px;
+}
+
+.review-description p{
+  font-size: 10px;
+}
+
 }
 
 @media (max-width: 480px) {
