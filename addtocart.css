@@ -23,6 +23,7 @@ body.dark {
 
 html{
     scroll-behavior: smooth ;
+    overscroll-behavior: none;
     
 }
 

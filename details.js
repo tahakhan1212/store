@@ -7,7 +7,7 @@ function onload() {
 
 function loadProductData() {
     let productData = localStorage.getItem("selectedProduct");
-    
+
     if (productData) {
         selectedProduct = JSON.parse(productData);
 
@@ -17,7 +17,7 @@ function loadProductData() {
         let images = selectedProduct.pics.split(",");
         let optionContainer = document.querySelector(".option");
         optionContainer.innerHTML = "";
-        
+
         images.forEach(imgSrc => {
             let imgElement = document.createElement("img");
             imgElement.src = imgSrc;
@@ -34,27 +34,32 @@ function loadProductData() {
 }
 
 function addToCart(itemId) {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
-    
-    let isAlreadyInCart = cartItems.some(id => id.toString() === itemId.toString());
-    let detailsAddToCart = document.querySelector(".details-addtocart");
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
 
-    if (!isAlreadyInCart) { 
+    let isAlreadyInCart = cartItems.includes(itemId.toString());
+
+    if (!isAlreadyInCart) {
         cartItems.push(itemId.toString());
-        alert("Product added to cart!"); 
-        location.reload();
+        quantities[itemId.toString()] = 1; 
+
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+        localStorage.setItem(itemId + "_quantity", JSON.stringify(1));
+        localStorage.setItem(itemId + "_totalPrice", JSON.stringify(selectedProduct.price));
+
+        location.reload(); 
     } else {
-        localStorage.setItem("itemAlreadyInCart", "true");
-        detailsAddToCart.innerHTML = "Going In Cart &nbsp; <i class='bx bxs-cart-alt'></i>";  
+        let detailsAddToCart = document.querySelector(".details-addtocart");
+        detailsAddToCart.innerHTML = "Item Already In Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
         detailsAddToCart.style.background = "red";
-        alert("Item already in cart!");
         setTimeout(() => {
-            window.location.href = "cart.html";
-        },1500);
+            window.location.href = "addtocart.html";
+        }, 1000);
     }
 }
-    
+
+
 function changeMainImage(src) {
     document.querySelector(".main_image img").src = src;
 }
@@ -62,7 +67,7 @@ function changeMainImage(src) {
 function displayDetails(product) {
     let detailsContainer = document.querySelector(".right");
     let details = `
-        <h3>${product.title}</h3>
+        <h3 id="title">${product.title}</h3>
         <p id="category">${product.category}</p>
         <div class="prices">
             <h4> <span class="pkr"> Rs </span>.${product.price}</h4>
@@ -70,7 +75,7 @@ function displayDetails(product) {
             <h4 class="discount">${product.discount}</h4>
         </div>
         <div class="discription">
-        <p class="description">${product.description}</p>
+        <p class="descriptions">${product.description}</p>
         </div>
         
         <div class="sizes">
@@ -86,17 +91,79 @@ size guide</p></a>
     <span>6.5</span>
     <span>7</span>
 </div>
+
+    <div class="rating-container">
         <div class="quantity-and-rating">
-            <h5>Quantity</h5>
-            <h5>Rating ${product.rating}</h5>
+            <h4>Product &nbsp; Rating</h4>
+            <h5>${product.rating}</h5>
         </div>
-        <div class="quantity-container">
-            <button class="quantity-btn decrease">-</button>
-            <input type="number" class="quantity-input" value="1" min="1" id="abc">
-            <button class="quantity-btn increase">+</button>
+        <div class="quantity-and-rating">
+            <h5 class="bestseller">Best seller</h5>
+            <h1><strong>Customer</strong> Reviews &nbsp;<i class='bx bxs-star' ></i></h1>
+            <h5>${product.sold} Sold</h5>
         </div>
+
+        <div class="reviews-container">
+        <div class="reviews-box">
+        <img src="reviews/pic-1.png" alt="">
+        <div class="review-description">
+        <h3>Taha Sultan</h3>
+        <p>Unmatched quality, absolutely worth the investment!</p>
+        </div>
+        <p class="rating">4.5⭐</p>
+    </div>
+
+        <div class="reviews-box">
+        <img src="reviews/pic-2.png" alt="">
+        <div class="review-description">
+        <h3>Gojo Satoru</h3>
+        <p>Exceeded expectations, would buy again anytime!</p>
+        </div>
+        <p class="rating">4.5⭐</p>
+    </div>
+
+        <div class="reviews-box">
+        <img src="reviews/pic-3.png" alt="">
+        <div class="review-description">
+        <h3>Sakura</h3>
+        <p>Best product, truly exceeded my expectations!</p>
+        </div>
+        <p class="rating">4.5⭐</p>
+    </div>
+
+        <div class="reviews-box">
+        <img src="reviews/pic-4.png" alt="">
+        <div class="review-description">
+        <h3>Megumi Fushigru</h3>
+        <p>Exceptional craftsmanship, perfect for everyday use!</p>
+        </div>
+        <p class="rating">4.5⭐</p>
+    </div>
+
+        <div class="reviews-box">
+        <img src="reviews/pic-6.png" alt="">
+        <div class="review-description">
+        <h3>Tony Stark</h3>
+        <p>Top-quality design, totally worth the price!</p>
+        </div>
+        <p class="rating">4.5⭐</p>
+    </div>
+
+        <div class="reviews-box">
+        <img src="reviews/pic-5.png" alt="">
+        <div class="review-description">
+        <h3>Jin Woo</h3>
+        <p>Amazing performance, couldn’t ask for more!</p>
+        </div>
+        <p class="rating">4.5⭐</p>
+    </div>
+
+</div>
+
+  </div>
+        
         <div class="addtobag">
-            <button class="details-addtocart">Add To Cart &nbsp;<i class='bx bxs-cart-alt'></i></button>
+            <button class="details-addtocart">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
         </div>
     `;
     detailsContainer.innerHTML = details;

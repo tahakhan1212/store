@@ -10,7 +10,8 @@ let product = [
         oldPrice: 2500,
         discount: "20%",
         description: " Shoes Women's 2024 New Foreign Trade Women's Shoes Breathable Shoes Women's Cross-border Lace-up Fashion Trendy Sports Women's Shoes",
-        rating: "⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐",
+        sold: "5k +"
     },
     {
         id: "2",
@@ -22,7 +23,8 @@ let product = [
         oldPrice: 5500,
         discount: "15%",
         description: "  Breathable Women's Slip-On Sneakers - Lightweight, Air Cushion Shock Absorption, Knit Upper,Casual Dance Shoes with Height Boost, All-Season Wear",
-        rating: "⭐⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐⭐",
+        sold: "2k +"
     },
     {
         id: "3",
@@ -34,7 +36,8 @@ let product = [
         oldPrice: 3900,
         discount: "20%",
         description: "  Women's Solid Color Knitted Sneakers, Lace Up Soft Sole Lightweight Walking Shoes, Low-top Breathable Running Shoes",
-        rating: "⭐⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐⭐",
+        sold: "19k +"
     },
     {
         id: "4",
@@ -46,7 +49,8 @@ let product = [
         oldPrice: 3267,
         discount: "50%",
         description: "Women's Breathable Camouflage Sports Sneakers, Low Top Lace-Up Fabric Shoes with EVA Sole and Rubber Patch, All-Season Plain Toe Design",
-        rating: "⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐",
+        sold: "15k +"
     },
     {
         id: "5",
@@ -58,7 +62,8 @@ let product = [
         oldPrice: 6200,
         discount: "65%",
         description: " Shoes Women's 2024 New Foreign Trade Women's Shoes Breathable Shoes Women's Cross-border Lace-up Fashion Trendy Sports Women's Shoes",
-        rating: "⭐⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐⭐",
+        sold: "35k +"
     },
     {
         id: "6",
@@ -70,7 +75,8 @@ let product = [
         oldPrice: 1200,
         discount: "25%",
         description: " Women's Comfy EVA Slides - Thick Sole, Non-Slip, Casual Slip-On Slippers in Pink, Green, Brown with Ribbed Texture - Perfect for Indoor/Outdoor Use, Beach & Home Relaxation, Ladies Slippers",
-        rating: "⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐",
+        sold: "11k + "
     },
     {
         id: "7",
@@ -82,7 +88,8 @@ let product = [
         oldPrice: 3564,
         discount: "75%",
         description: " Elegant Floral Linen Slippers for Women - Soft, Non-Slip Sole, Breathable Indoor Shoes with Cross Design, Perfect for All Seasons, Elegant Style",
-        rating: "⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐",
+        sold: "500 +"
     },
     {
         id: "8",
@@ -94,7 +101,8 @@ let product = [
         oldPrice: 6790,
         discount: "85%",
         description: " Women's Casual Slip-On Sneakers - Solid Color, Soft Fabric Lining, Non-Slip PU Sole for Fall",
-        rating: "⭐⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐⭐",
+        sold: "5.7k +"
     },
     {
         id: "9",
@@ -106,7 +114,8 @@ let product = [
         oldPrice: 11554,
         discount: "90%",
         description: " Women's Fashion Lightweight Sneakers, Breathable Mesh Lace Up Outdoor Shoes, Casual Comfortable Walking Shoes For Daily Wear",
-        rating: "⭐⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐⭐",
+        sold: "2.9k +"
     },
     {
         id: "10",
@@ -118,6 +127,7 @@ let product = [
         oldPrice: 10891,
         discount: "35%",
         description: "Chic Women's Ballet Flats with Bowknot - Comfortable Slip-On Shoes, Soft Sole, Versatile for All Seasons",
-        rating: "⭐⭐⭐⭐"
+        rating: "⭐⭐⭐⭐",
+        sold: "1.5k +"
     },
 ]

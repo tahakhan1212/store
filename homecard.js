@@ -9,20 +9,26 @@ function onload() {
 }
 
 function addToCart(itemId) {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || []; 
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
     
-    let isAlreadyInCart = cartItems.some(id => id.toString() === itemId.toString());
-
-    if (!isAlreadyInCart) { 
+    if (!cartItems.includes(itemId.toString())) {
         cartItems.push(itemId.toString());
-        alert("Product added to cart!");
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        quantities[itemId.toString()] = 1; 
+        localStorage.setItem(itemId + "_quantity", JSON.stringify(1));
+        localStorage.setItem(itemId + "_totalPrice", JSON.stringify(product.find(p => p.id == itemId).price));
         location.reload();
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+        
+        updateCartTotal(); 
+        showCartItems();  
     } else {
         alert("Item already in cart!");
     }
-}
     
+    
+} 
 
 function cartcount() {
     let cartcount = document.querySelector(".cart-count");

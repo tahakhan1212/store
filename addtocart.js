@@ -64,7 +64,7 @@ function totalAmount() {
         <p>Total: Rs. ${mrp}</p>
         <p>Discount: Rs.<del> ${discount}</del></p>
         <p>Delivery: ${convenienceFee}</p>
-        <h3 class="sbkatotal">final: Rs. ${totalPrice.toLocaleString()}</h3>
+        <h3 class="sbkatotal">final: Rs. ${totalPrice}</h3>
         <button class="checkout-btn">Place Order</button>
     </div>`;
 
@@ -95,10 +95,10 @@ function updateCartTotal() {
     container.innerHTML = ` 
     <div class="summary">
     <h3>Price Details (Items ${document.querySelectorAll(".product-item").length})</h3>
-    <p>Total: Rs. ${mrp.toLocaleString()}</p>
-    <p>Discount: Rs.<del> ${discount.toLocaleString()}</del></p>
+    <p>Total: Rs. ${mrp}</p>
+    <p>Discount: Rs.<del> ${discount}</del></p>
     <p>Delivery: ${convenienceFee}</p>
-    <h3 class="sbkatotal">final: Rs. ${totalPrice.toLocaleString()}</h3>
+    <h3 class="sbkatotal">final: Rs. ${totalPrice}</h3>
     <button onclick="checkout()" class="checkout-btn">Place Order</button>
     </div>`;
 }
@@ -113,35 +113,38 @@ function addToCart(itemId) {
         quantities[itemId.toString()] = 1; 
         localStorage.setItem(itemId + "_quantity", JSON.stringify(1));
         localStorage.setItem(itemId + "_totalPrice", JSON.stringify(product.find(p => p.id == itemId).price));
-        alert("Product added to cart!");
+        location.reload();
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+        
+        updateCartTotal(); 
+        showCartItems();  
     } else {
         alert("Item already in cart!");
     }
     
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    localStorage.setItem("cartQuantities", JSON.stringify(quantities));
     
-    updateCartTotal(); 
-    showCartItems();  
-    
-    location.reload();
 }
 
 function showCartItems() {
     let cartContainer = document.querySelector(".products");
     let innerHTML = "";
-    
+
     if (cartItemsObjects.length === 0) {
         cartContainer.innerHTML = "<p class='cart-empty'>Your cart is empty.</p>";
+        document.querySelector(".cart-total").innerHTML = ""; 
         return;
     }
 
     cartItemsObjects.forEach((cartItem) => {
         innerHTML += generateItemHTML(cartItem);
     });
-    
+
     cartContainer.innerHTML = innerHTML;
+
+    totalAmount();
 }
+
 
 function removeCart(itemId) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -169,6 +172,11 @@ function removeCart(itemId) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const products = document.querySelectorAll(".product-item");
+    document.querySelector(".cart-total").addEventListener("click", function (event) {
+        if (event.target.classList.contains("checkout-btn")) {
+            checkout();
+        }
+    });
     
     products.forEach(product => {
         const decreaseBtn = product.querySelector(".decrease");
@@ -184,9 +192,9 @@ document.addEventListener("DOMContentLoaded", function () {
         
         if (savedQuantity) {
             quantityInput.value = savedQuantity;
-            totalElement.textContent = `Rs. ${savedTotal.toLocaleString()}`;
+            totalElement.textContent = `Rs. ${savedTotal}`;
         } else {
-            totalElement.textContent = `Rs. ${(price).toLocaleString()}`;
+            totalElement.textContent = `Rs. ${(price)()}`;
         }
         
         function updateTotal() {
@@ -194,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (quantity < 1) quantity = 1;
             quantityInput.value = quantity;
             let totalPrice = price * quantity;
-            totalElement.textContent = `Rs. ${totalPrice.toLocaleString()}`;
+            totalElement.textContent = `Rs. ${totalPrice}`;
 
             localStorage.setItem(productId + "_quantity", JSON.stringify(quantity));
             localStorage.setItem(productId + "_totalPrice", JSON.stringify(totalPrice));
@@ -222,7 +230,7 @@ function updateCartTotal() {
     let mrp = 0;
     let discount = 0;
     const convenienceFee = "Free";
-    
+
     document.querySelectorAll(".product-item").forEach(product => {
         const price = parseFloat(product.querySelector(".product-price").textContent.replace("Rs .", ""));
         const quantity = parseInt(product.querySelector(".quantity-input").value);
@@ -234,6 +242,7 @@ function updateCartTotal() {
     });
 
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+
     const container = document.querySelector(".cart-total");
 
     if (document.querySelectorAll(".product-item").length === 0) {
@@ -241,16 +250,19 @@ function updateCartTotal() {
         return;
     }
 
-    container.innerHTML = ` 
+    container.innerHTML = `
     <div class="summary">
         <h3>Price Details (Items ${document.querySelectorAll(".product-item").length})</h3>
         <p>Total: Rs. ${mrp}</p>
         <p>Discount: Rs.<del> ${discount}</del></p>
         <p>Delivery: ${convenienceFee}</p>
         <h3 class="sbkatotal">final: Rs. ${totalPrice}</h3>
-        <button onclick="checkout()" class="checkout-btn">Place Order</button>
+        <button class="checkout-btn">Place Order</button>
     </div>`;
+
+    document.querySelector(".checkout-btn").addEventListener("click", checkout);
 }
+
 
 function generateItemHTML(cartItem) {
     let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
@@ -278,7 +290,7 @@ function generateItemHTML(cartItem) {
                 <input type="number" class="quantity-input" value="${quantity}" min="1">
                 <button class="quantity-btn increase">+</button>
                 </div>
-                <div class="product-total">Rs. ${(cartItem.price * quantity).toLocaleString()}</div>
+                <div class="product-total">Rs. ${(cartItem.price * quantity)}</div>
                 </div>
                 </div>`; 
             }
@@ -295,25 +307,28 @@ function generateItemHTML(cartItem) {
 
 
 function checkout() {
+    if(cartItemsObjects.length === 0) {
+        let checkout = document.querySelector(".checkout-btn");
+        checkout.style.background = "red";
+        checkout.innerHTML="<i class='bx bxs-cart-alt'></i> &nbsp; Cart Is Empty ";
+        return;
+    }
     let checkout = document.querySelector(".checkout-btn");
     checkout.style.background = "red";  
+    checkout.innerHTML="Thanks For Shopping &nbsp; <i class='bx bxs-donate-heart' ></i>";
     
     setTimeout(() => {
         alert('Your Order Will Be Delivered Under 7 To 10 Days!');
-        
-         localStorage.removeItem("cartItems");
+        localStorage.removeItem("cartItems");
         localStorage.removeItem("cartQuantities");
         
         cartItemsObjects.forEach(cartItem => {
             localStorage.removeItem(cartItem.id + "_quantity");
             localStorage.removeItem(cartItem.id + "_totalPrice");
+            localStorage.removeItem("totalPrice");
+            window.location.href = "index.html";
         });
 
-        localStorage.removeItem("totalPrice");
-
-        setTimeout(() => {
-            window.location.href = "index.html";
-        }, 600);
-    }, 500);
+    }, 700);
 }
 
