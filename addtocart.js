@@ -314,11 +314,11 @@ function checkout() {
         return;
     }
     let checkout = document.querySelector(".checkout-btn");
-    checkout.style.background = "red";  
+    checkout.style.background = "red";
     checkout.innerHTML="Thanks For Shopping &nbsp; <i class='bx bxs-donate-heart' ></i>";
+
     
     setTimeout(() => {
-        alert('Your Order Will Be Delivered Under 7 To 10 Days!');
         localStorage.removeItem("cartItems");
         localStorage.removeItem("cartQuantities");
         

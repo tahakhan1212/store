@@ -94,7 +94,7 @@ size guide</p></a>
 
     <div class="rating-container">
         <div class="quantity-and-rating">
-            <h4>Product &nbsp; Rating</h4>
+            <h4>Product Rating</h4>
             <h5>${product.rating}</h5>
         </div>
         <div class="quantity-and-rating">
@@ -105,7 +105,7 @@ size guide</p></a>
 
         <div class="reviews-container">
         <div class="reviews-box">
-        <img src="shoes/shoes1-1.webp" alt="">
+        <img src="reviews/pic-1.webp" alt="">
         <div class="review-description">
         <h3>Taha Sultan</h3>
         <p>Unmatched quality, absolutely worth the investment!</p>
@@ -114,7 +114,7 @@ size guide</p></a>
     </div>
 
         <div class="reviews-box">
-        <img src="reviews/pic-2.png" alt="">
+        <img src="reviews/pic-2.webp" alt="">
         <div class="review-description">
         <h3>Gojo Satoru</h3>
         <p>Exceeded expectations, would buy again anytime!</p>
@@ -123,7 +123,7 @@ size guide</p></a>
     </div>
 
         <div class="reviews-box">
-        <img src="reviews/pic-3.png" alt="">
+        <img src="reviews/pic-3.webp" alt="">
         <div class="review-description">
         <h3>Sakura</h3>
         <p>Best product, truly exceeded my expectations!</p>
@@ -132,7 +132,7 @@ size guide</p></a>
     </div>
 
         <div class="reviews-box">
-        <img src="reviews/pic-4.png" alt="">
+        <img src="reviews/pic-4.webp" alt="">
         <div class="review-description">
         <h3>Megumi Fushigru</h3>
         <p>Exceptional craftsmanship, perfect for everyday use!</p>
@@ -141,7 +141,7 @@ size guide</p></a>
     </div>
 
         <div class="reviews-box">
-        <img src="reviews/pic-6.png" alt="">
+        <img src="reviews/pic-6.webp" alt="">
         <div class="review-description">
         <h3>Tony Stark</h3>
         <p>Top-quality design, totally worth the price!</p>
@@ -150,7 +150,7 @@ size guide</p></a>
     </div>
 
         <div class="reviews-box">
-        <img src="reviews/pic-5.png" alt="">
+        <img src="reviews/pic-5.webp" alt="">
         <div class="review-description">
         <h3>Jin Woo</h3>
         <p>Amazing performance, couldn’t ask for more!</p>
