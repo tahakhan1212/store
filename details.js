@@ -107,7 +107,7 @@ size guide</p></a>
         <div class="reviews-box">
         <img src="reviews/pic-1.webp" alt="">
         <div class="review-description">
-        <h3>Taha Sultan</h3>
+        <h3>Selena Gomez </h3>
         <p>Unmatched quality, absolutely worth the investment!</p>
         </div>
         <p class="rating">4.4⭐</p>
@@ -116,7 +116,7 @@ size guide</p></a>
         <div class="reviews-box">
         <img src="reviews/pic-2.webp" alt="">
         <div class="review-description">
-        <h3>Gojo Satoru</h3>
+        <h3>Leonardo Dicaprio</h3>
         <p>Exceeded expectations, would buy again anytime!</p>
         </div>
         <p class="rating">4.8⭐</p>
@@ -125,7 +125,7 @@ size guide</p></a>
         <div class="reviews-box">
         <img src="reviews/pic-3.webp" alt="">
         <div class="review-description">
-        <h3>Sakura</h3>
+        <h3>Alexandra Daddario</h3>
         <p>Best product, truly exceeded my expectations!</p>
         </div>
         <p class="rating">5⭐</p>
@@ -134,7 +134,7 @@ size guide</p></a>
         <div class="reviews-box">
         <img src="reviews/pic-4.webp" alt="">
         <div class="review-description">
-        <h3>Megumi Fushigru</h3>
+        <h3>Katy Perry</h3>
         <p>Exceptional craftsmanship, perfect for everyday use!</p>
         </div>
         <p class="rating">4.8⭐</p>
