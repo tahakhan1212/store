@@ -258,7 +258,9 @@ function updateCartTotal() {
         <p>Delivery: ${convenienceFee}</p>
         <h3 class="sbkatotal">final: Rs. ${totalPrice}</h3>
         <button class="checkout-btn">Place Order</button>
-    </div>`;
+    </div>
+    
+    `;
 
     document.querySelector(".checkout-btn").addEventListener("click", checkout);
 }
