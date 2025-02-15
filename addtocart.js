@@ -65,7 +65,6 @@ function totalAmount() {
         <p>Discount: Rs.<del> ${discount}</del></p>
         <p>Delivery: ${convenienceFee}</p>
         <h3 class="sbkatotal">final: Rs. ${totalPrice}</h3>
-        <button class="checkout-btn">Place Order</button>
     </div>`;
 
     container.innerHTML = summary;
@@ -99,7 +98,6 @@ function updateCartTotal() {
     <p>Discount: Rs.<del> ${discount}</del></p>
     <p>Delivery: ${convenienceFee}</p>
     <h3 class="sbkatotal">final: Rs. ${totalPrice}</h3>
-    <button onclick="checkout()" class="checkout-btn">Place Order</button>
     </div>`;
 }
 
@@ -257,7 +255,6 @@ function updateCartTotal() {
         <p>Discount: Rs.<del> ${discount}</del></p>
         <p>Delivery: ${convenienceFee}</p>
         <h3 class="sbkatotal">final: Rs. ${totalPrice}</h3>
-        <button class="checkout-btn">Place Order</button>
     </div>
     
     `;

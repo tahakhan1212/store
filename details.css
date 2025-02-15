@@ -276,7 +276,7 @@ flex-wrap: wrap;
   }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 870px) {
   .details-container {
     flex-direction: column;
     max-width: 100%;
