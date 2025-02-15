@@ -29,6 +29,8 @@ body.dark {
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", serif;
+  touch-action: manipulation;
+    user-select: auto;
   -webkit-tap-highlight-color: transparent;
   outline: none; 
 
