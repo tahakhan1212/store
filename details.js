@@ -3,6 +3,7 @@ onload();
 
 function onload() {
     loadProductData();
+    updateCartCount();
 }
 
 function loadProductData() {
@@ -27,35 +28,53 @@ function loadProductData() {
             optionContainer.appendChild(imgElement);
         });
 
-        document.querySelector(".addtobag button").addEventListener("click", function () {
-            addToCart(selectedProduct.id);
-        });
     }
 }
+document.querySelector(".addtobag button").addEventListener("click", function () {
+    addToCart(selectedProduct.id, this); // ✅ Button ka reference pass ho raha hai
+});
 
-function addToCart(itemId) {
+function addToCart(itemId, buttonElement) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
 
-    let isAlreadyInCart = cartItems.includes(itemId.toString());
-
-    if (!isAlreadyInCart) {
+    if (!cartItems.includes(itemId.toString())) {
         cartItems.push(itemId.toString());
-        quantities[itemId.toString()] = 1; 
+        quantities[itemId.toString()] = 1;
 
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        localStorage.setItem("cartQuantities", JSON.stringify(quantities));
         localStorage.setItem(itemId + "_quantity", JSON.stringify(1));
         localStorage.setItem(itemId + "_totalPrice", JSON.stringify(selectedProduct.price));
 
-        location.reload(); 
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+        
+        updateCartCount();
+        
     } else {
-        let detailsAddToCart = document.querySelector(".details-addtocart");
-        detailsAddToCart.innerHTML = "Item Already In Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
-        detailsAddToCart.style.background = "red";
+        buttonElement.style.backgroundColor = "red";
+        buttonElement.style.color = "white";
+        buttonElement.innerHTML = "Item Already in Cart <i class='bx bxs-cart-alt icon'></i>";
+        
         setTimeout(() => {
             window.location.href = "addtocart.html";
-        }, 1000);
+        }, 1000); 
+        
+        return;
+    }
+}
+
+function updateCartCount() {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    
+    let cartCountElement = document.querySelector(".cart-count");
+    let cartCountElement2 = document.querySelector(".cart-count2"); // ✅ Naya element select karna
+
+    cartCountElement.textContent = cartItems.length;
+    cartCountElement.style.display = cartItems.length > 0 ? "block" : "none";
+
+    if (cartCountElement2) {
+        cartCountElement2.textContent = cartItems.length; // ✅ cart-count2 bhi update hoga
+        cartCountElement2.style.display = cartItems.length > 0 ? "block" : "none";
     }
 }
 
@@ -163,7 +182,7 @@ size guide</p></a>
   </div>
         
         <div class="addtobag">
-            <button class="details-addtocart">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
+            <button class="details-addtocart" onclick="details-addToCart()">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
         </div>
     `;
     detailsContainer.innerHTML = details;

@@ -5,6 +5,8 @@
     margin: 0px;
     padding: 0px;
     font-family: "Poppins", serif;
+    -webkit-tap-highlight-color: transparent;
+  outline: none; 
 }
 
 :root {
@@ -194,7 +196,7 @@ html {
     background: var(--count-color);
     border-radius: 60%;
     padding: 3px 6px;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 
 .sidebar li .icon,

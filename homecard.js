@@ -1,5 +1,5 @@
 let cartItem;
-onload();
+onload();   
 function onload() {
     let cartItemsStr = localStorage.getItem("cartItems");
     cartItem = cartItemsStr ? JSON.parse(cartItemsStr) : []   
@@ -17,18 +17,19 @@ function addToCart(itemId) {
         quantities[itemId.toString()] = 1; 
         localStorage.setItem(itemId + "_quantity", JSON.stringify(1));
         localStorage.setItem(itemId + "_totalPrice", JSON.stringify(product.find(p => p.id == itemId).price));
-        location.reload();
+        
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+
+        cartItem = cartItems; 
+        cartcount();  
+        cartcount2();
         
-        updateCartTotal(); 
-        showCartItems();  
     } else {
         alert("Item already in cart!");
     }
-    
-    
-} 
+}
+
 
 function cartcount() {
     let cartcount = document.querySelector(".cart-count");

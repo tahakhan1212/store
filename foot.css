@@ -5,6 +5,8 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 :root {
@@ -34,7 +36,7 @@ body.dark {
     /* text-align: center;
     border-top-left-radius: .5rem;
     border-top-right-radius: .5rem; */
-    padding: .5rem 0 0 0;
+    /* padding: .5rem 0 0 0; */
 }
 
 .navigation {
@@ -49,7 +51,7 @@ body.dark {
 }
 .navigation ul {
     display: flex;
-    gap: 4rem;
+    gap: 3rem;
     width: 350px;
 }
 
@@ -114,7 +116,7 @@ transition: 0.5s;
     padding: 3px 6px;
     text-align: center;
     top: 10px;
-    right: -10px;
+    right: -5px;
     font-size: 8px;
     position: absolute;
     list-style: none;
