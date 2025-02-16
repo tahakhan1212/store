@@ -478,7 +478,7 @@ body.dark .switch::before {
 /* cotegory starts */
 
 .category-heading {
-    width: 95.5%;
+    width: 96.5%;
     margin: 0 auto;
     border-top: 3px solid var(--primary-color-light);
     font-size: 1.4rem;
@@ -492,9 +492,10 @@ body.dark .switch::before {
 
 .category-main-container {
     color: var(--text-color);
-    width: 95.5%;
+    width: 100%;
+    padding-inline: 30px;
     margin: auto;
-    border-bottom: 3px solid var(--primary-color-light);
+    
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none;
@@ -547,6 +548,8 @@ body.dark .switch::before {
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    border-top: 3px solid var(--primary-color-light);
+
     /* padding-inline: .7rem; */
     overflow: hidden;
     gap: 12px;
@@ -558,6 +561,7 @@ body.dark .switch::before {
     border-radius: 1rem;
     padding: 8px;
     position: relative;
+    margin-top: 1rem;
 }
 
 .images-and-sizes img {

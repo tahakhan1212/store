@@ -4,7 +4,9 @@ onload();
 function onload() {
     loadProductData();
     updateCartCount();
+    checkCartStatus(); 
 }
+
 
 function loadProductData() {
     let productData = localStorage.getItem("selectedProduct");
@@ -31,7 +33,7 @@ function loadProductData() {
     }
 }
 document.querySelector(".addtobag button").addEventListener("click", function () {
-    addToCart(selectedProduct.id, this); // ✅ Button ka reference pass ho raha hai
+    addToCart(selectedProduct.id, this); 
 });
 
 function addToCart(itemId, buttonElement) {
@@ -47,36 +49,56 @@ function addToCart(itemId, buttonElement) {
 
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         localStorage.setItem("cartQuantities", JSON.stringify(quantities));
-        
-        updateCartCount();
-        
+
+        buttonElement.innerHTML = "Item Already in Cart &nbsp; <i class='bx bxs-cart-alt '></i>";
     } else {
-        buttonElement.style.backgroundColor = "red";
-        buttonElement.style.color = "white";
-        buttonElement.innerHTML = "Item Already in Cart <i class='bx bxs-cart-alt icon'></i>";
+        buttonElement.innerHTML = "Check Your Cart &nbsp;  <i class='bx bxs-cart-alt'></i>";
+        buttonElement.style.background = "red";
+        buttonElement.style.color = "var(--body-color)";
         
-        setTimeout(() => {
-            window.location.href = "addtocart.html";
-        }, 1000); 
-        
-        return;
+    }
+
+    setTimeout(updateCartCount, 50);
+}
+
+
+function checkCartStatus() {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let buttonElement = document.querySelector(".details-addtocart");
+
+    if (cartItems.includes(selectedProduct.id.toString())) {
+        buttonElement.innerHTML = "Item Already in Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
+        buttonElement.style.background = "var(--extra-color)";
+        buttonElement.style.color = "var(--text-color)";
+        buttonElement.style.cursor = "not-allowed";
+        buttonElement.disabled = true;
     }
 }
+
+
 
 function updateCartCount() {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    
-    let cartCountElement = document.querySelector(".cart-count");
-    let cartCountElement2 = document.querySelector(".cart-count2"); // ✅ Naya element select karna
 
-    cartCountElement.textContent = cartItems.length;
-    cartCountElement.style.display = cartItems.length > 0 ? "block" : "none";
+    let cartCountElement = document.querySelector(".cart-count");
+    let cartCountElement2 = document.querySelector(".cart-count2");
+
+    if (cartCountElement) {
+        cartCountElement.textContent = cartItems.length;
+        cartCountElement.style.visibility = cartItems.length > 0 ? "visible" : "hidden";
+    }
 
     if (cartCountElement2) {
-        cartCountElement2.textContent = cartItems.length; // ✅ cart-count2 bhi update hoga
-        cartCountElement2.style.display = cartItems.length > 0 ? "block" : "none";
+        cartCountElement2.textContent = cartItems.length;
+        cartCountElement2.style.visibility = cartItems.length > 0 ? "visible" : "hidden";
     }
 }
+
+const observer = new MutationObserver(() => {
+    updateCartCount();
+});
+observer.observe(document.body, { childList: true, subtree: true });
+
 
 
 function changeMainImage(src) {
@@ -182,7 +204,8 @@ size guide</p></a>
   </div>
         
         <div class="addtobag">
-            <button class="details-addtocart" onclick="details-addToCart()">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
+           <button class="details-addtocart" onclick="addToCart(selectedProduct.id, this)">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
+
         </div>
     `;
     detailsContainer.innerHTML = details;

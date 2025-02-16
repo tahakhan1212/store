@@ -25,8 +25,6 @@ function addToCart(itemId) {
         cartcount();  
         cartcount2();
         
-    } else {
-        alert("Item already in cart!");
     }
 }
 

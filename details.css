@@ -18,7 +18,7 @@ body.dark {
   --sidebar-color: #000000;
   --toggle-color: #393939;
   --text-color: #fff;
-  --rating-background-color: rgba(26, 26, 26, 0.712);
+  --rating-background-color: #1a1a1ab6;
   --extra-color: #00ff00a3;
   --light-text-color: #ffffffb0;
 }
@@ -217,11 +217,12 @@ margin-left: 3px;
   border: none;
   outline: none;
   background: var(--count-color);
-  /* background: #e30ad5; */
+
   color: var(--text-color);
   margin-top: 20px;
-  border-radius: 30px;
+  border-radius: 1rem;
 }
+
 
 .bestseller{
   padding: 5px;

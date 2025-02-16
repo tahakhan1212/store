@@ -116,10 +116,9 @@ function addToCart(itemId) {
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         localStorage.setItem("cartQuantities", JSON.stringify(quantities));
 
-        updateCartUI();  // ✅ UI update directly yahan bhi hoga
-    } else {
-        alert("Item already in cart!");
-    }
+        updateCartUI();  
+        
+    } 
 }
 
 
@@ -130,7 +129,7 @@ function updateCartUI() {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     
     let cartCountElement = document.querySelector(".cart-count");
-    let cartCountElement2 = document.querySelector(".cart-count2"); // ✅ Second cart count
+    let cartCountElement2 = document.querySelector(".cart-count2"); 
 
     if (cartCountElement) {
         cartCountElement.textContent = cartItems.length;
@@ -141,6 +140,8 @@ function updateCartUI() {
         cartCountElement2.textContent = cartItems.length;
         cartCountElement2.style.display = cartItems.length > 0 ? "block" : "none";
     }
+
+    updateCheckoutButton(); 
 }
 
 
@@ -161,12 +162,11 @@ function showCartItems() {
     if (cartItems.length === 0) {
         cartContainer.innerHTML = "<p class='cart-empty'>Your cart is empty.</p>";
         document.querySelector(".cart-total").innerHTML = ""; 
+        updateCheckoutButton();  
         return;
     }
 
     cartContainer.innerHTML = ""; 
-
-    
 
     cartItems.forEach(itemId => {
         let cartItem = product.find(p => p.id == itemId);
@@ -177,7 +177,9 @@ function showCartItems() {
 
     totalAmount();
     initializeQuantityButtons();  
+    updateCheckoutButton(); 
 }
+
 
 
 
@@ -335,31 +337,43 @@ function generateItemHTML(cartItem) {
     }
 }
 
+function updateCheckoutButton() {
+    let checkout = document.querySelector(".checkout-btn");
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
+    if (cartItems.length === 0) {
+        checkout.style.background = "red";
+        checkout.innerHTML = "Cart Is Empty &nbsp; <i class='bx bxs-cart-alt'></i>";
+        checkout.style.color = "var(--body-color)";
+        checkout.disabled = true;
+    } else {
+        checkout.style.background = "darkorange";
+        checkout.innerHTML = "Place Order &nbsp; <i class='bx bxs-check-circle'></i>";
+        checkout.style.color = "var(--text-color)";
+        checkout.disabled = false;
+    }
+}
 
 
 function checkout() {
-    if(cartItemsObjects.length === 0) {
-        let checkout = document.querySelector(".checkout-btn");
-        checkout.style.background = "red";
-        checkout.innerHTML="<i class='bx bxs-cart-alt'></i> &nbsp; Cart Is Empty ";
-        return;
-    }
-    let checkout = document.querySelector(".checkout-btn");
-    checkout.style.background = "red";
-    checkout.innerHTML="Thanks For Shopping &nbsp; <i class='bx bxs-donate-heart' ></i>";
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
-    
+    let checkout = document.querySelector(".checkout-btn");
+    checkout.style.background = "var(--extra-color)";
+    checkout.style.color = "var(--text-color)";
+    checkout.innerHTML = "Thanks For Shopping &nbsp; <i class='bx bxs-donate-heart'></i>";
+
     setTimeout(() => {
         localStorage.removeItem("cartItems");
         localStorage.removeItem("cartQuantities");
-        
-        cartItemsObjects.forEach(cartItem => {
-            localStorage.removeItem(cartItem.id + "_quantity");
-            localStorage.removeItem(cartItem.id + "_totalPrice");
-            localStorage.removeItem("totalPrice");
-            window.location.href = "index.html";
+
+        cartItems.forEach(cartItemId => {
+            localStorage.removeItem(cartItemId + "_quantity");
+            localStorage.removeItem(cartItemId + "_totalPrice");
         });
+
+        localStorage.removeItem("totalPrice");
+        window.location.href = "index.html";
 
     }, 700);
 }

@@ -6,6 +6,7 @@
     --primary-color: #ffa500;
     --count-color: #ff8c00;
     --primary-color-light: #ffd8a8;
+    --extra-color: #10f2106d;
     --light-text-color: #262626e3;
 }
 
@@ -14,6 +15,7 @@ body.dark {
     --sidebar-color: #000000;
     --toggle-color: #393939;
     --text-color: #fff;
+    --extra-color: #00ff00a3;
     --light-text-color: #ffffffe3;
 }
 
@@ -25,7 +27,10 @@ body.dark {
     touch-action: manipulation;
     user-select: auto;
     -webkit-tap-highlight-color: transparent;
-  outline: none; 
+  outline: none;  
+}
+::-webkit-scrollbar-button {
+    display: none;
 }
 
 html {
