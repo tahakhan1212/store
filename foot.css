@@ -32,13 +32,13 @@ body.dark {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: var(--body-color);
+    background: var(--sidebar-color);
     padding: .5rem 0 0 0;
 }
 
 .navigation {
     position: relative;
-    width: 100%;
+    width: 90%;
     margin-inline: auto;
     height: 60px;
     background: var(--sidebar-color);
