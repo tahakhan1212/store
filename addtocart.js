@@ -102,24 +102,46 @@ function updateCartTotal() {
 }
 
 
+let isAddingToCart = false; 
+
 function addToCart(itemId) {
+    if (isProcessing) return;
+
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
-    
-    if (!cartItems.includes(itemId.toString())) {
-        cartItems.push(itemId.toString());
-        quantities[itemId.toString()] = 1;
+    let button = document.querySelector(`.container[data-id="${itemId}"] .like`);
 
-        localStorage.setItem(itemId + "_quantity", JSON.stringify(1));
-        localStorage.setItem(itemId + "_totalPrice", JSON.stringify(product.find(p => p.id == itemId).price));
+    if (cartItems.includes(itemId.toString())) {
+        return;
+    }
+
+    isProcessing = true;
+    button.classList.add("loading");
+    button.innerHTML = `<div class="spinner"></div>`;
+
+    setTimeout(() => {
+        cartItems.push(itemId.toString());
+        quantities[itemId.toString()] = (quantities[itemId.toString()] || 0) + 1;
 
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         localStorage.setItem("cartQuantities", JSON.stringify(quantities));
 
-        updateCartUI();  
-        
-    } 
+        cartItem = cartItems;
+        cartcount();
+        cartcount2();
+        updateCartUI()
+
+        button.innerHTML = `<i class="bx bx-check-circle added"></i>`;
+        button.classList.remove("loading");
+        button.classList.add("added-to-cart");
+        button.disabled = true;  
+
+        isProcessing = false;
+    }, 700);
 }
+
+
+
 
 
 function updateCartUI() {
@@ -187,8 +209,12 @@ function removeCart(itemId) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
 
+    if (!cartItems.includes(itemId.toString())) {
+        return;
+    }
+
     itemId = itemId.toString();
-    cartItems = cartItems.filter(cartId => cartId.toString() !== itemId);
+    cartItems = cartItems.filter(cartId => cartId !== itemId);
     delete quantities[itemId];
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -198,18 +224,10 @@ function removeCart(itemId) {
     updateCartTotal();
     updateCartUI();
 
-    const cartCountElement = document.querySelector(".cart-count");
-    cartCountElement.textContent = cartItems.length;
-    
-    if (cartItems.length === 0) {
-        cartCountElement.style.display = "none";
-    } else {
-        cartCountElement.style.display = "block";
-    }
-    
-    if (cartItems.length === 0) {
-        localStorage.removeItem("totalPrice");
-        document.querySelector(".cart-total").innerHTML = "";
+    let button = document.querySelector(`.container[data-id="${itemId}"] .like`);
+    if (button) {
+        button.innerHTML = `<i class='bx bxs-cart-alt'></i>`;
+        button.disabled = false;
     }
 }
 
@@ -340,12 +358,12 @@ function generateItemHTML(cartItem) {
 function updateCheckoutButton() {
     let checkout = document.querySelector(".checkout-btn");
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    
 
     if (cartItems.length === 0) {
         checkout.style.background = "red";
         checkout.innerHTML = "Cart Is Empty &nbsp; <i class='bx bxs-cart-alt'></i>";
         checkout.style.color = "var(--body-color)";
-        checkout.disabled = true;
     } else {
         checkout.style.background = "darkorange";
         checkout.innerHTML = "Place Order &nbsp; <i class='bx bxs-check-circle'></i>";
@@ -354,10 +372,25 @@ function updateCheckoutButton() {
     }
 }
 
+document.querySelector(".checkout-btn").addEventListener("click", function() {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    
+    if (cartItems.length === 0) {
+        let checkoutBtn = document.querySelector(".checkout-btn");
+        checkoutBtn.classList.add("shake");
+        checkoutBtn.innerHTML = "Cart Is Empty &nbsp; <i class='bx bx-error'></i>";
+
+        setTimeout(() => {
+            checkoutBtn.classList.remove("shake");
+        }, 500);
+    }
+});
+
 
 function checkout() {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
 
+    if (cartItems.length >= 1) {
     let checkout = document.querySelector(".checkout-btn");
     checkout.style.background = "var(--extra-color)";
     checkout.style.color = "var(--text-color)";
@@ -376,5 +409,6 @@ function checkout() {
         window.location.href = "index.html";
 
     }, 700);
+}
 }
 

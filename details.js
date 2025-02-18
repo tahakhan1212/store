@@ -4,7 +4,7 @@ onload();
 function onload() {
     loadProductData();
     updateCartCount();
-    checkCartStatus(); 
+    checkCartStatus();
 }
 
 
@@ -33,12 +33,13 @@ function loadProductData() {
     }
 }
 document.querySelector(".addtobag button").addEventListener("click", function () {
-    addToCart(selectedProduct.id, this); 
+    addToCart(selectedProduct.id, this);
 });
 
 function addToCart(itemId, buttonElement) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
+
 
     if (!cartItems.includes(itemId.toString())) {
         cartItems.push(itemId.toString());
@@ -50,16 +51,45 @@ function addToCart(itemId, buttonElement) {
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         localStorage.setItem("cartQuantities", JSON.stringify(quantities));
 
-        buttonElement.innerHTML = "Item Already in Cart &nbsp; <i class='bx bxs-cart-alt '></i>";
-    } else {
-        buttonElement.innerHTML = "Check Your Cart &nbsp;  <i class='bx bxs-cart-alt'></i>";
-        buttonElement.style.background = "red";
-        buttonElement.style.color = "var(--body-color)";
-        
     }
 
     setTimeout(updateCartCount, 50);
 }
+
+
+
+document.querySelector(".addtobag button").addEventListener("click", function () {
+    addToCart(selectedProduct.id, this);
+
+    let button = this;
+    setTimeout(() => {
+
+
+        button.classList.add("loading");
+        button.innerHTML = "Adding... <span class='loader'></span>";
+
+        setTimeout(() => {
+            button.classList.remove("loading");
+            button.classList.add("added");
+            button.innerHTML = "✔ Added to Cart!";
+            button.style.transition = "0.3s ease";
+            button.addEventListener("click", function () {
+                window.location.href = "addtocart.html";
+            });
+
+        }, 1000);
+
+        setTimeout(() => {
+            button.classList.remove("added");
+            button.style.transition = "0.3s ease-in";
+            button.innerHTML = "Check Your Cart! &nbsp;<i class='bx bxs-cart-alt'></i>";
+            button.addEventListener("click", function () {
+                window.location.href = "addtocart.html";
+            });
+        }, 2000);
+    }, 50);
+});
+
 
 
 function checkCartStatus() {
@@ -67,13 +97,19 @@ function checkCartStatus() {
     let buttonElement = document.querySelector(".details-addtocart");
 
     if (cartItems.includes(selectedProduct.id.toString())) {
-        buttonElement.innerHTML = "Item Already in Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
+        buttonElement.innerHTML = "Check Your Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
         buttonElement.style.background = "var(--extra-color)";
         buttonElement.style.color = "var(--text-color)";
-        buttonElement.style.cursor = "not-allowed";
-        buttonElement.disabled = true;
+        button.style.transition = "0.3s ease";
+
+        buttonElement.addEventListener("click", function () {
+            window.location.href = "addtocart.html";
+        });
     }
+    // checkCartStatus();
+
 }
+
 
 
 
@@ -100,10 +136,10 @@ const observer = new MutationObserver(() => {
 observer.observe(document.body, { childList: true, subtree: true });
 
 
-
 function changeMainImage(src) {
     document.querySelector(".main_image img").src = src;
 }
+
 
 function displayDetails(product) {
     let detailsContainer = document.querySelector(".right");

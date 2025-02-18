@@ -19,7 +19,7 @@ body.dark {
   --toggle-color: #393939;
   --text-color: #fff;
   --rating-background-color: #1a1a1ab6;
-  --extra-color: #00ff00a3;
+  --extra-color: #4CAF50;
   --light-text-color: #ffffffb0;
 }
 
@@ -30,9 +30,9 @@ body.dark {
   box-sizing: border-box;
   font-family: "Poppins", serif;
   touch-action: manipulation;
-    user-select: auto;
+  user-select: auto;
   -webkit-tap-highlight-color: transparent;
-  outline: none; 
+  outline: none;
 
 }
 
@@ -58,7 +58,8 @@ html {
   border-radius: 1rem;
 }
 
-.left, .right {
+.left,
+.right {
   flex: 1;
   padding: 30px 0px 30px 30px;
   min-width: 300px;
@@ -71,7 +72,7 @@ html {
 
 .flex {
   display: flex;
-  justify-content:left; 
+  justify-content: left;
 }
 
 .flex1 {
@@ -104,7 +105,7 @@ html {
   border-radius: 1.5rem;
 }
 
-#title{
+#title {
   color: var(--count-color);
   margin: 0px 0;
   font-size: 25px;
@@ -117,17 +118,18 @@ html {
   font-size: 15px;
 }
 
-.prices{
+.prices {
   display: flex;
   gap: 10px;
   font-size: 15px;
 }
 
 .pkr {
-  color: var(--primary-color)!important;
+  color: var(--primary-color) !important;
 }
 
-.prices h4 del, .prices h4{
+.prices h4 del,
+.prices h4 {
   color: var(--text-color);
 }
 
@@ -137,18 +139,20 @@ html {
 }
 
 .discount {
-  color: var(--primary-color)!important;
+  color: var(--primary-color) !important;
 }
 
-.right #category,.descriptions,.sizeguide {
+.right #category,
+.descriptions,
+.sizeguide {
   color: var(--text-color);
   opacity: 0.8;
-  margin: 20px 0 50px ;
+  margin: 20px 0 50px;
   line-height: 20px;
   font-size: 1.3rem;
 }
 
-.sizes{
+.sizes {
   position: relative;
   margin-top: -2rem;
   margin-bottom: 2rem;
@@ -159,7 +163,7 @@ html {
   transition: .3s ease-in;
 }
 
-.sizes span{
+.sizes span {
   cursor: pointer;
   color: var(--text-color);
   border: 2px solid var(--primary-color);
@@ -168,29 +172,29 @@ html {
   border-top-right-radius: 40%;
 }
 
-.sizes h2{
+.sizes h2 {
   color: var(--text-color);
 }
 
-.sizeguide{
+.sizeguide {
   position: absolute;
   right: 0;
   top: -22px;
   cursor: pointer;
-  font-size: 13px!important;
+  font-size: 13px !important;
 }
 
-.sizes span:hover{
+.sizes span:hover {
   color: var(--primary-color);
 }
 
-.rating-container{
-  background:var(--rating-background-color) ;
+.rating-container {
+  background: var(--rating-background-color);
   border-radius: 1rem;
   padding: 10px;
 }
 
-.quantity-and-rating{
+.quantity-and-rating {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -202,10 +206,10 @@ html {
 
 
 .quantity-and-rating h5 {
-margin-left: 3px;
+  margin-left: 3px;
 }
 
-.quantity-and-rating strong{
+.quantity-and-rating strong {
   color: var(--count-color);
 }
 
@@ -224,15 +228,15 @@ margin-left: 3px;
 }
 
 
-.bestseller{
+.bestseller {
   padding: 5px;
-  background-color:var(--extra-color);
+  background-color: var(--extra-color);
   color: var(--light-text-color);
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-.reviews-container{
+.reviews-container {
   height: 400px;
   border-radius: 10px;
   margin-top: 10px;
@@ -246,7 +250,7 @@ margin-left: 3px;
   scrollbar-color: var(--primary-color) var(--sidebar-color);
 }
 
-.reviews-box{
+.reviews-box {
   width: 97%;
   margin-inline: auto;
   margin-block: 7px;
@@ -256,9 +260,9 @@ margin-left: 3px;
   position: relative;
 }
 
-.reviews-box img{
+.reviews-box img {
   object-fit: cover;
-  width: 70px;  
+  width: 70px;
   height: 70px;
   border-radius: 50%;
   margin-block: 10px;
@@ -266,14 +270,14 @@ margin-left: 3px;
   border: 2px solid var(--primary-color);
 }
 
-.reviews-box .review-description{
-width: 100%;
-display: flex;
-/* align-items: center; */
-justify-content: center;
-/* padding-top: 10px; */
-flex-direction: column;
-flex-wrap: wrap;
+.reviews-box .review-description {
+  width: 100%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  /* padding-top: 10px; */
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 1024px) {
@@ -290,10 +294,12 @@ flex-wrap: wrap;
     margin-top: 10%;
   }
 
-  .option{
+  .option {
     gap: 0px;
   }
-  .right, .left {
+
+  .right,
+  .left {
     padding: 10px;
   }
 
@@ -301,59 +307,65 @@ flex-wrap: wrap;
     font-size: 12px;
   }
 
-  .prices{
+  .prices {
     margin-top: -2%;
   }
+
   .right p {
-   font-size: 1.1rem;
+    font-size: 1.1rem;
   }
 
-  .sizes{
+  .sizes {
     margin-top: -3rem;
     display: block;
     font-size: 10px;
     gap: 35px;
   }
 
-  .sizes h2{
+  .sizes h2 {
     margin-bottom: 1rem;
   }
-  
-  .sizeguide{
-    font-size: 11px!important;
+
+  .sizeguide {
+    font-size: 11px !important;
   }
 
-  .sizes span{
+  .sizes span {
     margin-left: 5px;
-    margin-bottom: 1rem;  
+    margin-bottom: 1rem;
     padding: 3px 7px 3px;
     border-top-left-radius: 40%;
     border-top-right-radius: 40%;
   }
-  
-  .quantity-and-rating{
+
+  .quantity-and-rating {
     font-size: 14px;
   }
 
-  .quantity-and-rating h1{
+  .quantity-and-rating h1 {
     font-size: 13px;
   }
 
-  .bestseller{
+  .bestseller {
     font-size: 10px;
   }
 
-  .review-description{
+  .review-description {
     justify-content: center;
   }
 
-  .review-description h3{
+  .review-description h3 {
     font-size: 11px;
   }
 
-  
-  .review-description p{
+
+  .review-description p {
     font-size: 10px;
+  }
+
+  .addtobag  {
+    width: 90%;
+    margin-inline: auto;
   }
 
 }
@@ -363,13 +375,17 @@ flex-wrap: wrap;
     max-width: 100%;
     padding: 10px;
   }
-  .left, .right {
+
+  .left,
+  .right {
     padding: 10px;
   }
+
   img {
     width: 100%;
     height: auto;
   }
+
   .option img {
     width: 75px;
     height: 75px;
@@ -378,9 +394,46 @@ flex-wrap: wrap;
   .option {
     gap: 5px;
   }
-  
-  .right h3{
+
+  .right h3 {
     margin-top: -10px;
   }
 
+}
+
+/* Add loading style */
+.addtobag button.loading {
+  background-color: #ff9800 !important;
+  color: white !important;
+}
+
+/* Loader Animation */
+.loader {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid white;
+  border-radius: 50%;
+  border-top: 2px solid transparent;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+}
+
+/* Keyframes for rotation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Added to cart style */
+.addtobag button.added {
+  background-color: var(--extra-color) !important;
+  color: white !important;
+  transform: scale(1.1);
+  transition: 0.3s;
 }
