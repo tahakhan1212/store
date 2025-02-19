@@ -115,9 +115,7 @@ function addToCart(itemId) {
     button.classList.add("loading");
     button.innerHTML = `<div class="spinner"></div>`;
 
-    // ❌ Pehle se cart me add mat karo, sirf popover show karo
     showPopup(selectedProduct, () => {
-        // ✅ Ye code ab sirf confirm hone ke baad chalega
         let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
         let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
 
@@ -137,7 +135,6 @@ function addToCart(itemId) {
             loadItemObject();
         }
 
-        // ✅ Button ko update karo
         button.innerHTML = `<i class="bx bx-check-circle added"></i>`;
         button.classList.remove("loading");
         button.classList.add("added-to-cart");

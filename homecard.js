@@ -50,7 +50,7 @@ function addToCart(itemId) {
 }
 
 function showPopup(product, onConfirm) {
-    // 🔹 Overlay create karo
+    
     let overlay = document.createElement("div");
     overlay.classList.add("modal-overlay");
 
@@ -90,44 +90,37 @@ function showPopup(product, onConfirm) {
         </div>
     `;
 
-    // 🔹 Overlay aur popup ko body me add karo
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
 
-    // 🔹 Body aur HTML ko disable karo (scroll lock)
     document.body.classList.add("modal-open");
     document.documentElement.classList.add("modal-open");
 
-    // ✅ Confirm button click event
     document.querySelector(".confirm-btn").addEventListener("click", () => {
         closePopup(popup, overlay);
         onConfirm();
     });
 
-    // ✅ Remove button click event
     document.querySelector(".remove-btn").addEventListener("click", () => {
         closePopup(popup, overlay);
     });
 }
 
 function closePopup(popup, overlay) {
-    // 🔹 Popup aur overlay remove karo
     document.body.removeChild(popup);
     document.body.removeChild(overlay);
 
-    // 🔹 Body aur HTML ko wapas enable karo (scroll unlock)
     document.body.classList.remove("modal-open");
     document.documentElement.classList.remove("modal-open");
     stopButtonAnimation();
 }
 
-// 🔹 New function to stop button animation
 function stopButtonAnimation() {
     let button = document.querySelector(".like.loading");
     if (button) {
-        button.innerHTML = '<i class="bx bxs-cart-alt"></i>';  // Normal icon wapas la do
+        button.innerHTML = '<i class="bx bxs-cart-alt"></i>';  
         button.classList.remove("loading");
-        isProcessing = false;  // Process ko reset karo
+        isProcessing = false; 
     }
 }
 

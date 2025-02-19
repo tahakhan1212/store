@@ -96,7 +96,7 @@ function checkCartStatus() {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let buttonElement = document.querySelector(".details-addtocart");
 
-    if (!buttonElement) return; // Button agar exist nahi karta toh return kar do
+    if (!buttonElement) return;
 
     if (cartItems.includes(selectedProduct.id.toString())) {
         buttonElement.innerHTML = "Check Your Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
