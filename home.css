@@ -144,6 +144,8 @@ html {
     background: var(--sidebar-color);
     transition: var(--trans-05);
     z-index: 1000;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .sidebar.close {
@@ -895,7 +897,7 @@ html.modal-open {
     }
     
     .sizeguid i{
-        font-size: 10px !important;
+        font-size: 7px !important;
     }
 
     .confirm-btn:hover {
