@@ -66,7 +66,7 @@ function showPopup(product, onConfirm) {
                     <a href="size-guide.png" target="_blank"><p class="sizeguid">
                         <i class="fa fa-arrows-h" aria-hidden="true">Size Guide</i> 
                     </p></a>
-                    <h2>Sizes &nbsp;<small>(UK)</small></h2>
+                    <h2>Sizes</h2>
                     <button>3.5</button>
                     <button>4</button>
                     <button>4.5</button>
@@ -76,7 +76,7 @@ function showPopup(product, onConfirm) {
                     <button>6.5</button>
                     <button>7</button>
                 </div>
-                <h2>Select Size And Color</h2>
+                <h2 class="select">Select : Size & Color</h2>
                 <div class="colors">
                 <h2>Colors</h2>
                     <button>Red</button>

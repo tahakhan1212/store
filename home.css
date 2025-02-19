@@ -724,12 +724,12 @@ html.modal-open {
     overflow-x: scroll;
     scrollbar-width: none;
     align-items: center;
-    margin-bottom: 5px;
+    margin-block: 5px;
 }
 
 
 .size h2{
-    margin-left: -8px;
+    margin-left: -8px;;
 }
 
 .popup-text .size button {
@@ -741,6 +741,11 @@ html.modal-open {
     border-radius: 8px;
     transition: 0.3s;
     cursor: pointer;
+}
+
+.select{
+    font-size:20px;
+    color: var(--text-color);
 }
 
 .colors{
@@ -885,14 +890,26 @@ html.modal-open {
     }
 
     .sizeguid {
-        top: 9px !important;
-        left: 12px;
-        font-size: 8px !important;
+        top: 4px !important;
+        left: 8px !important;
+    }
+    
+    .sizeguid i{
+        font-size: 10px !important;
     }
 
     .confirm-btn:hover {
         background:var(--count-color);
         transform: scale(1.03);
+    }
+
+    .remove-btn {
+        top: -5px;
+        right: 0px;
+    }
+
+    .select{
+        font-size:14px;
     }
 
 }
