@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="like.css">
     <link rel="stylesheet" href="home.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="foot.css">
 </head>
-
 <body>
 
+     <!-- nav starts  -->
 
-
-    <!-- nav starts  -->
-
-    <nav class="sidebar close">
+     <nav class="sidebar close">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -125,50 +120,8 @@
             </nav>
         </div>
         <!-- mobile nav ends -->
-        
-        
-        <!--image slider start-->
-        <div class="slider">
-            <div class="slides">
-                
-                <!--radio buttons start-->
-                <input type="radio" name="radio-btn" id="radio1">
-                <input type="radio" name="radio-btn" id="radio2">
-                <input type="radio" name="radio-btn" id="radio3">
-                <input type="radio" name="radio-btn" id="radio4">
-                <!--radio buttons end-->
-                
-                <!--slide images start-->
-                <div class="slide first">
-                    <img src="banner2.jpg" alt="">
-                </div>
-                <div class="slide">
-                    <img src="banner1.png" alt="">
-                </div>
-                <div class="slide">
-                    <img src="banner3.jpeg" alt="">
-                </div>
-                <div class="slide">
-                    <img src="banner4.jpg" alt="">
-                </div>
-                <!--slide images end-->
-                
-            </div>
-            
-            <div class="navigation-manual">
-                <label for="radio1" class="manual-btn"></label>
-                <label for="radio2" class="manual-btn"></label>
-                <label for="radio3" class="manual-btn"></label>
-                <label for="radio4" class="manual-btn"></label>
-            </div>
-            
-        </div>
-        <!--image slider end-->
-        <div class="category-heading">
-            <h1>browse by category</h1>
-        </div>
-        <div class="category-main-container"></div>
 
+        
         <div class="text">
             <div class="cards">
             </div>
@@ -223,24 +176,10 @@
 
     </section>
 
-    <!-- home ends -->
-<script>var counter = 1;
-    setInterval(function(){
-      document.getElementById('radio' + counter).checked = true;
-      counter++;
-      if(counter > 4){
-        counter = 1;
-      }
-    }, 5000);</script>
-
- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="data.js"></script>
-<script src="homecard.js"></script>
 <script src="home.js"></script>
-<script src="category.js"></script>
-<script src="category-logic.js"></script>  
-
+    
 </body>
-
 </html>

@@ -96,19 +96,20 @@ function checkCartStatus() {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let buttonElement = document.querySelector(".details-addtocart");
 
+    if (!buttonElement) return; // Button agar exist nahi karta toh return kar do
+
     if (cartItems.includes(selectedProduct.id.toString())) {
         buttonElement.innerHTML = "Check Your Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
         buttonElement.style.background = "var(--extra-color)";
         buttonElement.style.color = "var(--text-color)";
-        button.style.transition = "0.3s ease";
+        buttonElement.style.transition = "0.3s ease";
 
         buttonElement.addEventListener("click", function () {
             window.location.href = "addtocart.html";
         });
     }
-    // checkCartStatus();
-
 }
+
 
 
 
@@ -154,10 +155,10 @@ function displayDetails(product) {
         <div class="discription">
         <p class="descriptions">${product.description}</p>
         </div>
-        
-        <div class="sizes">
         <a href="size-guide.png"><p class="sizeguide"><i class="fa fa-arrows-h" aria-hidden="true"></i>
 size guide</p></a>
+        
+        <div class="sizes">
         <h2>Sizes &nbsp;<small>(UK)</small></h2>
     <span>3.5</span>
     <span>4</span>

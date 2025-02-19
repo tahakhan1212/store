@@ -8,6 +8,7 @@ function onload() {
     showCartItems();
     totalAmount();
     
+    
 
     let savedTotalPrice = JSON.parse(localStorage.getItem("totalPrice"));
     if (savedTotalPrice) {
@@ -105,49 +106,53 @@ function updateCartTotal() {
 let isAddingToCart = false; 
 
 function addToCart(itemId) {
-    if (isProcessing) return;
+    if (isProcessing) return;  
 
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
     let button = document.querySelector(`.container[data-id="${itemId}"] .like`);
-
-    if (cartItems.includes(itemId.toString())) {
-        return;
-    }
+    let selectedProduct = product.find(p => p.id == itemId);
 
     isProcessing = true;
     button.classList.add("loading");
     button.innerHTML = `<div class="spinner"></div>`;
 
-    setTimeout(() => {
-        cartItems.push(itemId.toString());
-        quantities[itemId.toString()] = (quantities[itemId.toString()] || 0) + 1;
+    // ❌ Pehle se cart me add mat karo, sirf popover show karo
+    showPopup(selectedProduct, () => {
+        // ✅ Ye code ab sirf confirm hone ke baad chalega
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
 
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+        if (!cartItems.includes(itemId.toString())) {
+            cartItems.push(itemId.toString());
+            quantities[itemId.toString()] = (quantities[itemId.toString()] || 0) + 1;
 
-        cartItem = cartItems;
-        cartcount();
-        cartcount2();
-        updateCartUI()
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+            localStorage.setItem(itemId + "_quantity", JSON.stringify(quantities[itemId.toString()]));
+            localStorage.setItem(itemId + "_totalPrice", JSON.stringify(selectedProduct.price));
 
+            cartItem = cartItems;
+            cartcount();
+            cartcount2();
+            updateCartUI();
+            loadItemObject();
+        }
+
+        // ✅ Button ko update karo
         button.innerHTML = `<i class="bx bx-check-circle added"></i>`;
         button.classList.remove("loading");
         button.classList.add("added-to-cart");
-        button.disabled = true;  
-
+        button.disabled = true;
+        
         isProcessing = false;
-    }, 700);
+    });
 }
-
-
 
 
 
 function updateCartUI() {
     showCartItems();  
     updateCartTotal();
-
+    
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     
     let cartCountElement = document.querySelector(".cart-count");
@@ -164,6 +169,7 @@ function updateCartUI() {
     }
 
     updateCheckoutButton(); 
+    
 }
 
 
@@ -200,6 +206,7 @@ function showCartItems() {
     totalAmount();
     initializeQuantityButtons();  
     updateCheckoutButton(); 
+    
 }
 
 
@@ -411,4 +418,6 @@ function checkout() {
     }, 700);
 }
 }
+
+
 
