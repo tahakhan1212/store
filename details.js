@@ -81,7 +81,7 @@ function addToCart(itemId, buttonElement) {
 
     }
 
-    setTimeout(updateCartCount, 50);
+    setTimeout(updateCartCount, 250);
 }
 
 

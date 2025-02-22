@@ -398,6 +398,7 @@ body.dark .switch::before {
     background: var(--body-color);
     position: relative;
     transition: var(--trans-05);
+    margin-bottom: 3rem;
 }
 
 .home .text {
