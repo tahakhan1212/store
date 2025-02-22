@@ -17,10 +17,17 @@ function loadProductData() {
         document.querySelector(".main_image img").src = selectedProduct.image;
         displayDetails(selectedProduct);
 
-        let images = selectedProduct.pics.split(",");
-        let optionContainer = document.querySelector(".option");
-        optionContainer.innerHTML = "";
+        let images = selectedProduct.pics.split(","); // Main option images
+        let extraImages = selectedProduct.extraPics ? selectedProduct.extraPics.split(",") : []; // Only for "Other Images"
 
+        let optionContainer = document.querySelector(".option");
+        let otherImagesContainer = document.querySelector(".other-images");
+
+        // Clear previous images
+        optionContainer.innerHTML = "";
+        otherImagesContainer.innerHTML = "";
+
+        // ✅ Only `pics` images in option container
         images.forEach(imgSrc => {
             let imgElement = document.createElement("img");
             imgElement.src = imgSrc;
@@ -30,8 +37,29 @@ function loadProductData() {
             optionContainer.appendChild(imgElement);
         });
 
+        // ✅ Only `extraPics` images in other images container
+        extraImages.forEach(imgSrc => {
+            let otherImgElement = document.createElement("img");
+            otherImgElement.src = imgSrc;
+            otherImagesContainer.appendChild(otherImgElement);
+        });
     }
 }
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let mainImage = document.querySelector(".main_image img");
+    let otherImages = document.querySelectorAll(".other-images img");
+
+    otherImages.forEach(img => {
+        img.addEventListener("mouseenter", function () {
+            mainImage.src = this.src; // Hover par image change ho jayegi
+        });
+    });
+});
+
+
 document.querySelector(".addtobag button").addEventListener("click", function () {
     addToCart(selectedProduct.id, this);
 });
@@ -67,26 +95,26 @@ document.querySelector(".addtobag button").addEventListener("click", function ()
 
         button.classList.add("loading");
         button.innerHTML = "Adding... <span class='loader'></span>";
-
+        
         setTimeout(() => {
             button.classList.remove("loading");
             button.classList.add("added");
-            button.innerHTML = "✔ Added to Cart!";
+            button.innerHTML = "Check Your Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
+            buttonElement.style.background = "var(--extra-color)";
+            buttonElement.style.color = "var(--text-color)";
             button.style.transition = "0.3s ease";
-            button.addEventListener("click", function () {
-                window.location.href = "addtocart.html";
-            });
 
         }, 1000);
 
         setTimeout(() => {
             button.classList.remove("added");
-            button.style.transition = "0.3s ease-in";
-            button.innerHTML = "Check Your Cart! &nbsp;<i class='bx bxs-cart-alt'></i>";
+            button.innerHTML = "Check Your Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
+            buttonElement.style.background = "var(--extra-color)";
+            buttonElement.style.color = "var(--text-color)";
             button.addEventListener("click", function () {
                 window.location.href = "addtocart.html";
             });
-        }, 2000);
+        }, 1700);
     }, 50);
 });
 
@@ -157,17 +185,9 @@ function displayDetails(product) {
         </div>
         <a href="size-guide.png"><p class="sizeguide"><i class="fa fa-arrows-h" aria-hidden="true"></i>
 size guide</p></a>
-        
         <div class="sizes">
-        <h2>Sizes &nbsp;<small>(UK)</small></h2>
-    <span>3.5</span>
-    <span>4</span>
-    <span>4.5</span>
-    <span>5</span>
-    <span>5.5</span>
-    <span>6</span>
-    <span>6.5</span>
-    <span>7</span>
+        <h2>Sizes: </h2>
+        ${product.sizes.map(size => `<button>${size}</button>`).join("")}
 </div>
 
     <div class="rating-container">

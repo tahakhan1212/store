@@ -48,6 +48,7 @@ html {
     font-size: 77.5%;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
 }
 
 
@@ -67,8 +68,6 @@ html {
     border-radius: 10px;
     background-color: var(--sidebar-color);
     color: var(--text-color);
-    /* margin-left: .3rem; */
-    /* margin-right: .3rem; */
     transition: var(--trans-02);
 }
 
@@ -106,7 +105,6 @@ html {
 }
 
 .search-container .search-input {
-    /* display: grid; */
     width: 250px;
     padding: 8px 12px;
     font-size: 14px;
@@ -144,8 +142,6 @@ html {
     background: var(--sidebar-color);
     transition: var(--trans-05);
     z-index: 1000;
-    overflow-y: scroll;
-    scrollbar-width: none;
 }
 
 .sidebar.close {
@@ -202,7 +198,6 @@ html {
     background: var(--count-color);
     border-radius: 60%;
     padding: 3px 6px;
-    /* visibility: hidden; */
 }
 
 .sidebar li .icon,
@@ -243,18 +238,18 @@ header .image-text .header-text {
     position: absolute;
     font-size: 10px;
     top: 50%;
-    right: -22px;
+    right: -25px;
     transform: translateY(-50%) rotate(180deg);
     height: 25px;
     width: 25px;
     background: var(--primary-color);
     display: flex;
-    align-items: center;
     justify-content: center;
     border-radius: 50%;
     color: var(--text-color);
     font-size: 22px;
     transition: var(--tran-03);
+    cursor: pointer;
 }
 
 .sidebar.close header .toggle {
@@ -321,6 +316,8 @@ body.dark .sidebar li a:hover .text {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .menu-bar .mode {
@@ -515,7 +512,6 @@ body.dark .switch::before {
 
 .categories p {
     font-size: 1.4rem;
-    /* margin-top: .5rem; */
 }
 
 .category {
@@ -551,8 +547,6 @@ body.dark .switch::before {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     border-top: 3px solid var(--primary-color-light);
-
-    /* padding-inline: .7rem; */
     overflow: hidden;
     gap: 12px;
     width: 98.5%;
@@ -653,23 +647,21 @@ body.dark .switch::before {
     font-size: 2rem;
 }
 
-/* 🔹 Background disable karne ke liye overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dark background */
+    background: rgba(0, 0, 0, 0.5); 
     z-index: 999;
     transition:  .3s ease-in-out;
 }
 
-/* 🔹 Scroll completely disable karne ke liye */
 body.modal-open,
 html.modal-open {
-    overflow: hidden !important;  /* Body aur HTML dono ka scroll band */
-    touch-action: none; /* Mobile touch scroll bhi disable */
+    overflow: hidden !important;
+    touch-action: none; 
 }
 .cart-popup {
     position: fixed;
@@ -678,7 +670,7 @@ html.modal-open {
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 500px;
-    pointer-events: auto; /* Popup interactable rahe */ 
+    pointer-events: auto; 
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(12px);
@@ -697,7 +689,7 @@ html.modal-open {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* gap: 15px; */
+    
     width: 100%;
 }
 
@@ -723,7 +715,7 @@ html.modal-open {
     display: flex;
     gap: 10px;
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
     scrollbar-width: none;
     align-items: center;
     margin-block: 5px;
@@ -761,6 +753,7 @@ html.modal-open {
 
 .popup-text .colors button {
     font-size: 18px;
+    white-space: nowrap;
     padding: 8px 14px;
     border: 1px solid var(--primary-color);
     color: var(--text-color);
@@ -836,7 +829,7 @@ html.modal-open {
     color: #cc0000;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 870px) {
 
     nav {
         display: none;
@@ -1068,7 +1061,6 @@ html.modal-open {
 }
 
 .like .bx-check-circle {
-    /* color: #4CAF50; */
     font-size: 20px;
     transform: scale(0);
     animation: popIn 0.3s ease-in-out forwards;

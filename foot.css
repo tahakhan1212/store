@@ -32,6 +32,7 @@ body.dark {
     position: fixed;
     bottom: 0;
     width: 100%;
+    border-top: 7px solid var(--body-color);
     background: var(--sidebar-color);
     padding: .5rem 0 0 0;
 }

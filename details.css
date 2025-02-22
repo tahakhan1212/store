@@ -52,21 +52,49 @@ html {
   height: auto;
   background: var(--sidebar-color);
   box-shadow: 5px 5px 10px 3px rgba(0, 0, 0, 0.3);
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   border-radius: 1rem;
 }
 
+.other-images {
+  border-radius: 1rem;
+  display: flex;
+  margin-top: 25px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  /* padding-left: 10px; */
+  height: 880px;
+  width: 90px;
+  padding-block: 5px;
+  margin-inline: auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  gap: 5px;
+}
+
+.other-images img {
+  margin-top: 6px;
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  object-position: center;
+}
+
 .left,
 .right {
+  margin-left:-20px;
   flex: 1;
   padding: 30px 0px 30px 30px;
   min-width: 300px;
 }
 
 .right {
-  padding: 50px 100px 50px 50px;
+  padding: 30px 100px 50px 50px;
+  position: relative;
 }
 
 
@@ -93,16 +121,21 @@ html {
 
 .option {
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
+  /* flex-wrap: wrap; */
+  gap: 2px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  width: 100%;
 }
 
 .option img {
   cursor: pointer;
   width: 100px;
   height: 100px;
-  padding: 10px;
+  padding: 10px 5px;
   border-radius: 1.5rem;
+  object-fit: cover;
+  object-position: center;
 }
 
 #title {
@@ -153,23 +186,27 @@ html {
 }
 
 .sizes {
+
   /* position: relative; */
   margin-top: -2rem;
   margin-bottom: 2rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  align-items: center;
+  gap: 10px;
   font-size: 15px;
   transition: .3s ease-in;
+  overflow-x: scroll;
+  scrollbar-width: none;
 }
 
-.sizes span {
+.sizes button {
   cursor: pointer;
   color: var(--text-color);
+  background: var(--sidebar-color);
   border: 2px solid var(--primary-color);
-  padding: 5px 15px 5px;
-  border-top-left-radius: 40%;
-  border-top-right-radius: 40%;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 15px;
 }
 
 .sizes h2 {
@@ -178,17 +215,20 @@ html {
 
 .sizeguide {
   position: absolute;
-  top: 15px;
+  top: 0px;
   right: 20px;
   cursor: pointer;
   font-size: 13px !important;
 }
 
-.sizes span:hover {
-  color: var(--primary-color);
+.sizes button:hover {
+  transition: .2s ease-in;
+  background: var(--primary-color);
 }
 
-
+.sizes button:focus {
+  background: var(--count-color);
+}
 
 .rating-container {
   background: var(--rating-background-color);
@@ -285,23 +325,48 @@ html {
 @media (max-width: 1024px) {
   .details-container {
     max-width: 90%;
+    /* flex-direction: column; */
   }
 }
 
 @media (max-width: 870px) {
   .details-container {
-    flex-direction: column;
     max-width: 100%;
     border-radius: 8px;
     margin-top: 10%;
   }
 
+
+  .other-images{
+    margin-left: 0px;
+    flex-direction: row;
+    margin-top: 15px;
+    width: 100%;
+    height: 90px;
+    padding: 0px 5px 5px 7px;
+    overflow-x: scroll;
+    gap: 10px;
+    scrollbar-width: none;
+  }
+
+  .other-images img{
+    border-radius: 8px;
+  }
+
   .option {
     gap: 0px;
+    /* padding-left: 12px; */
   }
+
+  .option img{
+    width: 100px;
+    height: 100px;
+  }
+
 
   .right,
   .left {
+    margin-left:0px;
     padding: 10px;
   }
 
@@ -317,11 +382,12 @@ html {
     font-size: 1.1rem;
   }
 
+
   .sizes {
     margin-top: -3rem;
-    display: block;
+    align-items: center;
     font-size: 10px;
-    gap: 35px;
+    gap: 2px;
   }
 
   .sizes h2 {
@@ -332,12 +398,11 @@ html {
     font-size: 11px !important;
   }
 
-  .sizes span {
+  .sizes button {
     margin-left: 5px;
     margin-bottom: 1rem;
-    padding: 3px 7px 3px;
-    border-top-left-radius: 40%;
-    border-top-right-radius: 40%;
+    font-size: 11px;
+    padding: 5px 10px;
   }
 
   .quantity-and-rating {
@@ -365,8 +430,8 @@ html {
     font-size: 10px;
   }
 
-  .addtobag  {
-    width: 90%;
+  .addtobag {
+    width: 97%;
     margin-inline: auto;
   }
 

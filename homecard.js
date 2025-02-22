@@ -11,7 +11,7 @@ function onload() {
     cartcount2();
 }
 
-function addToCart(itemId) {
+function addToCart(itemId, isFromDetails = false) {
     if (isProcessing) return;
 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -24,30 +24,37 @@ function addToCart(itemId) {
     button.innerHTML = `<div class="spinner"></div>`;
 
     setTimeout(() => {
-        showPopup(selectedProduct, () => {
-            if (!cartItems.includes(itemId.toString())) {
-                cartItems.push(itemId.toString());
-                quantities[itemId.toString()] = (quantities[itemId.toString()] || 0) + 1;
-                localStorage.setItem("cartItems", JSON.stringify(cartItems));
-                localStorage.setItem("cartQuantities", JSON.stringify(quantities));
-                localStorage.setItem(itemId + "_quantity", JSON.stringify(quantities[itemId.toString()]));
-                localStorage.setItem(itemId + "_totalPrice", JSON.stringify(selectedProduct.price));
-                cartItem = cartItems;
-                cartcount();
-                cartcount2();
-            }
-            button.innerHTML = `<i class="bx bx-check-circle added"></i>`;
-            button.classList.remove("loading");
-            button.classList.add("added-to-cart");
-            button.disabled = true;
-            setTimeout(() => {
-                checkCartStatus();
-                button.classList.remove("added-to-cart");
-            }, 700);
-            isProcessing = false;
-        });
+        if (!isFromDetails) {
+            showPopup(selectedProduct, () => addItemToCart());
+        } else {
+            addItemToCart();
+        }
     }, 700);
+
+    function addItemToCart() {
+        if (!cartItems.includes(itemId.toString())) {
+            cartItems.push(itemId.toString());
+            quantities[itemId.toString()] = (quantities[itemId.toString()] || 0) + 1;
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            localStorage.setItem("cartQuantities", JSON.stringify(quantities));
+            localStorage.setItem(itemId + "_quantity", JSON.stringify(quantities[itemId.toString()]));
+            localStorage.setItem(itemId + "_totalPrice", JSON.stringify(selectedProduct.price));
+            cartItem = cartItems;
+            cartcount();
+            cartcount2();
+        }
+        button.innerHTML = `<i class="bx bx-check-circle added"></i>`;
+        button.classList.remove("loading");
+        button.classList.add("added-to-cart");
+        button.disabled = true;
+        setTimeout(() => {
+            checkCartStatus();
+            button.classList.remove("added-to-cart");
+        }, 700);
+        isProcessing = false;
+    }
 }
+
 
 function showPopup(product, onConfirm) {
     
@@ -67,22 +74,16 @@ function showPopup(product, onConfirm) {
                         <i class="fa fa-arrows-h" aria-hidden="true">Size Guide</i> 
                     </p></a>
                     <h2>Sizes</h2>
-                    <button>3.5</button>
-                    <button>4</button>
-                    <button>4.5</button>
-                    <button>5</button>
-                    <button>5.5</button>
-                    <button>6</button>
-                    <button>6.5</button>
-                    <button>7</button>
+                     
+        ${product.sizes.map(size => `<button>${size}</button>`).join("")}
+    
                 </div>
                 <h2 class="select">Select : Size & Color</h2>
                 <div class="colors">
                 <h2>Colors</h2>
-                    <button>Red</button>
-                    <button>Green</button>
-                    <button>Blue</button>
-                    <button>Orange</button>
+    
+        ${product.colors.map(color => `<button>${color}</button>`).join("")}
+    
                 </div>
                 <button class="confirm-btn">Confirm</button>
             </div>
