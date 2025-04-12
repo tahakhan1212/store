@@ -1,269 +1,214 @@
 let selectedProduct = {};
-onload();
 
-function onload() {
-    loadProductData();
+document.addEventListener("DOMContentLoaded", () => {
+    loadProduct();
     updateCartCount();
     checkCartStatus();
-}
+    handleOtherImageHover();
+    setupMainAddToCart();
+    setupCardCartButtons();
+});
 
+function loadProduct() {
+    const productData = localStorage.getItem("selectedProduct");
+    if (!productData) return;
 
-function loadProductData() {
-    let productData = localStorage.getItem("selectedProduct");
+    selectedProduct = JSON.parse(productData);
 
-    if (productData) {
-        selectedProduct = JSON.parse(productData);
+    // Main image
+    document.querySelector(".main_image img").src = selectedProduct.image;
 
-        document.querySelector(".main_image img").src = selectedProduct.image;
-        displayDetails(selectedProduct);
+    // Details display
+    showProductDetails(selectedProduct);
 
-        let images = selectedProduct.pics.split(","); // Main option images
-        let extraImages = selectedProduct.extraPics ? selectedProduct.extraPics.split(",") : []; // Only for "Other Images"
-
-        let optionContainer = document.querySelector(".option");
-        let otherImagesContainer = document.querySelector(".other-images");
-
-        // Clear previous images
-        optionContainer.innerHTML = "";
-        otherImagesContainer.innerHTML = "";
-
-        // ✅ Only `pics` images in option container
-        images.forEach(imgSrc => {
-            let imgElement = document.createElement("img");
-            imgElement.src = imgSrc;
-            imgElement.onclick = function () {
-                changeMainImage(imgSrc);
-            };
-            optionContainer.appendChild(imgElement);
-        });
-
-        // ✅ Only `extraPics` images in other images container
-        extraImages.forEach(imgSrc => {
-            let otherImgElement = document.createElement("img");
-            otherImgElement.src = imgSrc;
-            otherImagesContainer.appendChild(otherImgElement);
-        });
-    }
-}
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    let mainImage = document.querySelector(".main_image img");
-    let otherImages = document.querySelectorAll(".other-images img");
-
-    otherImages.forEach(img => {
-        img.addEventListener("mouseenter", function () {
-            mainImage.src = this.src; // Hover par image change ho jayegi
-        });
+    // Option images
+    const options = selectedProduct.pics.split(",");
+    const optionBox = document.querySelector(".option");
+    optionBox.innerHTML = "";
+    options.forEach(pic => {
+        const img = document.createElement("img");
+        img.src = pic;
+        img.onclick = () => changeMain(pic);
+        optionBox.appendChild(img);
     });
-});
 
-
-document.querySelector(".addtobag button").addEventListener("click", function () {
-    addToCart(selectedProduct.id, this);
-});
-
-function addToCart(itemId, buttonElement) {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    let quantities = JSON.parse(localStorage.getItem("cartQuantities")) || {};
-
-
-    if (!cartItems.includes(itemId.toString())) {
-        cartItems.push(itemId.toString());
-        quantities[itemId.toString()] = 1;
-
-        localStorage.setItem(itemId + "_quantity", JSON.stringify(1));
-        localStorage.setItem(itemId + "_totalPrice", JSON.stringify(selectedProduct.price));
-
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        localStorage.setItem("cartQuantities", JSON.stringify(quantities));
-
-    }
-
-    setTimeout(updateCartCount, 250);
+    // Extra images
+    const extraPics = selectedProduct.extraPics?.split(",") || [];
+    const otherBox = document.querySelector(".other-images");
+    otherBox.innerHTML = "";
+    extraPics.forEach(pic => {
+        const img = document.createElement("img");
+        img.src = pic;
+        otherBox.appendChild(img);
+    });
 }
 
-
-
-document.querySelector(".addtobag button").addEventListener("click", function () {
-    addToCart(selectedProduct.id, this);
-
-    let button = this;
-    setTimeout(() => {
-
-
-        button.classList.add("loading");
-        button.innerHTML = "Adding... <span class='loader'></span>";
-        
-        setTimeout(() => {
-            button.classList.remove("loading");
-            button.classList.add("added");
-            button.innerHTML = "Check Your Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
-            buttonElement.style.background = "var(--extra-color)";
-            buttonElement.style.color = "var(--text-color)";
-            button.style.transition = "0.3s ease";
-
-        }, 1000);
-
-        setTimeout(() => {
-            button.classList.remove("added");
-            button.innerHTML = "Check Your Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
-            buttonElement.style.background = "var(--extra-color)";
-            buttonElement.style.color = "var(--text-color)";
-            button.addEventListener("click", function () {
-                window.location.href = "addtocart.html";
-            });
-        }, 1700);
-    }, 50);
-});
-
-
-
-function checkCartStatus() {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    let buttonElement = document.querySelector(".details-addtocart");
-
-    if (!buttonElement) return;
-
-    if (cartItems.includes(selectedProduct.id.toString())) {
-        buttonElement.innerHTML = "Check Your Cart &nbsp; <i class='bx bxs-cart-alt'></i>";
-        buttonElement.style.background = "var(--extra-color)";
-        buttonElement.style.color = "var(--text-color)";
-        buttonElement.style.transition = "0.3s ease";
-
-        buttonElement.addEventListener("click", function () {
-            window.location.href = "addtocart.html";
-        });
-    }
-}
-
-
-
-
-
-function updateCartCount() {
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-
-    let cartCountElement = document.querySelector(".cart-count");
-    let cartCountElement2 = document.querySelector(".cart-count2");
-
-    if (cartCountElement) {
-        cartCountElement.textContent = cartItems.length;
-        cartCountElement.style.visibility = cartItems.length > 0 ? "visible" : "hidden";
-    }
-
-    if (cartCountElement2) {
-        cartCountElement2.textContent = cartItems.length;
-        cartCountElement2.style.visibility = cartItems.length > 0 ? "visible" : "hidden";
-    }
-}
-
-const observer = new MutationObserver(() => {
-    updateCartCount();
-});
-observer.observe(document.body, { childList: true, subtree: true });
-
-
-function changeMainImage(src) {
+function changeMain(src) {
     document.querySelector(".main_image img").src = src;
 }
 
+function handleOtherImageHover() {
+    const otherBox = document.querySelector(".other-images");
+    otherBox.addEventListener("mouseenter", (e) => {
+        if (e.target.tagName === "IMG") {
+            changeMain(e.target.src);
+        }
+    }, true);
+}
 
-function displayDetails(product) {
-    let detailsContainer = document.querySelector(".right");
-    let details = `
+function setupMainAddToCart() {
+    const btn = document.querySelector(".details-addtocart");
+    if (!btn) return;
+
+    btn.addEventListener("click", function () {
+        addToCart(selectedProduct.id, true);
+        animateAddButton(this);
+    });
+}
+
+function setupCardCartButtons() {
+    document.querySelectorAll(".card .add-to-cart-icon").forEach(btn => {
+        btn.addEventListener("click", function () {
+            addToCart(this.dataset.id);
+            showPopup("Product added to cart!");
+        });
+    });
+}
+
+function addToCart(id) {
+    const itemId = id.toString();
+    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let qty = JSON.parse(localStorage.getItem("cartQuantities")) || {};
+
+    if (!cart.includes(itemId)) {
+        cart.push(itemId);
+        qty[itemId] = 1;
+
+        localStorage.setItem(itemId + "_quantity", "1");
+        localStorage.setItem(itemId + "_totalPrice", selectedProduct.price.toString());
+        localStorage.setItem("cartItems", JSON.stringify(cart));
+        localStorage.setItem("cartQuantities", JSON.stringify(qty));
+    }
+
+    updateCartCount();
+}
+
+function animateAddButton(btn) {
+    btn.classList.add("loading");
+    btn.innerHTML = "Adding... <span class='loader'></span>";
+
+    setTimeout(() => {
+        btn.classList.remove("loading");
+        btn.classList.add("added");
+        btn.innerHTML = "Check Your Cart &nbsp;<i class='bx bxs-cart-alt'></i>";
+        styleBtn(btn);
+    }, 1000);
+
+    setTimeout(() => {
+        btn.classList.remove("added");
+        btn.onclick = () => window.location.href = "addtocart.html";
+    }, 1700);
+}
+
+function styleBtn(btn) {
+    btn.style.background = "var(--extra-color)";
+    btn.style.color = "var(--text-color)";
+    btn.style.transition = "0.3s ease";
+}
+
+function checkCartStatus() {
+    const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const btn = document.querySelector(".details-addtocart");
+    if (!btn) return;
+
+    if (cart.includes(selectedProduct.id.toString())) {
+        btn.innerHTML = "Check Your Cart &nbsp;<i class='bx bxs-cart-alt'></i>";
+        styleBtn(btn);
+        btn.onclick = () => window.location.href = "addtocart.html";
+    }
+}
+
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const count = cart.length;
+
+    document.querySelectorAll(".cart-count, .cart-count2").forEach(el => {
+        el.textContent = count;
+        el.style.visibility = count > 0 ? "visible" : "hidden";
+    });
+}
+
+function showPopup(msg) {
+    const popup = document.querySelector(".popup");
+    if (popup) {
+        popup.querySelector(".popup-message").innerText = msg;
+        popup.classList.add("visible");
+        setTimeout(() => popup.classList.remove("visible"), 2000);
+    }
+}
+
+function showProductDetails(product) {
+    const right = document.querySelector(".right");
+    if (!right) return;
+
+    const sizeBtns = product.sizes.map(size => `<button>${size}</button>`).join("");
+
+    right.innerHTML = `
         <h3 id="title">${product.title}</h3>
         <p id="category">${product.category}</p>
         <div class="prices">
-            <h4> <span class="pkr"> Rs </span>.${product.price}</h4>
+            <h4><span class="pkr">Rs</span>.${product.price}</h4>
             <h4><del>${product.oldPrice}</del></h4>
             <h4 class="discount">${product.discount}</h4>
         </div>
         <div class="discription">
-        <p class="descriptions">${product.description}</p>
+            <p class="descriptions">${product.description}</p>
         </div>
-        <a href="size-guide.png"><p class="sizeguide"><i class="fa fa-arrows-h" aria-hidden="true"></i>
-size guide</p></a>
+        <a href="size-guide.png">
+            <p class="sizeguide"><i class="fa fa-arrows-h" aria-hidden="true"></i> size guide</p>
+        </a>
         <div class="sizes">
-        <h2>Sizes: </h2>
-        ${product.sizes.map(size => `<button>${size}</button>`).join("")}
-</div>
-
-    <div class="rating-container">
-        <div class="quantity-and-rating">
-            <h4>Product Rating</h4>
-            <h5>${product.rating}</h5>
+            <h2>Sizes:</h2>
+            ${sizeBtns}
         </div>
-        <div class="quantity-and-rating">
-            <h5 class="bestseller">Best seller</h5>
-            <h1><strong>Customer</strong> Reviews &nbsp;<i class='bx bxs-star' ></i></h1>
-            <h5>${product.sold} Sold</h5>
+        <div class="rating-container">
+            <div class="quantity-and-rating">
+                <h4>Product Rating</h4>
+                <h5>${product.rating}</h5>
+            </div>
+            <div class="quantity-and-rating">
+                <h5 class="bestseller">Best seller</h5>
+                <h1><strong>Customer</strong> Reviews &nbsp;<i class='bx bxs-star'></i></h1>
+                <h5>${product.sold} Sold</h5>
+            </div>
+            <div class="reviews-container">
+                ${createReviews()}
+            </div>
         </div>
-
-        <div class="reviews-container">
-        <div class="reviews-box">
-        <img src="shoes/pic-1.webp" alt="">
-        <div class="review-description">
-        <h3>Selena Gomez </h3>
-        <p>Unmatched quality, absolutely worth the investment!</p>
-        </div>
-        <p class="rating">4.4⭐</p>
-    </div>
-
-        <div class="reviews-box">
-        <img src="shoes/pic-2.webp" alt="">
-        <div class="review-description">
-        <h3>Leonardo Dicaprio</h3>
-        <p>Exceeded expectations, would buy again anytime!</p>
-        </div>
-        <p class="rating">4.8⭐</p>
-    </div>
-
-        <div class="reviews-box">
-        <img src="shoes/pic-3.webp" alt="">
-        <div class="review-description">
-        <h3>Alexandra Daddario</h3>
-        <p>Best product, truly exceeded my expectations!</p>
-        </div>
-        <p class="rating">5⭐</p>
-    </div>
-
-        <div class="reviews-box">
-        <img src="shoes/pic-4.webp" alt="">
-        <div class="review-description">
-        <h3>Katy Perry</h3>
-        <p>Exceptional craftsmanship, perfect for everyday use!</p>
-        </div>
-        <p class="rating">4.8⭐</p>
-    </div>
-
-        <div class="reviews-box">
-        <img src="shoes/pic-6.webp" alt="">
-        <div class="review-description">
-        <h3>Tony Stark</h3>
-        <p>Top-quality design, totally worth the price!</p>
-        </div>
-        <p class="rating">4.2⭐</p>
-    </div>
-
-        <div class="reviews-box">
-        <img src="shoes/pic-5.webp" alt="">
-        <div class="review-description">
-        <h3>Jin Woo</h3>
-        <p>Amazing performance, couldn’t ask for more!</p>
-        </div>
-        <p class="rating">4.9⭐</p>
-    </div>
-
-</div>
-
-  </div>
-        
         <div class="addtobag">
-           <button class="details-addtocart" onclick="addToCart(selectedProduct.id, this)">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
-
+            <button class="details-addtocart">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
         </div>
     `;
-    detailsContainer.innerHTML = details;
+}
+
+function createReviews() {
+    const reviews = [
+        { name: "Selena Gomez", text: "Unmatched quality, absolutely worth the investment!", rating: "4.4⭐", img: "shoes/pic-1.webp" },
+        { name: "Leonardo Dicaprio", text: "Exceeded expectations, would buy again anytime!", rating: "4.8⭐", img: "shoes/pic-2.webp" },
+        { name: "Alexandra Daddario", text: "Best product, truly exceeded my expectations!", rating: "5⭐", img: "shoes/pic-3.webp" },
+        { name: "Katy Perry", text: "Exceptional craftsmanship, perfect for everyday use!", rating: "4.8⭐", img: "shoes/pic-4.webp" },
+        { name: "Tony Stark", text: "Top-quality design, totally worth the price!", rating: "4.2⭐", img: "shoes/pic-6.webp" },
+        { name: "Jin Woo", text: "Amazing performance, couldn’t ask for more!", rating: "4.9⭐", img: "shoes/pic-5.webp" }
+    ];
+
+    return reviews.map(r => `
+        <div class="reviews-box">
+            <img src="${r.img}" alt="${r.name}">
+            <div class="review-description">
+                <h3>${r.name}</h3>
+                <p>${r.text}</p>
+            </div>
+            <p class="rating">${r.rating}</p>
+        </div>
+    `).join("");
 }

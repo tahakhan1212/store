@@ -12,6 +12,7 @@ function onload() {
 }
 
 function addToCart(itemId, isFromDetails = false) {
+    
     if (isProcessing) return;
 
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -57,7 +58,6 @@ function addToCart(itemId, isFromDetails = false) {
 
 
 function showPopup(product, onConfirm) {
-    
     let overlay = document.createElement("div");
     overlay.classList.add("modal-overlay");
 
@@ -74,18 +74,14 @@ function showPopup(product, onConfirm) {
                         <i class="fa fa-arrows-h" aria-hidden="true">Size Guide</i> 
                     </p></a>
                     <h2>Sizes</h2>
-                     
-        ${product.sizes.map(size => `<button>${size}</button>`).join("")}
-    
+                    ${product.sizes.map(size => `<button class="size-btn">${size}</button>`).join("")}
                 </div>
                 <h2 class="select">Select : Size & Color</h2>
                 <div class="colors">
-                <h2>Colors</h2>
-    
-        ${product.colors.map(color => `<button>${color}</button>`).join("")}
-    
+                    <h2>Colors</h2>
+                    ${product.colors.map(color => `<button class="color-btn">${color}</button>`).join("")}
                 </div>
-                <button class="confirm-btn">Confirm</button>
+                <button class="confirm-btn" disabled>Confirm</button>
             </div>
             <button class="remove-btn"><i class='bx bx-x'></i></button>
         </div>
@@ -93,19 +89,65 @@ function showPopup(product, onConfirm) {
 
     document.body.appendChild(overlay);
     document.body.appendChild(popup);
-
     document.body.classList.add("modal-open");
     document.documentElement.classList.add("modal-open");
 
-    document.querySelector(".confirm-btn").addEventListener("click", () => {
+    let selectedSize = null;
+    let selectedColor = null;
+
+    const sizeButtons = popup.querySelectorAll(".size-btn");
+    const colorButtons = popup.querySelectorAll(".color-btn");
+    const confirmBtn = popup.querySelector(".confirm-btn");
+
+    // Size selection
+    sizeButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            sizeButtons.forEach(b => b.classList.remove("selected")); // clear all
+            btn.classList.add("selected"); // mark selected
+            selectedSize = btn.textContent;
+            toggleConfirm();
+        });
+    });
+
+    // Color selection
+    colorButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            colorButtons.forEach(b => b.classList.remove("selected")); // clear all
+            btn.classList.add("selected"); // mark selected
+            selectedColor = btn.textContent;
+            toggleConfirm();
+        });
+    });
+
+   
+    
+
+    // Enable confirm only when both selected
+    function toggleConfirm() {
+
+        if (selectedSize && selectedColor) {
+            confirmBtn.disabled = false;
+            confirmBtn.innerHTML = `Confirm <i class='bx bxs-check-circle'></i>`;
+            confirmBtn.classList.add("confirm");
+            
+        } else {
+            confirmBtn.disabled = true;
+        }
+
+    }
+
+    // Confirm click
+    confirmBtn.addEventListener("click", () => {
         closePopup(popup, overlay);
         onConfirm();
     });
 
-    document.querySelector(".remove-btn").addEventListener("click", () => {
+    // Close popup
+    popup.querySelector(".remove-btn").addEventListener("click", () => {
         closePopup(popup, overlay);
     });
 }
+
 
 function closePopup(popup, overlay) {
     document.body.removeChild(popup);
