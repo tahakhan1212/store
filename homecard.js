@@ -81,7 +81,7 @@ function showPopup(product, onConfirm) {
                     <h2>Colors</h2>
                     ${product.colors.map(color => `<button class="color-btn">${color}</button>`).join("")}
                 </div>
-                <button class="confirm-btn" disabled>Confirm</button>
+                <button class="confirm-btn" disabled>Select Size & Color</button>
             </div>
             <button class="remove-btn"><i class='bx bx-x'></i></button>
         </div>

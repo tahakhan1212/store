@@ -1,4 +1,6 @@
 let selectedProduct = {};
+let selectedSize = null;
+let selectedColor = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     loadProduct();
@@ -8,10 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     handleOtherImageHover();
     setupMainAddToCart();
     setupCardCartButtons();
-
 });
-    // Wait a little for DOM to build, then setup color-image linking
-
 
 function loadProduct() {
     const productData = localStorage.getItem("selectedProduct");
@@ -19,13 +18,10 @@ function loadProduct() {
 
     selectedProduct = JSON.parse(productData);
 
-    // Main image
     document.querySelector(".main_image img").src = selectedProduct.image;
 
-    // Details display
     showProductDetails(selectedProduct);
 
-    // Option images (bottom wali colors ke liye)
     const options = selectedProduct.pics.split(",");
     const optionBox = document.querySelector(".option");
     optionBox.innerHTML = "";
@@ -43,7 +39,6 @@ function loadProduct() {
         optionBox.appendChild(img);
     });
 
-    // Extra images (left hover wali)
     const extraPics = selectedProduct.extraPics?.split(",") || [];
     const otherBox = document.querySelector(".other-images");
     otherBox.innerHTML = "";
@@ -72,21 +67,15 @@ function setupColorImageLinking() {
 function highlightColorByIndex(index) {
     const colorBtns = document.querySelectorAll(".color-btn");
     colorBtns.forEach((btn, i) => {
-        if (i === index) {
-            btn.classList.add("active-color");
-        } else {
-            btn.classList.remove("active-color");
-        }
+        btn.classList.toggle("active-color", i === index);
     });
 }
-
 
 function highlightImageByIndex(index) {
     document.querySelectorAll(".option-img").forEach((img, i) => {
         img.classList.toggle("selected", i === index);
     });
 }
-
 
 function changeMain(src) {
     document.querySelector(".main_image img").src = src;
@@ -105,7 +94,13 @@ function setupMainAddToCart() {
     const btn = document.querySelector(".details-addtocart");
     if (!btn) return;
 
+    // By default disabled
+    btn.disabled = true;
+    btn.classList.add("disabled");
+
     btn.addEventListener("click", function () {
+        if (!selectedSize || !selectedColor) return;
+
         addToCart(selectedProduct.id, true);
         animateAddButton(this);
     });
@@ -131,6 +126,11 @@ function addToCart(id) {
 
         localStorage.setItem(itemId + "_quantity", "1");
         localStorage.setItem(itemId + "_totalPrice", selectedProduct.price.toString());
+
+        // Optional: Save selected options
+        localStorage.setItem(itemId + "_size", selectedSize);
+        localStorage.setItem(itemId + "_color", selectedColor);
+
         localStorage.setItem("cartItems", JSON.stringify(cart));
         localStorage.setItem("cartQuantities", JSON.stringify(qty));
     }
@@ -150,8 +150,8 @@ function animateAddButton(btn) {
     }, 1000);
 
     setTimeout(() => {
-        btn.classList.remove("added");
         btn.onclick = () => window.location.href = "addtocart.html";
+        btn.classList.remove("added");
     }, 1700);
 }
 
@@ -192,18 +192,28 @@ function showPopup(msg) {
     }
 }
 
+function checkIfReadyToAdd() {
+    const btn = document.querySelector(".details-addtocart");
+    if (!btn) return;
+
+    if (selectedSize && selectedColor) {
+        btn.disabled = false;
+        btn.innerHTML = `<h3>confirm <i class='bx bxs-check-circle'></i></h3>`;
+        btn.classList.remove("disabled");
+    } else {
+        btn.disabled = true;
+        btn.classList.add("disabled");
+    }
+}
+
 function showProductDetails(product) {
     const right = document.querySelector(".right");
     if (!right) return;
 
     const sizeBtns = product.sizes.map(size => `<button>${size}</button>`).join("");
-
-    // const colorBtns = product.colors.map(color => `<button>${color}</button>`).join("");
     const colorBtns = product.colors.map((color, index) => `
-  <button class="color-btn" data-index="${index}">${color}</button>
-`).join("");
-
-    
+        <button class="color-btn" data-index="${index}">${color}</button>
+    `).join("");
 
     right.innerHTML = `
         <h3 id="title">${product.title}</h3>
@@ -224,9 +234,9 @@ function showProductDetails(product) {
             ${sizeBtns}
         </div>
         <div class="colors">
-    <h2>Colors:</h2>
-    ${colorBtns}
-</div>
+            <h2>Colors:</h2>
+            ${colorBtns}
+        </div>
         <div class="rating-container">
             <div class="quantity-and-rating">
                 <h4>Product Rating</h4>
@@ -242,9 +252,27 @@ function showProductDetails(product) {
             </div>
         </div>
         <div class="addtobag">
-            <button class="details-addtocart">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
+            <button class="details-addtocart disabled">-${product.discount} Now! &nbsp; Add To Cart! &nbsp;<i class='bx bxs-cart-alt'></i></button>
         </div>
     `;
+
+    // Handle size selection
+    document.querySelectorAll(".sizes button").forEach(btn => {
+        btn.addEventListener("click", () => {
+            selectedSize = btn.textContent;
+            document.querySelectorAll(".sizes button").forEach(b => b.classList.remove("active-size"));
+            btn.classList.add("active-size");
+            checkIfReadyToAdd();
+        });
+    });
+
+    // Handle color selection
+    document.querySelectorAll(".color-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            selectedColor = btn.textContent;
+            checkIfReadyToAdd();
+        });
+    });
 }
 
 function createReviews() {
