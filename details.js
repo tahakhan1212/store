@@ -2,12 +2,16 @@ let selectedProduct = {};
 
 document.addEventListener("DOMContentLoaded", () => {
     loadProduct();
+    setupColorImageLinking();
     updateCartCount();
     checkCartStatus();
     handleOtherImageHover();
     setupMainAddToCart();
     setupCardCartButtons();
+
 });
+    // Wait a little for DOM to build, then setup color-image linking
+
 
 function loadProduct() {
     const productData = localStorage.getItem("selectedProduct");
@@ -21,27 +25,68 @@ function loadProduct() {
     // Details display
     showProductDetails(selectedProduct);
 
-    // Option images
+    // Option images (bottom wali colors ke liye)
     const options = selectedProduct.pics.split(",");
     const optionBox = document.querySelector(".option");
     optionBox.innerHTML = "";
-    options.forEach(pic => {
+
+    options.forEach((pic, index) => {
         const img = document.createElement("img");
         img.src = pic;
-        img.onclick = () => changeMain(pic);
+        img.dataset.index = index;
+        img.classList.add("option-img");
+        img.onclick = () => {
+            changeMain(pic);
+            highlightColorByIndex(index);
+            highlightImageByIndex(index);
+        };
         optionBox.appendChild(img);
     });
 
-    // Extra images
+    // Extra images (left hover wali)
     const extraPics = selectedProduct.extraPics?.split(",") || [];
     const otherBox = document.querySelector(".other-images");
     otherBox.innerHTML = "";
+
     extraPics.forEach(pic => {
         const img = document.createElement("img");
         img.src = pic;
         otherBox.appendChild(img);
     });
 }
+
+function setupColorImageLinking() {
+    const colorButtons = document.querySelectorAll(".color-btn");
+    const optionImages = document.querySelectorAll(".option-img");
+
+    colorButtons.forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+            const imgSrc = selectedProduct.pics.split(",")[index];
+            changeMain(imgSrc);
+            highlightImageByIndex(index);
+            highlightColorByIndex(index);
+        });
+    });
+}
+
+function highlightColorByIndex(index) {
+    const colorBtns = document.querySelectorAll(".color-btn");
+    colorBtns.forEach((btn, i) => {
+        if (i === index) {
+            btn.classList.add("active-color");
+        } else {
+            btn.classList.remove("active-color");
+        }
+    });
+}
+
+
+function highlightImageByIndex(index) {
+    document.querySelectorAll(".option-img").forEach((img, i) => {
+        img.classList.toggle("selected", i === index);
+    });
+}
+
 
 function changeMain(src) {
     document.querySelector(".main_image img").src = src;
@@ -153,6 +198,13 @@ function showProductDetails(product) {
 
     const sizeBtns = product.sizes.map(size => `<button>${size}</button>`).join("");
 
+    // const colorBtns = product.colors.map(color => `<button>${color}</button>`).join("");
+    const colorBtns = product.colors.map((color, index) => `
+  <button class="color-btn" data-index="${index}">${color}</button>
+`).join("");
+
+    
+
     right.innerHTML = `
         <h3 id="title">${product.title}</h3>
         <p id="category">${product.category}</p>
@@ -171,6 +223,10 @@ function showProductDetails(product) {
             <h2>Sizes:</h2>
             ${sizeBtns}
         </div>
+        <div class="colors">
+    <h2>Colors:</h2>
+    ${colorBtns}
+</div>
         <div class="rating-container">
             <div class="quantity-and-rating">
                 <h4>Product Rating</h4>
@@ -198,7 +254,17 @@ function createReviews() {
         { name: "Alexandra Daddario", text: "Best product, truly exceeded my expectations!", rating: "5⭐", img: "shoes/pic-3.webp" },
         { name: "Katy Perry", text: "Exceptional craftsmanship, perfect for everyday use!", rating: "4.8⭐", img: "shoes/pic-4.webp" },
         { name: "Tony Stark", text: "Top-quality design, totally worth the price!", rating: "4.2⭐", img: "shoes/pic-6.webp" },
-        { name: "Jin Woo", text: "Amazing performance, couldn’t ask for more!", rating: "4.9⭐", img: "shoes/pic-5.webp" }
+        { name: "Jin Woo", text: "Amazing performance, couldn’t ask for more!", rating: "4.9⭐", img: "shoes/pic-5.webp" },
+        { name: "John Wick", text: "Absolutely love the design and the comfort it offers!", rating: "5.0⭐", img: "shoes/pic-7.webp" },
+        { name: "Tanjiro", text: "Perfect quality, looks even better than the pictures!", rating: "5.0⭐", img: "shoes/pic-8.webp" },
+        { name: "Sataru Gojo", text: "Fast delivery and the product fits just perfectly!", rating: "5.0⭐", img: "shoes/pic-9.webp" },
+        { name: "Sharukh Khan", text: "Very stylish and durable, totally worth the price!", rating: "5.0⭐", img: "shoes/pic-10.webp" },
+        { name: "John Cena", text: "Color is vibrant and quality feels premium to touch!", rating: "5.0⭐", img: "shoes/pic-11.webp"},
+        { name: "Jason Mamoa", text: "Received so many compliments after wearing this product!", rating: "5.0⭐", img: "shoes/pic-12.webp"},
+        { name: "Elizabeth Olsen", text: "Size was accurate, and the material is super comfy!", rating: "5.0⭐", img: "shoes/pic-13.webp" },
+        { name: "Ana de Armas", text: "Highly satisfied, will definitely order again soon!", rating: "5.0⭐", img: "shoes/pic-14.webp" },
+        { name: "John Wick", text: "Product exceeded my expectations in every single way!", rating: "5.0⭐", img: "shoes/pic-15.webp"},
+        { name: "John Wick", text: "Looks premium, feels amazing — highly recommend it!", rating: "5.0⭐", img: "shoes/pic-16.webp"}
     ];
 
     return reviews.map(r => `

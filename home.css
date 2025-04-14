@@ -1063,11 +1063,6 @@ html.modal-open {
         font-size: 7px !important;
     }
 
-    .confirm-btn:hover {
-        background: var(--count-color);
-        transform: scale(1.03);
-    }
-
     .remove-btn {
         top: -5px;
         right: 0px;

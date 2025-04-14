@@ -173,6 +173,6 @@ let product = [
     rating: "⭐⭐⭐⭐⭐",
     sold: "50k +",
     sizes: ["3.5", "4", "4.5", "5", "6", "6.5"],
-    colors: ["Black (G-833)", "Blue (G-833)", "Brown (G-833)", "ColorfulBlue (G-833)", "Rose Red (G-833)", "Gray Pink (G-833)", "Gray (G-833)"]
+    colors: ["Black(G-833)", "Blue (G-833)", "Brown (G-833)", "ColorfulBlue (G-833)", "Rose Red (G-833)", "Gray Pink (G-833)", "Gray (G-833)"]
     }
 ]

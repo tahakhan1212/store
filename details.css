@@ -115,8 +115,11 @@ html {
 
 .main_image img {
   width: 100%;
-  height: auto;
+  height: 770px;
   border-radius: 1rem;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .option {
@@ -132,11 +135,20 @@ html {
   cursor: pointer;
   width: 100px;
   height: 100px;
-  padding: 10px 5px;
+  padding: 3px 3px;
+  margin-top: 5px;
   border-radius: 1.5rem;
   object-fit: cover;
   object-position: center;
 }
+
+.option-img.selected {
+  border: 3px solid var(--primary-color);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+  transition: 0.1s ;
+}
+
 
 #title {
   color: var(--count-color);
@@ -185,22 +197,29 @@ html {
   font-size: 1.3rem;
 }
 
-.sizes {
-
-  /* position: relative; */
-  margin-top: -2rem;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  transition: .3s ease-in;
-  overflow-x: scroll;
-  scrollbar-width: none;
+.active-color {
+  background-color: var(--primary-color) !important;
 }
 
-.sizes button {
+
+.sizes {
+  position: relative; 
+  align-items: center;
+  font-size: 15px;
+  transition: .3s ease-in;
+  gap: 10px;
+  scrollbar-width: none;
+  overflow-x: scroll;
+  display: flex; 
+}
+
+.colors{
+  flex-wrap: wrap;
+}
+
+.sizes button , .colors button {
   cursor: pointer;
+  
   color: var(--text-color);
   background: var(--sidebar-color);
   border: 2px solid var(--primary-color);
@@ -209,7 +228,7 @@ html {
   font-size: 15px;
 }
 
-.sizes h2 {
+.sizes h2 ,.colors h2 {
   color: var(--text-color);
 }
 
@@ -221,13 +240,9 @@ html {
   font-size: 13px !important;
 }
 
-.sizes button:hover {
+.sizes button:hover ,.colors button:hover {
   transition: .2s ease-in;
   background: var(--primary-color);
-}
-
-.sizes button:focus {
-  background: var(--count-color);
 }
 
 .rating-container {
@@ -279,7 +294,7 @@ html {
 }
 
 .reviews-container {
-  height: 400px;
+  height: 300px;
   border-radius: 10px;
   margin-top: 10px;
   font-size: 15px;
@@ -323,6 +338,12 @@ html {
 }
 
 @media (max-width: 1024px) {
+
+  .main_image img
+{
+height: auto;
+}
+
   .details-container {
     max-width: 90%;
     /* flex-direction: column; */
@@ -383,14 +404,13 @@ html {
   }
 
 
-  .sizes {
+  .sizes  {
     margin-top: -3rem;
     align-items: center;
     font-size: 10px;
-    gap: 2px;
   }
 
-  .sizes h2 {
+  .sizes h2, .colors h2 {
     margin-bottom: 1rem;
   }
 
@@ -398,9 +418,8 @@ html {
     font-size: 11px !important;
   }
 
-  .sizes button {
+  .sizes button , .colors button {
     margin-left: 5px;
-    margin-bottom: 1rem;
     font-size: 11px;
     padding: 5px 10px;
   }
