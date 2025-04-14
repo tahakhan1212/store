@@ -129,6 +129,9 @@ function showPopup(product, onConfirm) {
             confirmBtn.disabled = false;
             confirmBtn.innerHTML = `Confirm <i class='bx bxs-check-circle'></i>`;
             confirmBtn.classList.add("confirm");
+            confirmBtn.style.background = "orange";
+            confirmBtn.style.color = "var(--text-color)";
+            confirmBtn.style.transition = "0.3s ease";
             
         } else {
             confirmBtn.disabled = true;
