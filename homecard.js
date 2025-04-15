@@ -203,7 +203,7 @@ function displayData() {
                 <div class="img-card">
                     <div class="front pic1"></div>
                     <div class="images-and-sizes">
-                        <img src="${item.image}" alt="Shoe Image" class="product-image">
+                        <img src="${item.image}" alt="Shoe Image" class="product-image" loading="lazy">
                     </div>
                 </div>
             </div>

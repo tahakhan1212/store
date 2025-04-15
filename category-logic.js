@@ -7,7 +7,7 @@ function displaycategory() {
         <div class="categories-container">
         <div class="categories">
                     <div class="category">
-                        <img src="${item.image}" alt="">
+                        <img src="${item.image}" alt="" loading="lazy">
                     </div>
                     <p>${item.title}</p>
                 </div>

@@ -18,6 +18,10 @@ function loadProduct() {
 
     selectedProduct = JSON.parse(productData);
 
+    // Get previously selected size/color
+    selectedSize = localStorage.getItem(selectedProduct.id + "_size") || null;
+    selectedColor = localStorage.getItem(selectedProduct.id + "_color") || null;
+
     document.querySelector(".main_image img").src = selectedProduct.image;
 
     showProductDetails(selectedProduct);
@@ -94,12 +98,15 @@ function setupMainAddToCart() {
     const btn = document.querySelector(".details-addtocart");
     if (!btn) return;
 
-    // By default disabled
     btn.disabled = true;
     btn.classList.add("disabled");
 
     btn.addEventListener("click", function () {
         if (!selectedSize || !selectedColor) return;
+
+        // Save selected size and color
+        localStorage.setItem(selectedProduct.id + "_size", selectedSize);
+        localStorage.setItem(selectedProduct.id + "_color", selectedColor);
 
         addToCart(selectedProduct.id, true);
         animateAddButton(this);
@@ -126,8 +133,6 @@ function addToCart(id) {
 
         localStorage.setItem(itemId + "_quantity", "1");
         localStorage.setItem(itemId + "_totalPrice", selectedProduct.price.toString());
-
-        // Optional: Save selected options
         localStorage.setItem(itemId + "_size", selectedSize);
         localStorage.setItem(itemId + "_color", selectedColor);
 
@@ -141,18 +146,6 @@ function addToCart(id) {
 function animateAddButton(btn) {
     btn.classList.add("loading");
     btn.innerHTML = "Adding... <span class='loader'></span>";
-
-    setTimeout(() => {
-        btn.classList.remove("loading");
-        btn.classList.add("added");
-        btn.innerHTML = "Check Your Cart &nbsp;<i class='bx bxs-cart-alt'></i>";
-        styleBtn(btn);
-    }, 1000);
-
-    setTimeout(() => {
-        btn.onclick = () => window.location.href = "addtocart.html";
-        btn.classList.remove("added");
-    }, 1700);
 }
 
 function styleBtn(btn) {
@@ -210,9 +203,9 @@ function showProductDetails(product) {
     const right = document.querySelector(".right");
     if (!right) return;
 
-    const sizeBtns = product.sizes.map(size => `<button>${size}</button>`).join("");
+    const sizeBtns = product.sizes.map(size => `<button class="${selectedSize === size ? 'active-size' : ''}">${size}</button>`).join("");
     const colorBtns = product.colors.map((color, index) => `
-        <button class="color-btn" data-index="${index}">${color}</button>
+        <button class="color-btn ${selectedColor === color ? 'active-color' : ''}" data-index="${index}">${color}</button>
     `).join("");
 
     right.innerHTML = `
@@ -256,7 +249,7 @@ function showProductDetails(product) {
         </div>
     `;
 
-    // Handle size selection
+    // Set selected size
     document.querySelectorAll(".sizes button").forEach(btn => {
         btn.addEventListener("click", () => {
             selectedSize = btn.textContent;
@@ -266,13 +259,17 @@ function showProductDetails(product) {
         });
     });
 
-    // Handle color selection
+    // Set selected color
     document.querySelectorAll(".color-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             selectedColor = btn.textContent;
+            document.querySelectorAll(".color-btn").forEach(b => b.classList.remove("active-color"));
+            btn.classList.add("active-color");
             checkIfReadyToAdd();
         });
     });
+
+    checkIfReadyToAdd();
 }
 
 function createReviews() {
@@ -291,13 +288,13 @@ function createReviews() {
         { name: "Jason Mamoa", text: "Received so many compliments after wearing this product!", rating: "5.0⭐", img: "shoes/pic-12.webp"},
         { name: "Elizabeth Olsen", text: "Size was accurate, and the material is super comfy!", rating: "5.0⭐", img: "shoes/pic-13.webp" },
         { name: "Ana de Armas", text: "Highly satisfied, will definitely order again soon!", rating: "5.0⭐", img: "shoes/pic-14.webp" },
-        { name: "John Wick", text: "Product exceeded my expectations in every single way!", rating: "5.0⭐", img: "shoes/pic-15.webp"},
-        { name: "John Wick", text: "Looks premium, feels amazing — highly recommend it!", rating: "5.0⭐", img: "shoes/pic-16.webp"}
+        { name: "Imran Khan", text: "Product exceeded my expectations in every single way!", rating: "5.0⭐", img: "shoes/pic-15.webp"},
+        { name: "sadie Sink", text: "Looks premium, feels amazing — highly recommend it!", rating: "5.0⭐", img: "shoes/pic-16.webp"}
     ];
 
     return reviews.map(r => `
         <div class="reviews-box">
-            <img src="${r.img}" alt="${r.name}">
+            <img src="${r.img}" alt="${r.name} loading="lazy">
             <div class="review-description">
                 <h3>${r.name}</h3>
                 <p>${r.text}</p>
