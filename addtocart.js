@@ -328,7 +328,7 @@ function generateItemHTML(cartItem) {
     <div class="product-item" data-id="${cartItem.id}">
         <div class="product-details">
             <span class="close" onclick="removeCart(${cartItem.id})"><i class='bx bx-trash'></i></span>
-            <img src="${cartItem.image}" alt="" class="product-img" onclick="goToDetails(${cartItem.id}) loading="lazy">
+            <img src="${cartItem.image}" " loading="lazy" alt="" class="product-img" onclick="goToDetails(${cartItem.id})">
             <div class="product-info">
             <div class="product-description">
             <p>${cartItem.description}</p>

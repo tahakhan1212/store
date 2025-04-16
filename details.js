@@ -87,12 +87,24 @@ function changeMain(src) {
 
 function handleOtherImageHover() {
     const otherBox = document.querySelector(".other-images");
+
     otherBox.addEventListener("mouseenter", (e) => {
         if (e.target.tagName === "IMG") {
             changeMain(e.target.src);
+            e.target.style.border = "2px solid var(--primary-color)";
+            e.target.style.borderRadius = "13px"; 
+            e.target.style.transition = "all 0.1s ease-in-out";
+        }
+    }, true);
+    
+    otherBox.addEventListener("mouseleave", (e) => {
+        if (e.target.tagName === "IMG") {
+            e.target.style.border = "none"; 
+            e.target.style.borderRadius = ""; 
         }
     }, true);
 }
+
 
 function setupMainAddToCart() {
     const btn = document.querySelector(".details-addtocart");
@@ -212,7 +224,7 @@ function showProductDetails(product) {
         <h3 id="title">${product.title}</h3>
         <p id="category">${product.category}</p>
         <div class="prices">
-            <h4><span class="pkr">Rs</span>.${product.price}</h4>
+            <h4><span class="pkr">Rs</span>. ${product.price} </h4>
             <h4><del>${product.oldPrice}</del></h4>
             <h4 class="discount">${product.discount}</h4>
         </div>
@@ -238,7 +250,7 @@ function showProductDetails(product) {
             <div class="quantity-and-rating">
                 <h5 class="bestseller">Best seller</h5>
                 <h1><strong>Customer</strong> Reviews &nbsp;<i class='bx bxs-star'></i></h1>
-                <h5>${product.sold} Sold</h5>
+                <h5>${product.sold} <span class="pluscolor">+</span> Sold</h5>
             </div>
             <div class="reviews-container">
                 ${createReviews()}

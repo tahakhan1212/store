@@ -187,6 +187,11 @@ html {
   color: var(--primary-color) !important;
 }
 
+.pluscolor{
+  font-size: 1.6rem;
+  color: var(--count-color) ;
+}
+
 .right #category,
 .descriptions,
 .sizeguide {
