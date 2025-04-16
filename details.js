@@ -203,7 +203,7 @@ function checkIfReadyToAdd() {
 
     if (selectedSize && selectedColor) {
         btn.disabled = false;
-        btn.innerHTML = `<h3>confirm <i class='bx bxs-check-circle'></i></h3>`;
+        btn.innerHTML = `confirm <i class='bx bxs-check-circle'></i>`;
         btn.classList.remove("disabled");
     } else {
         btn.disabled = true;

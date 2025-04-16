@@ -649,6 +649,21 @@ body.dark .switch::before {
     font-size: 2rem;
 }
 
+#seeMoreBtn {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+#seeMoreBtn:hover {
+    background-color: #e65c00;
+}
+
+
 .modal-overlay {
     position: fixed;
     top: 0;
