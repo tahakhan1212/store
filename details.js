@@ -44,10 +44,19 @@ function loadProduct() {
     });
 
     const extraPics = selectedProduct.extraPics?.split(",") || [];
+    const pics = selectedProduct.pics?.split(",") || [];
     const otherBox = document.querySelector(".other-images");
     otherBox.innerHTML = "";
-
+    
+    // Add extra pics
     extraPics.forEach(pic => {
+        const img = document.createElement("img");
+        img.src = pic;
+        otherBox.appendChild(img);
+    });
+    
+    // Add main pics also to other-images
+    pics.forEach(pic => {
         const img = document.createElement("img");
         img.src = pic;
         otherBox.appendChild(img);
@@ -221,8 +230,8 @@ function showProductDetails(product) {
     `).join("");
 
     right.innerHTML = `
-        <h3 id="title">${product.title}</h3>
-        <p id="category">${product.category}</p>
+    <h3 id="title">${product.title}</h3>
+    <p id="category">${product.category}</p>
         <div class="prices">
             <h4><span class="pkr">Rs</span>. ${product.price} </h4>
             <h4><del>${product.oldPrice}</del></h4>
