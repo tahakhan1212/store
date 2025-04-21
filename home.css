@@ -550,7 +550,7 @@ body.dark .switch::before {
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     border-top: 3px solid var(--primary-color-light);
     overflow: hidden;
-    gap: 12px;
+    gap: 10px;
     width: 98.5%;
 }
 
@@ -559,7 +559,7 @@ body.dark .switch::before {
     border-radius: 1rem;
     padding: 8px;
     position: relative;
-    margin-top: 1rem;
+    margin-top: .5rem;
 }
 
 .images-and-sizes img {
@@ -905,7 +905,7 @@ html.modal-open {
     animation: bounce 0.5s ease-in-out;
 }
 
-@media (max-width: 870px) {
+@media (max-width: 768px) {
 
     nav {
         display: none;
@@ -979,6 +979,15 @@ html.modal-open {
         width: 100%;
         margin-top: 1rem;
     }
+
+    .cards > .container:nth-child(n+10):nth-child(even) {
+    transform: translateY(-25px);
+}
+.cards > .container:nth-child(n+10):nth-child(odd),
+.cards > .container:nth-child(-n+9) {
+    transform: translateY(0px);
+}
+
 
     .product h1 {
         font-size: 12px;
