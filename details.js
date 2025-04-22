@@ -39,9 +39,13 @@ function loadProduct() {
             changeMain(pic);
             highlightColorByIndex(index);
             highlightImageByIndex(index);
+            
+            selectedColor = selectedProduct.colors[index];
+            checkIfReadyToAdd();
         };
         optionBox.appendChild(img);
     });
+    
 
     const extraPics = selectedProduct.extraPics?.split(",") || [];
     const pics = selectedProduct.pics?.split(",") || [];
@@ -270,7 +274,6 @@ function showProductDetails(product) {
         </div>
     `;
 
-    // Set selected size
     document.querySelectorAll(".sizes button").forEach(btn => {
         btn.addEventListener("click", () => {
             selectedSize = btn.textContent;
@@ -280,7 +283,6 @@ function showProductDetails(product) {
         });
     });
 
-    // Set selected color
     document.querySelectorAll(".color-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             selectedColor = btn.textContent;
